@@ -13,7 +13,7 @@ class Config(dict):
         self['c_puct'] = 1
 
         # simulation times
-        self['simulation_times'] = 10
+        self['simulation_times'] = 5
 
         # initial tau
         self['initial_tau'] = 1
@@ -31,13 +31,13 @@ class Config(dict):
         self['board_size'] = 7
 
         # epoch: number of games played to train
-        self['epoch'] = 20
+        self['epoch'] = 1000
         
         # sample percentage
         self['sample_percentage'] = 0.5
         
         # number of games in each training epoch
-        self['games_num'] = 10
+        self['games_num'] = 100
 
         # learning rate
         self['learning_rate'] = 2e-3
@@ -56,6 +56,9 @@ class Config(dict):
 
         # number of games played for evaluation, must be an even number!!!
         self['evaluate_games_num'] = 20
+
+        # epoch from which evaluation starts
+        self['evaluate_start_epoch'] = 10
 
         self.update(**kwargs)
 

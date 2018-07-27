@@ -88,13 +88,14 @@ class Env:
             self._agent_1.train(obs, col, pi, z)
 
             # evaluate
-            if self.evaluate():
-                self._agent_1.save_model()
-                self._network_version += 1
-                data_set.clear()
-            else:
-                self._agent_1.load_model()
-            print('network version = ' + str(self._network_version))
+            if epoch >= self._conf['evaluate_start_epoch']:
+                if self.evaluate():
+                    self._agent_1.save_model()
+                    self._network_version += 1
+                    data_set.clear()
+                else:
+                    self._agent_1.load_model()
+                print('network version = ' + str(self._network_version))
             print('*****************************************************')
 
     def evaluate(self):
