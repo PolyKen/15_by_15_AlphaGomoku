@@ -37,7 +37,7 @@ class Config(dict):
         self['sample_percentage'] = 0.5
         
         # number of games in each training epoch
-        self['games_num'] = 2
+        self['games_num'] = 10
 
         # learning rate
         self['learning_rate'] = 2e-3
