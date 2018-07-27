@@ -11,6 +11,8 @@ class Env:
         self._renderer = Renderer(conf['screen_size'], conf['board_size'])
         self._board = Board(self._renderer, conf['board_size'])
 
+        self._network_version = 0
+
         self._agent_1 = MCTSAgent(conf, color=BLACK)
         # self._agent_1 = HumanAgent(self._renderer, color=BLACK)
         # self._agent_2 = HumanAgent(self._renderer, color=WHITE)
@@ -71,20 +73,29 @@ class Env:
         return 0
 
     def train(self):
+        data_set = DataSet()
         for epoch in range(self._epoch):
-            data_set = DataSet()
             print('epoch = ' + str(epoch))
+
+            # self-play
             for i in range(self._games_num):
                 record = GameRecord()
                 print('game_num = ' + str(i))
                 self.run(record)
                 data_set.add_record(record)
+
+            # train
             obs, col, pi, z = data_set.get_sample(self._sample_percentage)
             self._agent_1.train(obs, col, pi, z)
 
-            # ready to evaluate
+            # evaluate
             if self.evaluate():
                 self._agent_1.save_model()
+                self._network_version += 1
+                data_set.clear()
+            else:
+                self._agent_1.load_model()
+            print('network version = ' + str(self._network_version))
             print('*****************************************************')
 
     def evaluate(self):

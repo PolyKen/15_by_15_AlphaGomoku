@@ -4,6 +4,9 @@ import random
 class DataSet:
     def __init__(self):
         self._game_record = []
+
+    def clear(self):
+        self._game_record = []
         
     def add_record(self, record):
         self._game_record.append(record)
