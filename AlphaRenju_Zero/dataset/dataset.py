@@ -1,6 +1,5 @@
 import random
 
-
 class DataSet:
     def __init__(self):
         self._game_record = []
@@ -42,7 +41,8 @@ class GameRecord:
         self._pi_list.append(pi)
         self._z_list.append(z)
         self._total_num += 1
-        
+
+# the method to define the value of z
     def set_z(self, result):
         if result == 0:
             self._z_list = [0 for i in range(self._total_num)]
