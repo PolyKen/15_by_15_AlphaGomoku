@@ -59,6 +59,9 @@ class Config(dict):
 
         # epoch from which evaluation starts
         self['evaluate_start_epoch'] = 10
+        
+        # Mini-Batch Size
+        self['mini_batch_size'] = 256
 
         self.update(**kwargs)
 
