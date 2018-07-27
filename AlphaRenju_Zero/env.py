@@ -60,7 +60,6 @@ class Env:
                     if result == 'draw':
                         flag = 0
                     record.set_z(flag)
-                # time.sleep(30)
                 break
         self._board.clear()
         self._agent_1.reset_mcts()
