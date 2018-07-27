@@ -17,6 +17,7 @@ class Network():
         self._lr = conf['learning_rate'] # learning rate of SGD (2e-3)
         self._momentum = conf['momentum'] # nesterov momentum (1e-1)
         self._l2_coef = conf['l2'] # coefficient of L2 penalty (1e-4)
+        self._mini_batch_size = conf['mini_batch_size']
         # Define Network
         self._build_network()
         # File Location
@@ -100,9 +101,9 @@ class Network():
         pi_list = np.array(pi_list)
         z_list = np.array(z_list)
         # Training
-        self._model.fit(board_list, [pi_list, z_list], epochs=20, batch_size=len(color_list), verbose=1)
+        self._model.fit(board_list, [pi_list, z_list], epochs=10, batch_size=self._mini_batch_size, verbose=1)
         # Calculate Loss Explicitly
-        loss = self._model.evaluate(board_list, [pi_list, z_list], batch_size=len(board_list), verbose=0)
+        loss = self._model.evaluate(board_list, [pi_list, z_list], batch_size=self._mini_batch_size, verbose=0)
         loss = loss[0]
         return loss
         
