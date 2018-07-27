@@ -74,12 +74,12 @@ class Env:
     def train(self):
         data_set = DataSet()
         for epoch in range(self._epoch):
-            print('epoch = ' + str(epoch))
+            print('epoch = ' + str(epoch+1))
 
             # self-play
             for i in range(self._games_num):
                 record = GameRecord()
-                print('game_num = ' + str(i))
+                print('game_num = ' + str(i+1))
                 self.run(record)
                 data_set.add_record(record)
 
