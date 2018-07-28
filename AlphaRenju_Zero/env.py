@@ -91,10 +91,7 @@ class Env:
                 self.run(record)
                 end = time.clock()
                 print('game time = ' + str(end-start))
-                start = time.clock()
                 data_set.add_record(record)
-                end = time.clock()
-                print('add_data_time = ' + str(end-start))
 
             # train
             obs, col, pi, z = data_set.get_sample(self._sample_percentage)

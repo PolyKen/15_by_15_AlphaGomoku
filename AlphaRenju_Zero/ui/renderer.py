@@ -50,8 +50,6 @@ class Renderer(threading.Thread):
         self._is_waiting_for_click = False
         self._mouse_click_pos = None
 
-        # 设置后台线程：若是后台线程，在主线程结束之后，后台线程也会停止，若是前台线程，在主线程执行完毕后，等待前台
-        # 线程也执行完毕后程序才会停止
         self.setDaemon(True)
         self.start()
 

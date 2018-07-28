@@ -146,6 +146,7 @@ class Network():
         else:
             print('error: ' + self._net_para_file + ' not found')
 
+
 # Transform a board(matrix) to a tensor
 def board2tensor(board, color, reshape_flag = True):
 
@@ -165,6 +166,7 @@ def board2tensor(board, color, reshape_flag = True):
         tensor = tensor.reshape(1, tensor.shape[0], tensor.shape[1], tensor.shape[2])
     return tensor   
 
+
 # Augment the training data pool through plane transformation
 def symmetric_data_augmentation(board, color, pi, z):
     new_board = []
@@ -178,6 +180,7 @@ def symmetric_data_augmentation(board, color, pi, z):
         new_pi.append(pi_t)
     return new_board, new_color, new_pi, new_z
 
+
 # Transform the input vector given transformation type
 def input_encode(vec, num, size):
     mat = np.reshape(vec, (size, size))  # reshape vector into matrix
@@ -185,12 +188,14 @@ def input_encode(vec, num, size):
     vec = np.reshape(mat, (1, size**2))
     return vec[0]
 
+
 # Transform the output vector to its initial shape given the transformation type
 def output_decode(vec, num, size):
     mat = np.reshape(vec, (size,size))   # reshape vector into matrix
     inv_mat = board_transform(mat, num, flag=2)
     vec = np.reshape(inv_mat, (1, size**2))
     return vec[0]
+
 
 # Transform the input board by simple plane transformation
 def board_transform(mat, num, flag=0):

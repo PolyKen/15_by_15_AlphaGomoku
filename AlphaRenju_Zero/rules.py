@@ -3,6 +3,7 @@ import numpy as np
 BLACK = 1
 WHITE = -1
 
+
 class Rules:
 
     def __init__(self, conf):
