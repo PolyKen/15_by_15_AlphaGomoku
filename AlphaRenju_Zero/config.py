@@ -16,7 +16,7 @@ class Config(dict):
         self['c_puct'] = 1
 
         # simulation times
-        self['simulation_times'] = 5
+        self['simulation_times'] = 400
 
         # initial tau
         self['initial_tau'] = 1
@@ -34,13 +34,13 @@ class Config(dict):
         self['board_size'] = 8
 
         # epoch: number of games played to train
-        self['epoch'] = 3
+        self['epoch'] = 1000
         
         # sample percentage
         self['sample_percentage'] = 0.5
         
         # number of games in each training epoch
-        self['games_num'] = 1
+        self['games_num'] = 50
 
         # learning rate
         self['learning_rate'] = 2e-3
@@ -58,13 +58,13 @@ class Config(dict):
         self['fit_history_file'] = 'AlphaRenju_Zero/network/history/log_' + str(self['board_size'])
         
         # use previous model
-        self['use_previous_model'] = False
+        self['use_previous_model'] = True
 
         # number of games played for evaluation, must be an even number!!!
-        self['evaluate_games_num'] = 20
+        self['evaluate_games_num'] = 10
 
         # epoch from which evaluation starts
-        self['evaluate_start_epoch'] = 0
+        self['evaluate_start_epoch'] = 20
         
         # Mini-Batch Size
         self['mini_batch_size'] = 256
