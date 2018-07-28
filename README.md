@@ -11,17 +11,22 @@ About
 
 Contributions
 ====
-Contributors:
+Main Contributors:
 -------
 - ***Zheng Xie***
 - ***XingYu Fu***
 - ***JinYuan Yu***
 - ***ChenBai An***
 
-Institutions:
+Main Institutions:
 -------
 - ***AI&FintechLab of Likelihood Technology***
 - ***Sun Yat-sen University***
+- ***MIT***
+
+Acknowledgement:
+-------
+We are also grateful to ZhiPeng Liang and Hao Chen from Sun Yat-sen University for their help in the training process.
 
 Set up
 ====
