@@ -82,8 +82,7 @@ class Network():
         losses_type = ['categorical_crossentropy', 'mean_squared_error']  # cross-entrophy and MSE are weighted equally
         self._model.compile(optimizer=opt, loss=losses_type)
 
-
-    def _residual_block(self,x):
+    def _residual_block(self, x):
         x_shortcut = x
         x = Conv2D(filters=32, kernel_size=(3, 3), strides=(1,1), padding='same', data_format="channels_first", kernel_regularizer=l2(self._l2_coef))(x)
         x = BatchNormalization()(x) 

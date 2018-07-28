@@ -110,6 +110,9 @@ class Env:
                 else:
                     self._agent_1.load_model()
                 print('network version = ' + str(self._network_version))
+            else:
+                self._agent_1.save_model()
+                data_set.clear()
             print('*****************************************************')
 
         # save loss
