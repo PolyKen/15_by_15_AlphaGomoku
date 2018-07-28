@@ -1,6 +1,7 @@
 from . import *
 from .dataset.dataset import *
 import time
+import matplotlib.pyplot as plt
 
 
 class Env:
@@ -32,6 +33,8 @@ class Env:
         self._sample_percentage = conf['sample_percentage']
         self._games_num = conf['games_num']
         self._evaluate_games_num = conf['evaluate_games_num']
+
+        self._loss_list = []
 
     def run(self, record=None):
         result = None
@@ -69,7 +72,6 @@ class Env:
         self._board.clear()
         self._agent_1.reset_mcts()
         self._agent_2.reset_mcts()
-        print('*****************************************************')
         if result == 'blackwins':
             return BLACK
         if result == 'whitewins':
@@ -96,7 +98,8 @@ class Env:
 
             # train
             obs, col, pi, z = data_set.get_sample(self._sample_percentage)
-            self._agent_1.train(obs, col, pi, z)
+            loss = self._agent_1.train(obs, col, pi, z)
+            self._loss_list.append(loss)
 
             # evaluate
             if epoch >= self._conf['evaluate_start_epoch']:
@@ -108,6 +111,18 @@ class Env:
                     self._agent_1.load_model()
                 print('network version = ' + str(self._network_version))
             print('*****************************************************')
+
+        # save loss
+        hist_path = self._conf['fit_history_file'] + '_loss.txt'
+        with open(hist_path, 'a') as f:
+            f.write(str(self._loss_list))
+        # plot loss
+        x = range(1, len(self._loss_list)+1)
+        y = self._loss_list
+        plt.plot(x, y)
+        plt.xlabel('epoch')
+        plt.ylabel('loss')
+        plt.show()
 
     def evaluate(self):
         print('Evaluation begins:')

@@ -1,7 +1,7 @@
 class Config(dict):
     def __init__(self, **kwargs):
         # display mode
-        self['display'] = True
+        self['display'] = False
 
         # screen size of renderer
         self['screen_size'] = (720, 720)
@@ -13,7 +13,7 @@ class Config(dict):
         self['forbidden_moves'] = False
 
         # PUCT: when c_puct gets smaller, the simulation becomes deeper
-        self['c_puct'] = 1
+        self['c_puct'] = 5
 
         # simulation times
         self['simulation_times'] = 400
@@ -34,7 +34,7 @@ class Config(dict):
         self['board_size'] = 8
 
         # epoch: number of games played to train
-        self['epoch'] = 1000
+        self['epoch'] = 60
         
         # sample percentage
         self['sample_percentage'] = 0.5
@@ -64,7 +64,7 @@ class Config(dict):
         self['evaluate_games_num'] = 10
 
         # epoch from which evaluation starts
-        self['evaluate_start_epoch'] = 20
+        self['evaluate_start_epoch'] = 10
         
         # Mini-Batch Size
         self['mini_batch_size'] = 256

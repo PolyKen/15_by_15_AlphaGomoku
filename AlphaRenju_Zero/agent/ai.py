@@ -64,10 +64,11 @@ class MCTSAgent(AI):
     def train(self, obs, color, pi, z):
         print('training begins:')
         start = time.clock()
-        self._network.train(obs, color, pi, z)
+        loss = self._network.train(obs, color, pi, z)
         end = time.clock()
         print('training time = ' + str(end - start))
         print('*********************************************')
+        return loss
         
     def save_model(self):
         self._network.save_model()

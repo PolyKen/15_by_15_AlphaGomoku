@@ -1,9 +1,9 @@
 from sys import exit
 from ..rules import *
+import time
 display_mode = True
 try:
     import pygame
-    from pygame import *
 except ImportError:
     print('ERROR: module [pygame] not found')
     display_mode = False
@@ -66,12 +66,12 @@ class Renderer(threading.Thread):
         self.paint_background()
         while True:
             for event in pygame.event.get():
-                if event.type == QUIT:
+                if event.type == pygame.QUIT:
                     print("exit")
                     pygame.quit()
                     exit()
-                if self._is_waiting_for_click and event.type == MOUSEBUTTONDOWN:
-                    mouse_position = mouse.get_pos()
+                if self._is_waiting_for_click and event.type == pygame.MOUSEBUTTONDOWN:
+                    mouse_position = pygame.mouse.get_pos()
                     y = int(mouse_position[0] / self._spacing - 0.5)
                     x = int(mouse_position[1] / self._spacing - 0.5)
                     if x in range(self._board_size) and y in range(self._board_size):
