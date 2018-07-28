@@ -38,6 +38,7 @@ Modules needed:
 - ***abc***
 - ***time***
 - ***numpy***
+- ***matplotlib***
 
 Contact
 ====
