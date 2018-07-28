@@ -23,7 +23,7 @@ Main Institutions:
 
 Acknowledgement:
 -------
-We are also grateful to ZhiPeng Liang and Hao Chen from Sun Yat-sen University for their help in the training process.
+We are also grateful to ZhiPeng Liang and Hao Chen from Sun Yat-sen University for their help in the training process. We also say thanks to MingWen Liu from Gradient Trading for his encouragements and suggestions.
 
 Set up
 ====
