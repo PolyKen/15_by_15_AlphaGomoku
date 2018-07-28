@@ -3,9 +3,6 @@
 Introduction
 ====
 This project implements the AlphaZero Algorithm in the game of Renju.
-
-About
-====
 - Network parameters will be shared once we finish training.
 - Currently, we are working on a step-by-step tutorial on AlphaZero algorithm and it will be released soon.
 
