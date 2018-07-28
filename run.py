@@ -7,3 +7,5 @@ conf = Config()
 conf.print_current_config()
 env = Env(conf)
 env.train()
+
+

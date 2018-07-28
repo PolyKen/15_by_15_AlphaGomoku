@@ -76,7 +76,6 @@ class MCTSAgent(AI):
         self._network.load_model()
 
 
-
 class NNAgent(AI):
     def __init__(self, network, color):
         AI.__init__(self, color)

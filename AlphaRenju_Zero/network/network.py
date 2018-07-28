@@ -8,25 +8,30 @@ from keras.regularizers import l2
 from keras.optimizers import SGD
 from ..rules import *
 import numpy as np
+import os
 
 
 class Network():
     def __init__(self, conf):
-        # Some Hyperparameters
-        self._board_size = conf['board_size'] # the size of the playing board
-        self._lr = conf['learning_rate'] # learning rate of SGD (2e-3)
-        self._momentum = conf['momentum'] # nesterov momentum (1e-1)
-        self._l2_coef = conf['l2'] # coefficient of L2 penalty (1e-4)
+        # Some hyperparameters
+        self._board_size = conf['board_size']  # the size of the playing board
+        self._lr = conf['learning_rate']  # learning rate of SGD (2e-3)
+        self._momentum = conf['momentum']  # nesterov momentum (1e-1)
+        self._l2_coef = conf['l2']  # coefficient of L2 penalty (1e-4)
         self._mini_batch_size = conf['mini_batch_size']
+        self._fit_epochs = conf['fit_epochs']
         # Define Network
         self._build_network()
         # File Location
-        self._net_para_file = conf['net_para_file'] 
+        self._net_para_file = conf['net_para_file']
+        self._fit_history_file = conf['fit_history_file']
         # If we use previous model or not
         self._use_previous_model = conf['use_previous_model']
-        if self._use_previous_model:            
-            net_para = self._model.load_weights(self._net_para_file)
-            self._model.set_weights(net_para)
+        if self._use_previous_model:
+            if os.path.exists(self._net_para_file):
+                self._model.load_weights(self._net_para_file)
+            else:
+                print('error: ' + self._net_para_file + ' not found')
             
     def _build_network(self):
         # Input_Layer
@@ -59,18 +64,18 @@ class Network():
         # Define Network
         self._model = Model(inputs = init_x, outputs = [self._policy, self._value])
         # Define the Loss Function
-        opt = SGD( lr=self._lr, momentum=self._momentum, nesterov=True)
+        opt = SGD(lr=self._lr, momentum=self._momentum, nesterov=True)
         losses_type = ['categorical_crossentropy', 'mean_squared_error']
         self._model.compile(optimizer=opt, loss=losses_type)
 
     def _residual_block(self,x):
         x_shortcut = x
-        x = Conv2D( filters=32, kernel_size=(3, 3), strides=(1,1), padding='same', data_format="channels_first", kernel_regularizer=l2(self._l2_coef))(x) 
+        x = Conv2D(filters=32, kernel_size=(3, 3), strides=(1,1), padding='same', data_format="channels_first", kernel_regularizer=l2(self._l2_coef))(x)
         x = BatchNormalization()(x) 
         x = Activation('relu')(x)
-        x = Conv2D( filters=32, kernel_size=(3, 3), strides=(1,1), padding='same', data_format="channels_first", kernel_regularizer=l2(self._l2_coef))(x) 
+        x = Conv2D(filters=32, kernel_size=(3, 3), strides=(1,1), padding='same', data_format="channels_first", kernel_regularizer=l2(self._l2_coef))(x)
         x = BatchNormalization()(x) 
-        x = add([x, x_shortcut]) # Skip Connection
+        x = add([x, x_shortcut])  # Skip Connection
         x = Activation('relu')(x)
         return x
         
@@ -101,11 +106,10 @@ class Network():
         pi_list = np.array(pi_list)
         z_list = np.array(z_list)
         # Training
-        self._model.fit(board_list, [pi_list, z_list], epochs=10, batch_size=self._mini_batch_size, verbose=1)
-        # Calculate Loss Explicitly
-        loss = self._model.evaluate(board_list, [pi_list, z_list], batch_size=self._mini_batch_size, verbose=0)
-        loss = loss[0]
-        return loss
+        hist = self._model.fit(board_list, [pi_list, z_list], epochs=self._fit_epochs, batch_size=self._mini_batch_size, verbose=1)
+        hist_path = self._fit_history_file + '_' + str(self._fit_epochs) + '_' + str(self._mini_batch_size) + '.txt'
+        with open(hist_path, 'a') as f:
+            f.write(str(hist.history))
         
     def get_para(self):
         net_para = self._model.get_weights() 
@@ -116,7 +120,10 @@ class Network():
         self._model.save_weights(self._net_para_file)
 
     def load_model(self):
-        self._model.load_weights(self._net_para_file)
+        if os.path.exists(self._net_para_file):
+            self._model.load_weights(self._net_para_file)
+        else:
+            print('error: ' + self._net_para_file + ' not found')
 
 def board2tensor(board, color, reshape_flag = True):
     """Current-Stone Layer"""
@@ -147,18 +154,20 @@ def symmetric_data_augmentation(board, color, pi, z):
 
 
 def input_encode(vec, num, size):
-    mat = np.reshape(vec, (size,size)) #reshape vector into matrix
+    mat = np.reshape(vec, (size, size))  # reshape vector into matrix
     mat = board_transform(mat, num, flag = 1)
     vec = np.reshape(mat, (1, size**2))
     return vec[0]
 
+
 def output_decode(vec, num, size):
-    mat = np.reshape(vec, (size,size)) #reshape vector into matrix
-    inv_mat = board_transform(mat, num, flag = 2)
+    mat = np.reshape(vec, (size,size))   # reshape vector into matrix
+    inv_mat = board_transform(mat, num, flag=2)
     vec = np.reshape(inv_mat, (1, size**2))
     return vec[0]
 
-def board_transform(mat, num, flag = 0):
+
+def board_transform(mat, num, flag=0):
 
     def R0(mat):
         return mat
@@ -196,11 +205,11 @@ def board_transform(mat, num, flag = 0):
         total_type = ['R0', 'R1', 'R2', 'R3', 'S', 'SR1', 'SR2', 'SR3']
         real_type = total_type[num]
         return eval(real_type)(mat),num
-    elif flag == 1: # encode
+    elif flag == 1:  # encode
         total_type = ['R0', 'R1', 'R2', 'R3', 'S', 'SR1', 'SR2', 'SR3']
         real_type = total_type[num]
         return eval(real_type)(mat)
-    else: # decode
+    else:  # decode
         inv_total_type = ['R0', 'R3', 'R2', 'R1', 'S', 'SR1', 'SR2', 'SR3']
         real_type = inv_total_type[num]
         return eval(real_type)(mat)

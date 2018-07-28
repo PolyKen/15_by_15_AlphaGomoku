@@ -1,5 +1,8 @@
 class Config(dict):
     def __init__(self, **kwargs):
+        # display mode
+        self['display'] = True
+
         # screen size of renderer
         self['screen_size'] = (720, 720)
 
@@ -28,16 +31,16 @@ class Config(dict):
         self['dirichlet'] = 0.03
 
         # board size
-        self['board_size'] = 7
+        self['board_size'] = 8
 
         # epoch: number of games played to train
-        self['epoch'] = 1000
+        self['epoch'] = 3
         
         # sample percentage
         self['sample_percentage'] = 0.5
         
         # number of games in each training epoch
-        self['games_num'] = 100
+        self['games_num'] = 1
 
         # learning rate
         self['learning_rate'] = 2e-3
@@ -49,7 +52,10 @@ class Config(dict):
         self['l2'] = 1e-4
 
         # path of network parameters
-        self['net_para_file'] = 'AlphaRenju_Zero/network/model/model.h5'
+        self['net_para_file'] = 'AlphaRenju_Zero/network/model/model_' + str(self['board_size']) + '.h5'
+
+        # path of history of fitting
+        self['fit_history_file'] = 'AlphaRenju_Zero/network/history/log_' + str(self['board_size'])
         
         # use previous model
         self['use_previous_model'] = False
@@ -58,10 +64,13 @@ class Config(dict):
         self['evaluate_games_num'] = 20
 
         # epoch from which evaluation starts
-        self['evaluate_start_epoch'] = 10
+        self['evaluate_start_epoch'] = 0
         
         # Mini-Batch Size
         self['mini_batch_size'] = 256
+
+        # fit epochs, number of each sample used
+        self['fit_epochs'] = 1
 
         self.update(**kwargs)
 
@@ -71,7 +80,7 @@ class Config(dict):
 
     def print_current_config(self):
         print('------------------')
-        print('******current config******')
+        print('CURRENT CONFIG:')
         for key in self:
             print('{}: {}'.format(key, self[key]))
         print('------------------')

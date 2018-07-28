@@ -1,14 +1,19 @@
 from . import *
 from .dataset.dataset import *
+import time
 
 
 class Env:
     def __init__(self, conf):
+        if not display_mode:
+            conf['display'] = False
+            print('display mode is not available (requires pygame and threading)')
+
         self._conf = conf
         self._is_self_play = conf['is_self_play']
 
         self._rules = Rules(conf)
-        self._renderer = Renderer(conf['screen_size'], conf['board_size'])
+        self._renderer = Renderer(conf['screen_size'], conf['board_size']) if conf['display'] else None
         self._board = Board(self._renderer, conf['board_size'])
 
         self._network_version = 0
@@ -30,7 +35,7 @@ class Env:
 
     def run(self, record=None):
         result = None
-        while self._renderer.is_alive():
+        while True:
             if self._is_self_play:
                 self._agent_1.color = self._board.current_player()
             action, pi = self._current_agent().play(self._obs(), self._board.last_move(), self._board.stone_num())
@@ -80,8 +85,14 @@ class Env:
             for i in range(self._games_num):
                 record = GameRecord()
                 print('game_num = ' + str(i+1))
+                start = time.clock()
                 self.run(record)
+                end = time.clock()
+                print('game time = ' + str(end-start))
+                start = time.clock()
                 data_set.add_record(record)
+                end = time.clock()
+                print('add_data_time = ' + str(end-start))
 
             # train
             obs, col, pi, z = data_set.get_sample(self._sample_percentage)

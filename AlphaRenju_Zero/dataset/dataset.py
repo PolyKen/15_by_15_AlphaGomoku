@@ -1,5 +1,6 @@
 import random
 
+
 class DataSet:
     def __init__(self):
         self._game_record = []
