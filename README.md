@@ -13,17 +13,15 @@ Main Contributors:
 - ***Zheng Xie***
 - ***XingYu Fu***
 - ***JinYuan Yu***
-- ***ChenBai An***
 
 Main Institutions:
 -------
 - ***AI&FintechLab of Likelihood Technology***
 - ***Sun Yat-sen University***
-- ***MIT***
 
 Acknowledgement:
 -------
-We are also grateful to ZhiPeng Liang and Hao Chen from Sun Yat-sen University for their help in the training process. We also say thanks to MingWen Liu from Gradient Trading for his encouragements and suggestions.
+We would like to say thanks to BaiAn Chen from MIT and MingWen Liu from Gradient Trading for their generous help throughout the research. We are also grateful to ZhiPeng Liang and Hao Chen from Sun Yat-sen University for their supports of the training process of our Gomoku AI.
 
 Set up
 ====
