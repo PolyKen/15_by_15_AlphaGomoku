@@ -3,8 +3,9 @@
 Introduction
 ====
 Google DeepMinds recent AlphaZero algorithm, accepting no domain-specific knowledges, mastered the game of Go, chess and shogi through self-played reinforcement learning from scratch, showing the potential of general AI, which is the holy grail of the entire AI community. We implement an AlphaZero-version Gomoku AI program and we have open the code of it here.
+
 To do:
--------
+====
 - Network parameters will be shared once we finish training.
 - Currently, we are working on a step-by-step tutorial on AlphaZero algorithm and it will be released soon.
 
