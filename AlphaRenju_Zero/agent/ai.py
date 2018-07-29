@@ -40,6 +40,7 @@ class MCTSAgent(AI):
         
     def save_model(self):
         self._network.save_model()
+        print('model saved')
 
     def load_model(self):
         self._network.load_model()

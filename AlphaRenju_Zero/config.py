@@ -64,10 +64,10 @@ class Config(dict):
         self['evaluate_games_num'] = 10
 
         # epoch from which evaluation starts
-        self['evaluate_start_epoch'] = 10
+        self['evaluate_start_epoch'] = 30
         
         # Mini-Batch Size
-        self['mini_batch_size'] = 256
+        self['mini_batch_size'] = 512
 
         # fit epochs, number of each sample used
         self['fit_epochs'] = 1

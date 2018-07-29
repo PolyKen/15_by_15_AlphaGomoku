@@ -99,7 +99,7 @@ class Env:
             self._loss_list.append(loss)
 
             # evaluate
-            if epoch >= self._conf['evaluate_start_epoch']:
+            if epoch >= self._conf['evaluate_start_epoch'] - 1:
                 if self.evaluate():
                     self._agent_1.save_model()
                     self._network_version += 1
