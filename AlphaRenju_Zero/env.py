@@ -70,8 +70,10 @@ class Env:
                     record.set_z(flag)
                 break
         self._board.clear()
-        self._agent_1.reset_mcts()
-        self._agent_2.reset_mcts()
+        if type(self._agent_1) == MCTSAgent:
+            self._agent_1.reset_mcts()
+        if type(self._agent_2) == MCTSAgent:
+            self._agent_2.reset_mcts()
         if result == 'blackwins':
             return BLACK
         if result == 'whitewins':
