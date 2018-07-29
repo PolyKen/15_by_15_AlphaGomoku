@@ -90,7 +90,6 @@ class MCTS:
                 end_flag = check_rules(current_board, action, -current_color)
                 if end_flag == 'blackwins' or end_flag == 'whitewins' or end_flag == 'full':
                     current_node.is_end = True
-                    current_node.end_reason = end_flag
                     current_node.value = -v
                 else:
                     current_node.expand(prior_prob, self._board_size)
@@ -216,63 +215,3 @@ def check_rules(board, action, color):
                     return 'blackwins'
                 else:
                     return 'whitewins'
-
-
-
-
-
-'''
-    else: # Convolutional Match
-        kernel = color*np.ones(5)
-        # Horizonal Convolution
-        # (i,j) is the coordinate of the starting point
-        for i in range(board.shape[0]):
-            for j in range(board.shape[0]-5+1):
-                sample = board[i,j:j+5]
-                result = np.dot(kernel,sample)
-                if result == 5:
-                    if color == 1:
-                        return 'blackwins'
-                    else:
-                        return 'whitewins'
-                else:
-                    continue
-        # Vertical Convolution
-        for i in range(board.shape[0]-5+1):
-            for j in range(board.shape[0]):
-                sample = board[i:i+5,j]
-                result = np.dot(kernel,sample)
-                if result == 5:
-                    if color == 1:
-                        return 'blackwins'
-                    else:
-                        return 'whitewins'
-                else:
-                    continue     
-        # Diagonal Convolution
-        for i in range(board.shape[0]-5+1):
-            for j in range(board.shape[0]-5+1):
-                sample = np.array([ board[i+k][j+k] for k in range(5)])
-                result = np.dot(kernel,sample)
-                if result == 5:
-                    if color == 1:
-                        return 'blackwins'
-                    else:
-                        return 'whitewins'
-                else:
-                    continue
-        # Anti-Diagonal Convolution
-        for i in range(board.shape[0]-5+1):
-            for j in range(board.shape[0]-5+1,board.shape[0]):
-                sample = np.array([ board[i+k][j-k] for k in range(5)])
-                result = np.dot(kernel,sample)
-                if result == 5:
-                    if color == 1:
-                        return 'blackwins'
-                    else:
-                        return 'whitewins'
-                else:
-                    continue
-    return 'continue'    
-
-'''

@@ -4,6 +4,7 @@ import numpy as np
 
 class Node:
     count = 0
+
     def __init__(self, prior_prob, parent, color):
         
         """Information of the edge that leads to this node"""
@@ -19,7 +20,6 @@ class Node:
 
         # when it is an end leaf
         self.is_end = False
-        self.end_reason = 'lalala'
         self.value = 0
 
         self.color = color  # color of next player
@@ -48,7 +48,7 @@ class Node:
         return self._children == []
     
     def upper_confidence_bound(self, c_puct):
-        self._U = c_puct * self._P * sqrt(self._parent.N())/(1+self._N)
+        self._U = c_puct * self._P * sqrt(self._parent.N()) / (1+self._N)
         return self._U + self._Q
     
     def select(self, c_puct, legal_vec_current):
