@@ -1,8 +1,11 @@
-# AlphaZero-version AI Program in the Game of Renju
+# AlphaZero-version AI Program in the Game of Renju(Gomoku)
 
 Introduction
 ====
-This project implements the AlphaZero Algorithm in the game of Renju.
+Google DeepMinds recent AlphaZero algorithm, accepting no domain-specific knowledges, mastered the game of Go, chess and shogi through self-played reinforcement learning from scratch, showing the potential of general AI, which is the holy grail of the entire AI community. In this project, we implement an AlphaZero-version Renju(Gomoku) AI program and provide a step-by-step tutorial on the technique.
+
+To do:
+====
 - Network parameters will be shared once we finish training.
 - Currently, we are working on a step-by-step tutorial on AlphaZero algorithm and it will be released soon.
 
