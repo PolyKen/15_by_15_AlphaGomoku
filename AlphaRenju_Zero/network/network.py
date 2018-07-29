@@ -84,10 +84,10 @@ class Network():
 
     def _residual_block(self, x):
         x_shortcut = x
-        x = Conv2D(filters=32, kernel_size=(3, 3), strides=(1,1), padding='same', data_format="channels_first", kernel_regularizer=l2(self._l2_coef))(x)
+        x = Conv2D(filters=32, kernel_size=(3, 3), strides=(1, 1), padding='same', data_format="channels_first", kernel_regularizer=l2(self._l2_coef))(x)
         x = BatchNormalization()(x) 
         x = Activation('relu')(x)
-        x = Conv2D(filters=32, kernel_size=(3, 3), strides=(1,1), padding='same', data_format="channels_first", kernel_regularizer=l2(self._l2_coef))(x)
+        x = Conv2D(filters=32, kernel_size=(3, 3), strides=(1, 1), padding='same', data_format="channels_first", kernel_regularizer=l2(self._l2_coef))(x)
         x = BatchNormalization()(x) 
         x = add([x, x_shortcut])  # Skip Connection
         x = Activation('relu')(x)
@@ -148,13 +148,13 @@ class Network():
 
 
 # Transform a board(matrix) to a tensor
-def board2tensor(board, color, reshape_flag = True):
+def board2tensor(board, color, reshape_flag=True):
 
     # Current-Stone Layer
-    cur = np.array(np.array(board) == color, dtype = np.int)
+    cur = np.array(np.array(board) == color, dtype=np.int)
 
     # Enemy-Stone Layer
-    e = np.array(np.array(board) == -color, dtype = np.int)
+    e = np.array(np.array(board) == -color, dtype=np.int)
 
     # Color Layer
     flag = (1 if color == BLACK else 0)
@@ -164,7 +164,7 @@ def board2tensor(board, color, reshape_flag = True):
     tensor = np.array([cur, e, c])
     if reshape_flag:
         tensor = tensor.reshape(1, tensor.shape[0], tensor.shape[1], tensor.shape[2])
-    return tensor   
+    return tensor
 
 
 # Augment the training data pool through plane transformation
@@ -173,8 +173,8 @@ def symmetric_data_augmentation(board, color, pi, z):
     new_color = [color]*7
     new_pi = []
     new_z = [z]*7
-    for type in range(1,8):
-        board_t = board_transform(board,type,flag=1)
+    for type in range(1, 8):
+        board_t = board_transform(board, type, flag=1)
         pi_t = input_encode(pi, type, board.shape[0])
         new_board.append(board_t)
         new_pi.append(pi_t)
@@ -184,7 +184,7 @@ def symmetric_data_augmentation(board, color, pi, z):
 # Transform the input vector given transformation type
 def input_encode(vec, num, size):
     mat = np.reshape(vec, (size, size))  # reshape vector into matrix
-    mat = board_transform(mat, num, flag = 1)
+    mat = board_transform(mat, num, flag=1)
     vec = np.reshape(mat, (1, size**2))
     return vec[0]
 
