@@ -19,10 +19,18 @@ class Env:
 
         self._network_version = 0
 
-        self._agent_1 = MCTSAgent(conf, color=BLACK)
-        # self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
-        # self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
-        # self._agent_2 = MCTSAgent(conf, color=WHITE)
+        # Training
+        if conf['mode'] == 1:
+            self._agent_1 = MCTSAgent(conf, color=BLACK)
+        # AI vs Human
+        if conf['mode'] == 2:
+            self._agent_1 = MCTSAgent(conf, color=BLACK)
+            self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
+        # Human vs Human
+        if conf['mode'] == 3:
+            self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
+            self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
+
         self._agent_eval = MCTSAgent(conf, color=WHITE)
         self._agent_eval.set_self_play(False)
 
