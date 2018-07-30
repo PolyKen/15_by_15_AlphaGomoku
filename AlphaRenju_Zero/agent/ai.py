@@ -29,10 +29,10 @@ class MCTSAgent(AI):
     def reset_mcts(self):
         self._mcts.reset()
     
-    def train(self, obs, color, pi, z):
+    def train(self, obs, color, last_move, pi, z):
         print('training begins:')
         start = time.clock()
-        loss = self._network.train(obs, color, pi, z)
+        loss = self._network.train(obs, color, last_move, pi, z)
         end = time.clock()
         print('training time = ' + str(end - start))
         print('*********************************************')

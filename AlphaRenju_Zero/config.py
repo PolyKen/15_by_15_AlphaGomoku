@@ -73,7 +73,7 @@ class Config(dict):
         self['mini_batch_size'] = 512
 
         # fit epochs, number of each sample used
-        self['fit_epochs'] = 1
+        self['fit_epochs'] = 20
 
         self.update(**kwargs)
 

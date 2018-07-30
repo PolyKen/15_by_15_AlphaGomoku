@@ -20,9 +20,9 @@ class Env:
         self._network_version = 0
 
         self._agent_1 = MCTSAgent(conf, color=BLACK)
-        # self._agent_1 = HumanAgent(self._renderer, color=BLACK)
-        # self._agent_2 = HumanAgent(self._renderer, color=WHITE)
-        self._agent_2 = MCTSAgent(conf, color=WHITE)
+        # self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
+        # self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
+        # self._agent_2 = MCTSAgent(conf, color=WHITE)
         self._agent_eval = MCTSAgent(conf, color=WHITE)
         self._agent_eval.set_self_play(False)
 
@@ -49,7 +49,7 @@ class Env:
                 self._board.move(color, action)
                 if record is not None and pi is not None:
                     obs = self._board.board()
-                    record.add(obs, color, pi)
+                    record.add(obs, -color, action, pi)
             if result == 'occupied':
                 print(result + ': ' + str(action))
                 continue
@@ -60,7 +60,7 @@ class Env:
                 self._board.move(color, action)
                 if record is not None and pi is not None:
                     obs = self._board.board()
-                    record.add(obs, color, pi)
+                    record.add(obs, -color, action, pi)
                     if result == 'blackwins':
                         flag = 1
                     if result == 'whitewins':
@@ -81,6 +81,14 @@ class Env:
         return 0
 
     def train(self):
+        # use human play data to initialize network
+        human_play_data_set = DataSet()
+        human_play_data_set.load(self._conf['human_play_data_path'])
+        obs, col, last_move, pi, z = human_play_data_set.get_sample(1)
+        self._agent_1.train(obs, col, last_move, pi, z)
+        self._agent_1.save_model()
+
+        # training based on self-play
         data_set = DataSet()
         for epoch in range(self._epoch):
             print('epoch = ' + str(epoch+1))
@@ -96,8 +104,8 @@ class Env:
                 data_set.add_record(record)
 
             # train
-            obs, col, pi, z = data_set.get_sample(self._sample_percentage)
-            loss = self._agent_1.train(obs, col, pi, z)
+            obs, col, last_move, pi, z = data_set.get_sample(self._sample_percentage)
+            loss = self._agent_1.train(obs, col, last_move, pi, z)
             self._loss_list.append(loss)
 
             # evaluate
@@ -166,6 +174,24 @@ class Env:
         else:
             print('discard new model')
             return False
+
+    def collect_human_data(self):
+        if not self._conf['display']:
+            print('error: please set [display] = True in Config')
+            return
+        if self._conf['is_self_play']:
+            print('error: please set [is_self_play] = False in Config')
+            return
+
+        human_data_set = DataSet()
+
+        for i in range(self._games_num):
+            record = GameRecord()
+            print('game_num = ' + str(i + 1))
+            self.run(record)
+            human_data_set.add_record(record)
+
+        human_data_set.save(self._conf['human_play_data_path'])
 
     def _obs(self):
         return self._board.board()

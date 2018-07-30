@@ -35,7 +35,7 @@ class MCTS:
             if last_action is not None:
                 row, col = last_action[0], last_action[1]
                 last_board[row][col] = 0
-            self._simulate(last_board)
+            self._simulate(last_board, last_action)
 
         # now move the root to the child corresponding to the board
         if last_action is not None:
@@ -43,7 +43,7 @@ class MCTS:
             self._root = self._root.children()[last_action_ind]
 
         # must check whether the root is a leaf node before prediction
-        pi = self._predict(board)
+        pi = self._predict(board, last_action)
         """Action Decision"""
         if stage <= self._careful_stage:  # Uncareful Stage where optimal action may not be taken
             position_list = [i for i in range(self._board_size * self._board_size)]
@@ -55,13 +55,13 @@ class MCTS:
             self._root = self._root.children()[action]
         return action, pi  # You need to store pi for training use
     
-    def _predict(self, board):
-        self._simulate(board)
+    def _predict(self, board, last_move):
+        self._simulate(board, last_move)
         pi = np.array([(node.N())**(1/self._tau) for node in self._root.children()])
         pi = pi/sum(pi)
         return pi
     
-    def _simulate(self, root_board):    # ROOT BOARD MUST CORRESPOND TO THE ROOT NODE!!!
+    def _simulate(self, root_board, last_move):    # ROOT BOARD MUST CORRESPOND TO THE ROOT NODE!!!
         legal_vec_root = board2legalvec(root_board)
         for epoch in range(self._simulation_times):
             current_node = self._root
@@ -82,7 +82,7 @@ class MCTS:
                 continue
 
             # calculate the prior probabilities and value
-            p, v = self._network.predict(current_board, current_color)
+            p, v = self._network.predict(current_board, current_color, last_move)
             prior_prob = p[0]
 
             # now check whether this leaf node is an end node
