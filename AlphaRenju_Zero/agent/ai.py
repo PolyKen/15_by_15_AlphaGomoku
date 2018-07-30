@@ -30,17 +30,17 @@ class MCTSAgent(AI):
         self._mcts.reset()
     
     def train(self, obs, color, last_move, pi, z):
-        print('training begins:')
+        print('> training begins:')
         start = time.clock()
         loss = self._network.train(obs, color, last_move, pi, z)
         end = time.clock()
-        print('training time = ' + str(end - start))
+        print('> training time = ' + str(end - start))
         print('*********************************************')
         return loss
         
     def save_model(self):
         self._network.save_model()
-        print('model saved')
+        print('> model saved')
 
     def load_model(self):
         self._network.load_model()

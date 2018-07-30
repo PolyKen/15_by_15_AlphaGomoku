@@ -85,23 +85,28 @@ class Config(dict):
             self[key] = kwargs[key]
 
     def set_mode(self, mode):
+        if mode != 1 and mode != 2 and mode != 3:
+            mode = 1
         # train
         if mode == 1:
             self['display'] = False
             self['is_self_play'] = True
             self['mode'] = 1
+            print('> Training mode')
         if mode == 2:
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 2
+            print('> AI vs Human mode')
         if mode == 3:
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 3
+            print('> Human vs Human mode')
 
     def print_current_config(self):
         print('------------------')
-        print('CURRENT CONFIG:')
+        print('> CURRENT CONFIG:')
         for key in self:
             print('{}: {}'.format(key, self[key]))
         print('------------------')

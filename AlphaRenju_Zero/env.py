@@ -8,7 +8,7 @@ class Env:
     def __init__(self, conf):
         if not display_mode:
             conf['display'] = False
-            print('display mode is not available (requires pygame and threading)')
+            print('> error: display mode is not available (requires pygame and threading)')
 
         self._conf = conf
         self._is_self_play = conf['is_self_play']
@@ -101,16 +101,16 @@ class Env:
         # training based on self-play
         data_set = DataSet()
         for epoch in range(self._epoch):
-            print('epoch = ' + str(epoch+1))
+            print('> epoch = ' + str(epoch+1))
 
             # self-play
             for i in range(self._games_num):
                 record = GameRecord()
-                print('game_num = ' + str(i+1))
+                print('> game num = ' + str(i+1))
                 start = time.clock()
                 self.run(record)
                 end = time.clock()
-                print('game time = ' + str(end-start))
+                print('> game time = ' + str(end-start))
                 data_set.add_record(record)
 
             # train
@@ -126,7 +126,7 @@ class Env:
                     data_set.clear()
                 else:
                     self._agent_1.load_model()
-                print('network version = ' + str(self._network_version))
+                print('> network version = ' + str(self._network_version))
             else:
                 self._agent_1.save_model()
                 data_set.clear()
@@ -145,7 +145,7 @@ class Env:
         plt.show()
 
     def evaluate(self):
-        print('Evaluation begins:')
+        print('> Evaluation begins:')
 
         # switch mode
         self._is_self_play = False
@@ -158,7 +158,7 @@ class Env:
 
         for i in range(int(total_num/2)):
             new_model_wins_num += max(self.run(), 0)   # new model plays BLACK
-            print('number of new model wins: ' + str(new_model_wins_num) + '/' + str(i+1))
+            print('> number of new model wins: ' + str(new_model_wins_num) + '/' + str(i+1))
 
         # switch agents
         self._agent_1, self._agent_2 = self._agent_2, self._agent_1
@@ -167,7 +167,7 @@ class Env:
 
         for i in range(int(total_num/2)):
             new_model_wins_num -= min(self.run(), 0)
-            print('number of new model wins: ' + str(new_model_wins_num) + '/' + str(i+1+int(total_num/2)))
+            print('> number of new model wins: ' + str(new_model_wins_num) + '/' + str(i+1+int(total_num/2)))
 
         # so far self._agent_1 -> self._agent_eval
 
@@ -177,27 +177,27 @@ class Env:
         self._is_self_play = True
 
         rate = new_model_wins_num / total_num
-        print('winning rate = ' + str(rate))
+        print('> winning rate = ' + str(rate))
         if rate > 0.55:
-            print('adopt new model')
+            print('> New model adopted')
             return True
         else:
-            print('discard new model')
+            print('> New model discarded')
             return False
 
     def collect_human_data(self):
         if not self._conf['display']:
-            print('error: please set [display] = True in Config')
+            print('> error: please set [display] = True in Config')
             return
         if self._conf['is_self_play']:
-            print('error: please set [is_self_play] = False in Config')
+            print('> error: please set [is_self_play] = False in Config')
             return
 
         human_data_set = DataSet()
 
         for i in range(self._games_num):
             record = GameRecord()
-            print('game_num = ' + str(i + 1))
+            print('> game num = ' + str(i + 1))
             self.run(record)
             human_data_set.add_record(record)
 

@@ -38,7 +38,7 @@ class Network():
             if os.path.exists(self._net_para_file):
                 self._model.load_weights(self._net_para_file)
             else:
-                print('error: ' + self._net_para_file + ' not found')
+                print('> error: [use_previous_model] = True, ' + self._net_para_file + ' not found')
             
     def _build_network(self):
 
