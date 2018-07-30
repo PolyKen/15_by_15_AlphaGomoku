@@ -146,7 +146,7 @@ class Network():
         if os.path.exists(self._net_para_file):
             self._model.load_weights(self._net_para_file)
         else:
-            print('error: ' + self._net_para_file + ' not found')
+            print('> error: ' + self._net_para_file + ' not found')
 
 
 # Transform a board(matrix) to a tensor
