@@ -82,11 +82,13 @@ class Env:
 
     def train(self):
         # use human play data to initialize network
+        '''
         human_play_data_set = DataSet()
         human_play_data_set.load(self._conf['human_play_data_path'])
         obs, col, last_move, pi, z = human_play_data_set.get_sample(1)
         self._agent_1.train(obs, col, last_move, pi, z)
         self._agent_1.save_model()
+        '''
 
         # training based on self-play
         data_set = DataSet()
