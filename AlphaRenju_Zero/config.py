@@ -56,6 +56,9 @@ class Config(dict):
 
         # path of history of fitting
         self['fit_history_file'] = 'AlphaRenju_Zero/network/history/log_' + str(self['board_size'])
+
+        # human play data path
+        self['human_play_data_path'] = 'AlphaRenju_Zero/dataset/human_play_data/human_' + str(self['board_size']) + '_'
         
         # use previous model
         self['use_previous_model'] = True
@@ -64,7 +67,7 @@ class Config(dict):
         self['evaluate_games_num'] = 10
 
         # epoch from which evaluation starts
-        self['evaluate_start_epoch'] = 30
+        self['evaluate_start_epoch'] = 1
         
         # Mini-Batch Size
         self['mini_batch_size'] = 512
