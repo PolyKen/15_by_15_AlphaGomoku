@@ -1,6 +1,5 @@
 from . import *
 from .dataset.dataset import *
-import time
 import matplotlib.pyplot as plt
 
 
@@ -47,8 +46,8 @@ class Env:
 
         self._loss_list = []
 
+    @log
     def run(self, record=None):
-        result = None
         while True:
             if self._is_self_play:
                 self._agent_1.color = self._board.current_player()
@@ -110,10 +109,7 @@ class Env:
             for i in range(self._games_num):
                 record = GameRecord()
                 print('> game num = ' + str(i+1))
-                start = time.clock()
                 self.run(record)
-                end = time.clock()
-                print('> game time = ' + str(end-start))
                 data_set.add_record(record)
 
             # train

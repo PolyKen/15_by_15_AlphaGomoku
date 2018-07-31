@@ -25,7 +25,7 @@ class MCTS:
 
     def reset(self):
         self._root = Node(1.0, None, BLACK)
-    
+
     def action(self, board, last_action, stage):  # Note that this function is open to the environment.
         """Adjust the Root Node corresponding to the latest enemy action"""
 
