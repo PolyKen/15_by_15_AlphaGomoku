@@ -1,6 +1,6 @@
 class Config(dict):
     def __init__(self, **kwargs):
-        # mode   1: training mode, 2: AI vs Human, 3: Human vs Human
+        # mode   1: training mode, 2: AI vs Human, 3: Human vs Human, 0: Debug
         self['mode'] = 1
 
         # display mode
@@ -85,9 +85,8 @@ class Config(dict):
             self[key] = kwargs[key]
 
     def set_mode(self, mode):
-        if mode != 1 and mode != 2 and mode != 3:
+        if mode != 1 and mode != 2 and mode != 3 and mode != 0:
             mode = 1
-        # train
         if mode == 1:
             self['display'] = False
             self['is_self_play'] = True
@@ -103,6 +102,14 @@ class Config(dict):
             self['is_self_play'] = False
             self['mode'] = 3
             print('> Human vs Human mode')
+        if mode == 0:
+            self['display'] = True
+            self['is_self_play'] = True
+            self['mode'] = 0
+            self['simulation_times'] = 5
+            self['games_num'] = 3
+            self['epoch'] = 10
+            print('> Debug mode')
 
     def print_current_config(self):
         print('------------------')

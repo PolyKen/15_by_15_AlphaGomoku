@@ -20,7 +20,7 @@ class Env:
         self._network_version = 0
 
         # Training
-        if conf['mode'] == 1:
+        if conf['mode'] == 1 or conf['mode'] == 0:
             self._agent_1 = MCTSAgent(conf, color=BLACK)
         # AI vs Human
         if conf['mode'] == 2:
@@ -154,11 +154,17 @@ class Env:
         self._agent_2.load_model()
 
         new_model_wins_num = 0
+        old_model_wins_num = 0
         total_num = self._evaluate_games_num
 
+        # new model plays BLACK
         for i in range(int(total_num/2)):
-            new_model_wins_num += max(self.run(), 0)   # new model plays BLACK
-            print('> number of new model wins: ' + str(new_model_wins_num) + '/' + str(i+1))
+            result = self.run()
+            if result == 1:
+                new_model_wins_num += 1
+            if result == -1:
+                old_model_wins_num += 1
+            print('> eval game ' + str(i+1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
 
         # switch agents
         self._agent_1, self._agent_2 = self._agent_2, self._agent_1
@@ -166,8 +172,12 @@ class Env:
         self._agent_2.color = WHITE
 
         for i in range(int(total_num/2)):
-            new_model_wins_num -= min(self.run(), 0)
-            print('> number of new model wins: ' + str(new_model_wins_num) + '/' + str(i+1+int(total_num/2)))
+            result = self.run()
+            if result == 1:
+                old_model_wins_num += 1
+            if result == -1:
+                new_model_wins_num += 1
+            print('> eval game ' + str(i + 1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
 
         # so far self._agent_1 -> self._agent_eval
 
@@ -176,9 +186,12 @@ class Env:
         self._agent_1.set_self_play(True)
         self._is_self_play = True
 
-        rate = new_model_wins_num / total_num
-        print('> winning rate = ' + str(rate))
-        if rate > 0.55:
+        if new_model_wins_num == 0:
+            rate = 0
+        else:
+            rate = new_model_wins_num / (new_model_wins_num + old_model_wins_num)
+        print('> winning rate of new model = ' + str(rate))
+        if rate > 0.5:
             print('> New model adopted')
             return True
         else:
