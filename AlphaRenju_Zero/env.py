@@ -30,6 +30,9 @@ class Env:
         if conf['mode'] == 3:
             self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
+        if conf['mode'] == 4:
+            self._agent_1 = MCTSAgent(conf, color=BLACK)
+            self._agent_2 = MCTSAgent(conf, color=WHITE)
 
         self._agent_eval = MCTSAgent(conf, color=WHITE)
         self._agent_eval.set_self_play(False)

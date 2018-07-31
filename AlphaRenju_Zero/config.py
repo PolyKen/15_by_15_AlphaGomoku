@@ -85,7 +85,7 @@ class Config(dict):
             self[key] = kwargs[key]
 
     def set_mode(self, mode):
-        if mode != 1 and mode != 2 and mode != 3 and mode != 0:
+        if mode != 1 and mode != 2 and mode != 3 and mode != 4 and mode != 0:
             mode = 1
         if mode == 1:
             self['display'] = False
@@ -102,6 +102,11 @@ class Config(dict):
             self['is_self_play'] = False
             self['mode'] = 3
             print('> Human vs Human mode')
+        if mode == 4:
+            self['display'] = True
+            self['is_self_play'] = False
+            self['mode'] = 4
+            print('> AI vs AI mode')
         if mode == 0:
             self['display'] = True
             self['is_self_play'] = True
