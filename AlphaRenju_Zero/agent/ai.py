@@ -1,13 +1,15 @@
 from .agent import Agent
 from ..network.network import *
-import random
 from .mcts import *
-import time
+from ..decorator import *
 
 
 class AI(Agent):
     def __init__(self, color):
         Agent.__init__(self, color)
+
+    def play(self, *args, **kwargs):
+        pass
 
 
 class MCTSAgent(AI):
@@ -28,19 +30,15 @@ class MCTSAgent(AI):
 
     def reset_mcts(self):
         self._mcts.reset()
-    
-    def train(self, obs, color, pi, z):
-        print('training begins:')
-        start = time.clock()
-        loss = self._network.train(obs, color, pi, z)
-        end = time.clock()
-        print('training time = ' + str(end - start))
-        print('*********************************************')
+
+    @log
+    def train(self, obs, color, last_move, pi, z):
+        loss = self._network.train(obs, color, last_move, pi, z)
         return loss
         
     def save_model(self):
         self._network.save_model()
-        print('model saved')
+        print('> model saved')
 
     def load_model(self):
         self._network.load_model()

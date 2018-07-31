@@ -10,7 +10,7 @@ class Agent:
             self._color = color
 
     @abstractmethod
-    def play(self):
+    def play(self, *args, **kwargs):
         pass
 
     @property

@@ -1,5 +1,8 @@
 class Config(dict):
     def __init__(self, **kwargs):
+        # mode   1: training mode, 2: AI vs Human, 3: Human vs Human, 0: Debug
+        self['mode'] = 1
+
         # display mode
         self['display'] = False
 
@@ -56,6 +59,9 @@ class Config(dict):
 
         # path of history of fitting
         self['fit_history_file'] = 'AlphaRenju_Zero/network/history/log_' + str(self['board_size'])
+
+        # human play data path
+        self['human_play_data_path'] = 'AlphaRenju_Zero/dataset/human_play_data/human_' + str(self['board_size']) + '_'
         
         # use previous model
         self['use_previous_model'] = True
@@ -64,13 +70,13 @@ class Config(dict):
         self['evaluate_games_num'] = 10
 
         # epoch from which evaluation starts
-        self['evaluate_start_epoch'] = 30
+        self['evaluate_start_epoch'] = 1
         
         # Mini-Batch Size
         self['mini_batch_size'] = 512
 
         # fit epochs, number of each sample used
-        self['fit_epochs'] = 1
+        self['fit_epochs'] = 20
 
         self.update(**kwargs)
 
@@ -78,9 +84,41 @@ class Config(dict):
         for key in kwargs:
             self[key] = kwargs[key]
 
+    def set_mode(self, mode):
+        if mode != 1 and mode != 2 and mode != 3 and mode != 4 and mode != 0:
+            mode = 1
+        if mode == 1:
+            self['display'] = False
+            self['is_self_play'] = True
+            self['mode'] = 1
+            print('> Training mode')
+        if mode == 2:
+            self['display'] = True
+            self['is_self_play'] = False
+            self['mode'] = 2
+            print('> AI vs Human mode')
+        if mode == 3:
+            self['display'] = True
+            self['is_self_play'] = False
+            self['mode'] = 3
+            print('> Human vs Human mode')
+        if mode == 4:
+            self['display'] = True
+            self['is_self_play'] = False
+            self['mode'] = 4
+            print('> AI vs AI mode')
+        if mode == 0:
+            self['display'] = True
+            self['is_self_play'] = True
+            self['mode'] = 0
+            self['simulation_times'] = 5
+            self['games_num'] = 3
+            self['epoch'] = 10
+            print('> Debug mode')
+
     def print_current_config(self):
         print('------------------')
-        print('CURRENT CONFIG:')
+        print('> CURRENT CONFIG:')
         for key in self:
             print('{}: {}'.format(key, self[key]))
         print('------------------')
