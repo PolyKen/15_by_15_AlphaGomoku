@@ -68,15 +68,16 @@ class Env:
                 self._board.move(self._board.current_player(), action)
 
                 # add last position of this game
-                pi_0 = np.zeros(self._conf['board_size'] * self._conf['board_size'])
-                record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi_0)
-                if result == 'blackwins':
-                    flag = BLACK
-                if result == 'whitewins':
-                    flag = WHITE
-                if result == 'draw':
-                    flag = 0
-                record.set_z(flag)
+                if record is not None:
+                    pi_0 = np.zeros(self._conf['board_size'] * self._conf['board_size'])
+                    record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi_0)
+                    if result == 'blackwins':
+                        flag = BLACK
+                    if result == 'whitewins':
+                        flag = WHITE
+                    if result == 'draw':
+                        flag = 0
+                    record.set_z(flag)
                 break
         self._board.clear()
         if type(self._agent_1) == MCTSAgent:
