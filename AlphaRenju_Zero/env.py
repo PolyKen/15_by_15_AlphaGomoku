@@ -54,30 +54,29 @@ class Env:
             action, pi = self._current_agent().play(self._obs(), self._board.last_move(), self._board.stone_num())
             result = self._check_rules(action)
             if result == 'continue':
-                color = self._board.current_player()
                 # print(result + ': ', action, color)
-                self._board.move(color, action)
-                if record is not None and pi is not None:
-                    obs = self._board.board()
-                    record.add(obs, -color, action, pi)
+                if record is not None:
+                    record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
+                self._board.move(self._board.current_player(), action)
             if result == 'occupied':
                 print(result + ': ' + str(action))
                 continue
             if result == 'blackwins' or result == 'whitewins' or result == 'draw':
-                self._board.move(self._board.current_player(), action)
                 print(result)
-                color = self._board.current_player()
-                self._board.move(color, action)
-                if record is not None and pi is not None:
-                    obs = self._board.board()
-                    record.add(obs, -color, action, pi)
-                    if result == 'blackwins':
-                        flag = 1
-                    if result == 'whitewins':
-                        flag = -1
-                    if result == 'draw':
-                        flag = 0
-                    record.set_z(flag)
+                if record is not None:
+                    record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
+                self._board.move(self._board.current_player(), action)
+
+                # add last position of this game
+                pi_0 = np.zeros(self._conf['board_size'] * self._conf['board_size'])
+                record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi_0)
+                if result == 'blackwins':
+                    flag = BLACK
+                if result == 'whitewins':
+                    flag = WHITE
+                if result == 'draw':
+                    flag = 0
+                record.set_z(flag)
                 break
         self._board.clear()
         if type(self._agent_1) == MCTSAgent:
@@ -141,6 +140,7 @@ class Env:
         plt.plot(x, y)
         plt.xlabel('epoch')
         plt.ylabel('loss')
+        plt.savefig(self._conf['fit_history_file'] + str('.png'), dpi=300)
         plt.show()
 
     def evaluate(self):

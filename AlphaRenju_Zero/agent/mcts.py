@@ -84,6 +84,9 @@ class MCTS:
             # calculate the prior probabilities and value
             p, v = self._network.predict(current_board, current_color, last_move)
             prior_prob = p[0]
+            alpha = [self._dirichlet] * (self._board_size * self._board_size)
+            noise = np.random.dirichlet(alpha)
+            prior_prob = (1-self._epsilon) * prior_prob + self._epsilon * noise
 
             # now check whether this leaf node is an end node
             if action is not None:
