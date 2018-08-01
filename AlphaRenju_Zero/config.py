@@ -78,6 +78,9 @@ class Config(dict):
         # fit epochs, number of each sample used
         self['fit_epochs'] = 20
 
+        # use supervised learning
+        self['is_supervised'] = True
+
         self.update(**kwargs)
 
     def update(self, **kwargs):
@@ -85,7 +88,7 @@ class Config(dict):
             self[key] = kwargs[key]
 
     def set_mode(self, mode):
-        if mode != 1 and mode != 2 and mode != 3 and mode != 4 and mode != 0:
+        if mode != 1 and mode != 2 and mode != 3 and mode != 4 and mode != 5 and mode != 0:
             mode = 1
         if mode == 1:
             self['display'] = False
@@ -107,6 +110,12 @@ class Config(dict):
             self['is_self_play'] = False
             self['mode'] = 4
             print('> AI vs AI mode')
+        if mode == 5:
+            self['display'] = True
+            self['is_self_play'] = False
+            self['mode'] = 5
+            self['games_num'] = 100
+            print('> Collect data mode')
         if mode == 0:
             self['display'] = True
             self['is_self_play'] = True

@@ -26,15 +26,16 @@ class Env:
             self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=False)
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
         # Human vs Human
-        if conf['mode'] == 3:
+        if conf['mode'] == 3 or conf['mode'] == 5:
             self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
         if conf['mode'] == 4:
             self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=False)
             self._agent_2 = MCTSAgent(conf, color=WHITE, is_train=False)
 
-        self._agent_eval = MCTSAgent(conf, color=WHITE, is_train=False)
-        self._agent_eval.set_self_play(False)
+        if conf['mode'] == 1 or conf['mode'] == 0:
+            self._agent_eval = MCTSAgent(conf, color=WHITE, is_train=False)
+            self._agent_eval.set_self_play(False)
 
         if self._is_self_play:
             self._agent_2 = self._agent_1
@@ -97,13 +98,12 @@ class Env:
 
     def train(self):
         # use human play data to initialize network
-        '''
-        human_play_data_set = DataSet()
-        human_play_data_set.load(self._conf['human_play_data_path'])
-        obs, col, last_move, pi, z = human_play_data_set.get_sample(1)
-        self._agent_1.train(obs, col, last_move, pi, z)
-        self._agent_1.save_model()
-        '''
+        if self._conf['is_supervised']:
+            human_play_data_set = DataSet()
+            human_play_data_set.load(self._conf['human_play_data_path'])
+            obs, col, last_move, pi, z = human_play_data_set.get_sample(1)
+            self._agent_1.train(obs, col, last_move, pi, z)
+            self._agent_1.save_model()
 
         # training based on self-play
         data_set = DataSet()
@@ -165,9 +165,9 @@ class Env:
         # new model plays BLACK
         for i in range(int(total_num/2)):
             result = self.run(is_train=False, record=None)
-            if result == 1:
+            if result == BLACK:
                 new_model_wins_num += 1
-            if result == -1:
+            if result == WHITE:
                 old_model_wins_num += 1
             print('> eval game ' + str(i+1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
 
@@ -178,11 +178,11 @@ class Env:
 
         for i in range(int(total_num/2)):
             result = self.run(is_train=False, record=None)
-            if result == 1:
+            if result == BLACK:
                 old_model_wins_num += 1
-            if result == -1:
+            if result == WHITE:
                 new_model_wins_num += 1
-            print('> eval game ' + str(i + 1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
+            print('> eval game ' + str(i+1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
 
         # so far self._agent_1 -> self._agent_eval
 
@@ -215,11 +215,10 @@ class Env:
 
         for i in range(self._games_num):
             record = GameRecord()
-            print('> game num = ' + str(i + 1))
-            self.run(record)
+            print('> game num = ' + str(i+1))
+            self.run(is_train=False, record=record)
             human_data_set.add_record(record)
-
-        human_data_set.save(self._conf['human_play_data_path'])
+            human_data_set.save(self._conf['human_play_data_path'])
 
     def _obs(self):
         return self._board.board()

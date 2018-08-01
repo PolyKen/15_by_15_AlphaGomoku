@@ -96,12 +96,23 @@ class Network:
         return x
         
     def predict(self, board, color, last_move):
+        if sum(sum(board)) == 0 and color == WHITE:
+            print('error: network.predict')
+        if sum(sum(board)) == 1 and color == BLACK:
+            print('error: network.predict')
         tensor = board2tensor(board, color, last_move)
         policy, value_tensor = self._model.predict_on_batch(tensor)
         value = value_tensor[0][0]
         return policy, value
 
     def train(self, board_list, color_list, last_move_list, pi_list, z_list):
+        size = len(color_list)
+        for i in range(size):
+            if sum(sum(board_list[i])) == 0 and color_list[i] == WHITE:
+                print('error: network.train')
+            if sum(sum(board_list[i])) == 1 and color_list[i] == BLACK:
+                print('error: network.train')
+
 
         # Data Augmentation through symmetric and self-rotation transformation
         board_aug = []

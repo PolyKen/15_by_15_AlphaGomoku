@@ -14,6 +14,8 @@ env = Env(conf)
 if mode == 1 or mode == 0:
     env.train()
 if mode == 2 or mode == 3 or mode == 4:
-    env.run()
+    env.run(is_train=False)
+if mode == 5:
+    env.collect_human_data()
 
 
