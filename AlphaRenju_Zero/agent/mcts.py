@@ -49,10 +49,10 @@ class MCTS:
         # must check whether the root is a leaf node before prediction
         pi = self._predict(board, last_action)
         """Action Decision"""
-        if self._is_train:  # Uncareful Stage where optimal action may not be taken
+        if self._is_train:  # stochastic policy
             position_list = [i for i in range(self._board_size * self._board_size)]
             action = np.random.choice(position_list, p=pi)
-        else:  # Careful Stage where we play optimally
+        else:  # deterministic policy
             action = np.argmax(pi)
         """Adjust the Root Node and discard the remainder of the tree"""
         if not self._is_self_play:
