@@ -136,7 +136,7 @@ class Network:
         hist_path = self._fit_history_file + '_' + str(self._fit_epochs) + '_' + str(self._mini_batch_size) + '.txt'
         with open(hist_path, 'a') as f:
             f.write(str(hist.history))
-            return hist.history['loss']
+            return hist.history['loss'][0]  # only sample loss of first epoch
         
     def get_para(self):
         net_para = self._model.get_weights() 

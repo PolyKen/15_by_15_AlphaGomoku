@@ -24,14 +24,14 @@ class Config(dict):
         # initial tau
         self['initial_tau'] = 1
 
-        # the stage after which we set tau = 0
-        self['careful_stage'] = 6
-
         # proportion of dirichlet noise
         self['epsilon'] = 0.25
 
         # coef of dirichlet noise
-        self['dirichlet'] = 0.03
+        self['alpha'] = 0.03
+
+        # use dirichlet
+        self['use_dirichlet'] = False
 
         # board size
         self['board_size'] = 8
@@ -113,7 +113,7 @@ class Config(dict):
             self['mode'] = 0
             self['simulation_times'] = 5
             self['games_num'] = 3
-            self['epoch'] = 3
+            self['epoch'] = 2
             print('> Debug mode')
 
     def print_current_config(self):

@@ -20,20 +20,20 @@ class Env:
 
         # Training
         if conf['mode'] == 1 or conf['mode'] == 0:
-            self._agent_1 = MCTSAgent(conf, color=BLACK)
+            self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=True)
         # AI vs Human
         if conf['mode'] == 2:
-            self._agent_1 = MCTSAgent(conf, color=BLACK)
+            self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=False)
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
         # Human vs Human
         if conf['mode'] == 3:
             self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
         if conf['mode'] == 4:
-            self._agent_1 = MCTSAgent(conf, color=BLACK)
-            self._agent_2 = MCTSAgent(conf, color=WHITE)
+            self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=False)
+            self._agent_2 = MCTSAgent(conf, color=WHITE, is_train=False)
 
-        self._agent_eval = MCTSAgent(conf, color=WHITE)
+        self._agent_eval = MCTSAgent(conf, color=WHITE, is_train=False)
         self._agent_eval.set_self_play(False)
 
         if self._is_self_play:
@@ -47,7 +47,12 @@ class Env:
         self._loss_list = []
 
     @log
-    def run(self, record=None):
+    def run(self, is_train, record=None):
+        if type(self._agent_1) == MCTSAgent:
+            self._agent_1.set_train(is_train)
+        if type(self._agent_2) == MCTSAgent:
+            self._agent_2.set_train(is_train)
+
         while True:
             if self._is_self_play:
                 self._agent_1.color = self._board.current_player()
@@ -109,7 +114,7 @@ class Env:
             for i in range(self._games_num):
                 record = GameRecord()
                 print('> game num = ' + str(i+1))
-                self.run(record)
+                self.run(is_train=True, record=record)
                 data_set.add_record(record)
 
             # train
@@ -159,7 +164,7 @@ class Env:
 
         # new model plays BLACK
         for i in range(int(total_num/2)):
-            result = self.run()
+            result = self.run(is_train=False, record=None)
             if result == 1:
                 new_model_wins_num += 1
             if result == -1:
@@ -172,7 +177,7 @@ class Env:
         self._agent_2.color = WHITE
 
         for i in range(int(total_num/2)):
-            result = self.run()
+            result = self.run(is_train=False, record=None)
             if result == 1:
                 old_model_wins_num += 1
             if result == -1:
