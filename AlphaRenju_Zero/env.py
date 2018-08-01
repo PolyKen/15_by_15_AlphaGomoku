@@ -182,7 +182,7 @@ class Env:
                 old_model_wins_num += 1
             if result == WHITE:
                 new_model_wins_num += 1
-            print('> eval game ' + str(i+1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
+            print('> eval game ' + str(i+1+int(total_num/2)) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
 
         # so far self._agent_1 -> self._agent_eval
 
