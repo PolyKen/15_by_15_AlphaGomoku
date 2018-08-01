@@ -113,7 +113,7 @@ class Config(dict):
             self['mode'] = 0
             self['simulation_times'] = 5
             self['games_num'] = 3
-            self['epoch'] = 10
+            self['epoch'] = 3
             print('> Debug mode')
 
     def print_current_config(self):

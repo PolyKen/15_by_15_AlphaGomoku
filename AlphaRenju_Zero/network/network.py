@@ -212,6 +212,8 @@ def output_decode(vec, num, size):
 
 
 def coordinate_transform(move, type, size, flag):
+    if move is None:
+        return None
     board = np.zeros((size, size))
     board[move[0]][move[1]] = 1
     board_t = board_transform(board, type, flag)
