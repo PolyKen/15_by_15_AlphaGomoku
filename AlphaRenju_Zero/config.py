@@ -62,6 +62,9 @@ class Config(dict):
 
         # human play data path
         self['human_play_data_path'] = 'AlphaRenju_Zero/dataset/human_play_data/human_' + str(self['board_size']) + '_'
+
+        # self play data path
+        self['self_play_data_path'] = 'AlphaRenju_Zero/dataset/self_play_data/self_play_' + str(self['board_size']) + '_'
         
         # use previous model
         self['use_previous_model'] = True
@@ -88,7 +91,7 @@ class Config(dict):
             self[key] = kwargs[key]
 
     def set_mode(self, mode):
-        if mode != 1 and mode != 2 and mode != 3 and mode != 4 and mode != 5 and mode != 0:
+        if mode not in [1, 2, 3, 4, 5, 6, 0]:
             mode = 1
         if mode == 1:
             self['display'] = False
@@ -115,7 +118,14 @@ class Config(dict):
             self['is_self_play'] = False
             self['mode'] = 5
             self['games_num'] = 100
-            print('> Collect data mode')
+            print('> Collect human play data mode')
+        if mode == 6:
+            self['display'] = False
+            self['is_self_play'] = True
+            self['mode'] = 6
+            self['games_num'] = 30
+            self['epoch'] = 20
+            print('> Collect self play data mode')
         if mode == 0:
             self['display'] = True
             self['is_self_play'] = True

@@ -19,8 +19,9 @@ class Env:
         self._network_version = 0
 
         # Training
-        if conf['mode'] == 1 or conf['mode'] == 0:
+        if conf['mode'] == 1 or conf['mode'] == 0 or conf['mode'] == 6:
             self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=True)
+            self._agent_2 = None
         # AI vs Human
         if conf['mode'] == 2:
             self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=False)
@@ -204,13 +205,6 @@ class Env:
             return False
 
     def collect_human_data(self):
-        if not self._conf['display']:
-            print('> error: please set [display] = True in Config')
-            return
-        if self._conf['is_self_play']:
-            print('> error: please set [is_self_play] = False in Config')
-            return
-
         human_data_set = DataSet()
 
         for i in range(self._games_num):
@@ -219,6 +213,19 @@ class Env:
             self.run(is_train=False, record=record)
             human_data_set.add_record(record)
             human_data_set.save(self._conf['human_play_data_path'])
+
+    def collect_self_play_data(self):
+        for epoch in range(self._epoch):
+            print('> epoch = ' + str(epoch+1))
+            data_set = DataSet()
+            for i in range(self._games_num):
+                record = GameRecord()
+                print('> game num = ' + str(i+1))
+                self.run(is_train=True, record=record)
+                data_set.add_record(record)
+            path = self._conf['self_play_data_path'] + str(epoch+1) + '_'
+            data_set.save(path)
+
 
     def _obs(self):
         return self._board.board()
