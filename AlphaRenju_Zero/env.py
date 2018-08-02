@@ -1,6 +1,8 @@
 from . import *
 from .dataset.dataset import *
 import matplotlib.pyplot as plt
+import os
+import re
 
 
 class Env:
@@ -19,22 +21,24 @@ class Env:
         self._network_version = 0
 
         # Training
-        if conf['mode'] == 1 or conf['mode'] == 0:
-            self._agent_1 = MCTSAgent(conf, color=BLACK)
+        if conf['mode'] in [0, 1, 6, 7]:
+            self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=True)
+            self._agent_2 = None
         # AI vs Human
         if conf['mode'] == 2:
-            self._agent_1 = MCTSAgent(conf, color=BLACK)
+            self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=False)
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
         # Human vs Human
-        if conf['mode'] == 3:
+        if conf['mode'] == 3 or conf['mode'] == 5:
             self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
         if conf['mode'] == 4:
-            self._agent_1 = MCTSAgent(conf, color=BLACK)
-            self._agent_2 = MCTSAgent(conf, color=WHITE)
+            self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=False)
+            self._agent_2 = MCTSAgent(conf, color=WHITE, is_train=False)
 
-        self._agent_eval = MCTSAgent(conf, color=WHITE)
-        self._agent_eval.set_self_play(False)
+        if conf['mode'] in [0, 1, 7]:
+            self._agent_eval = MCTSAgent(conf, color=WHITE, is_train=False)
+            self._agent_eval.set_self_play(False)
 
         if self._is_self_play:
             self._agent_2 = self._agent_1
@@ -47,34 +51,39 @@ class Env:
         self._loss_list = []
 
     @log
-    def run(self, record=None):
+    def run(self, is_train, record=None):
+        if type(self._agent_1) == MCTSAgent:
+            self._agent_1.set_train(is_train)
+        if type(self._agent_2) == MCTSAgent:
+            self._agent_2.set_train(is_train)
+
         while True:
             if self._is_self_play:
                 self._agent_1.color = self._board.current_player()
             action, pi = self._current_agent().play(self._obs(), self._board.last_move(), self._board.stone_num())
             result = self._check_rules(action)
             if result == 'continue':
-                color = self._board.current_player()
                 # print(result + ': ', action, color)
-                self._board.move(color, action)
-                if record is not None and pi is not None:
-                    obs = self._board.board()
-                    record.add(obs, -color, action, pi)
+                if record is not None:
+                    record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
+                self._board.move(self._board.current_player(), action)
             if result == 'occupied':
                 print(result + ': ' + str(action))
                 continue
             if result == 'blackwins' or result == 'whitewins' or result == 'draw':
-                self._board.move(self._board.current_player(), action)
                 print(result)
-                color = self._board.current_player()
-                self._board.move(color, action)
-                if record is not None and pi is not None:
-                    obs = self._board.board()
-                    record.add(obs, -color, action, pi)
+                if record is not None:
+                    record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
+                self._board.move(self._board.current_player(), action)
+
+                # add last position of this game
+                if record is not None:
+                    pi_0 = np.zeros(self._conf['board_size'] * self._conf['board_size'])
+                    record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi_0)
                     if result == 'blackwins':
-                        flag = 1
+                        flag = BLACK
                     if result == 'whitewins':
-                        flag = -1
+                        flag = WHITE
                     if result == 'draw':
                         flag = 0
                     record.set_z(flag)
@@ -92,13 +101,12 @@ class Env:
 
     def train(self):
         # use human play data to initialize network
-        '''
-        human_play_data_set = DataSet()
-        human_play_data_set.load(self._conf['human_play_data_path'])
-        obs, col, last_move, pi, z = human_play_data_set.get_sample(1)
-        self._agent_1.train(obs, col, last_move, pi, z)
-        self._agent_1.save_model()
-        '''
+        if self._conf['is_supervised']:
+            human_play_data_set = DataSet()
+            human_play_data_set.load(self._conf['human_play_data_path'])
+            obs, col, last_move, pi, z = human_play_data_set.get_sample(1)
+            self._agent_1.train(obs, col, last_move, pi, z)
+            self._agent_1.save_model()
 
         # training based on self-play
         data_set = DataSet()
@@ -109,7 +117,7 @@ class Env:
             for i in range(self._games_num):
                 record = GameRecord()
                 print('> game num = ' + str(i+1))
-                self.run(record)
+                self.run(is_train=True, record=record)
                 data_set.add_record(record)
 
             # train
@@ -141,6 +149,7 @@ class Env:
         plt.plot(x, y)
         plt.xlabel('epoch')
         plt.ylabel('loss')
+        plt.savefig(self._conf['fit_history_file'] + str('.png'), dpi=300)
         plt.show()
 
     def evaluate(self):
@@ -158,10 +167,10 @@ class Env:
 
         # new model plays BLACK
         for i in range(int(total_num/2)):
-            result = self.run()
-            if result == 1:
+            result = self.run(is_train=False, record=None)
+            if result == BLACK:
                 new_model_wins_num += 1
-            if result == -1:
+            if result == WHITE:
                 old_model_wins_num += 1
             print('> eval game ' + str(i+1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
 
@@ -171,12 +180,12 @@ class Env:
         self._agent_2.color = WHITE
 
         for i in range(int(total_num/2)):
-            result = self.run()
-            if result == 1:
+            result = self.run(is_train=False, record=None)
+            if result == BLACK:
                 old_model_wins_num += 1
-            if result == -1:
+            if result == WHITE:
                 new_model_wins_num += 1
-            print('> eval game ' + str(i + 1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
+            print('> eval game ' + str(i+1+int(total_num/2)) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
 
         # so far self._agent_1 -> self._agent_eval
 
@@ -198,22 +207,54 @@ class Env:
             return False
 
     def collect_human_data(self):
-        if not self._conf['display']:
-            print('> error: please set [display] = True in Config')
-            return
-        if self._conf['is_self_play']:
-            print('> error: please set [is_self_play] = False in Config')
-            return
-
         human_data_set = DataSet()
 
         for i in range(self._games_num):
             record = GameRecord()
-            print('> game num = ' + str(i + 1))
-            self.run(record)
+            print('> game num = ' + str(i+1))
+            self.run(is_train=False, record=record)
             human_data_set.add_record(record)
+            human_data_set.save(self._conf['human_play_data_path'])
 
-        human_data_set.save(self._conf['human_play_data_path'])
+    def collect_self_play_data(self):
+        name = os.getenv('computername')
+        for epoch in range(self._epoch):
+            print('> epoch = ' + str(epoch+1))
+            data_set = DataSet()
+            path = self._conf['self_play_data_path'] + str(epoch + 1) + '_' + str(name) + '_'
+            for i in range(self._games_num):
+                record = GameRecord()
+                print('> game num = ' + str(i+1))
+                self.run(is_train=True, record=record)
+                data_set.add_record(record)
+                data_set.save(path)
+            data_set.save(path)
+
+    def train_on_external_data(self):
+        root, prefix = os.path.split(self._conf['self_play_data_path'])
+        postfix_pattern = r'self\_play\_8\_\d+\_[0-9a-zA-Z\_\-]+\_col\.npy'
+        last_path = ''
+        external_data_set = DataSet()
+        count = 0
+        for filename in os.listdir(root):
+            if re.match(postfix_pattern, filename):
+                path = root + '/' + filename
+                path = path[0:-7]
+                if path != last_path:
+                    print('> data no.' + str(count+1))
+                    count += 1
+                    print('> external data path = ' + path)
+                    last_path = path
+                    external_data_set.load(path)
+                    obs, col, last_move, pi, z = external_data_set.get_sample(1)
+                    self._agent_1.train(obs, col, last_move, pi, z)
+                    if self.evaluate():
+                        self._agent_1.save_model()
+                        self._network_version += 1
+                        external_data_set.clear()
+                    else:
+                        self._agent_1.load_model()
+                    print('> network version = ' + str(self._network_version))
 
     def _obs(self):
         return self._board.board()

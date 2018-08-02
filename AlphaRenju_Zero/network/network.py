@@ -49,10 +49,10 @@ class Network:
         x = BatchNormalization()(x)
         x = Activation('relu')(x)
 
-        # Three Residual Blocks
+        # Two Residual Blocks
         x = self._residual_block(x)
         x = self._residual_block(x)
-        x = self._residual_block(x)
+        # x = self._residual_block(x)
 
         # Policy Head for generating prior probability vector for each action
         policy = Conv2D(filters=2, kernel_size=(1, 1), strides=(1, 1), padding='same',
@@ -96,12 +96,23 @@ class Network:
         return x
         
     def predict(self, board, color, last_move):
+        if sum(sum(board)) == 0 and color == WHITE:
+            print('error: network.predict')
+        if sum(sum(board)) == 1 and color == BLACK:
+            print('error: network.predict')
         tensor = board2tensor(board, color, last_move)
         policy, value_tensor = self._model.predict_on_batch(tensor)
         value = value_tensor[0][0]
         return policy, value
 
     def train(self, board_list, color_list, last_move_list, pi_list, z_list):
+        size = len(color_list)
+        for i in range(size):
+            if sum(sum(board_list[i])) == 0 and color_list[i] == WHITE:
+                print('error: network.train')
+            if sum(sum(board_list[i])) == 1 and color_list[i] == BLACK:
+                print('error: network.train')
+
 
         # Data Augmentation through symmetric and self-rotation transformation
         board_aug = []
@@ -136,7 +147,7 @@ class Network:
         hist_path = self._fit_history_file + '_' + str(self._fit_epochs) + '_' + str(self._mini_batch_size) + '.txt'
         with open(hist_path, 'a') as f:
             f.write(str(hist.history))
-            return hist.history['loss']
+            return hist.history['loss'][0]  # only sample loss of first epoch
         
     def get_para(self):
         net_para = self._model.get_weights() 
@@ -212,6 +223,8 @@ def output_decode(vec, num, size):
 
 
 def coordinate_transform(move, type, size, flag):
+    if move is None:
+        return None
     board = np.zeros((size, size))
     board[move[0]][move[1]] = 1
     board_t = board_transform(board, type, flag)

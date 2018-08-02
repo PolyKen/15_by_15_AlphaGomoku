@@ -4,14 +4,14 @@ from ..rules import *
 
 
 class MCTS:
-    def __init__(self, conf, net, color):
+    def __init__(self, conf, net, color, is_train):
         """Hyperparameters"""
         self._c_puct = conf['c_puct']  # PUCT
         self._simulation_times = conf['simulation_times']  # number of simulation
         self._tau = conf['initial_tau']  # temperature parameter
-        self._careful_stage = conf['careful_stage']  # the stage after which we set tau to zero
         self._epsilon = conf['epsilon']  # proportion of dirichlet noise
-        self._dirichlet = conf['dirichlet']
+        self._use_dirichlet = conf['use_dirichlet']
+        self._alpha = conf['alpha']
         self._board_size = conf['board_size']
         self._color = color  # MCTS Agent's color ( 1 for black; -1 for white)
         """Monte Carlo Tree"""
@@ -19,9 +19,13 @@ class MCTS:
         """Convolutional Residual Neural Network"""
         self._network = net
         self._is_self_play = conf['is_self_play']
+        self._is_train = is_train
 
     def set_self_play(self, is_self_play):
         self._is_self_play = is_self_play
+
+    def set_train(self, is_train):
+        self._is_train = is_train
 
     def reset(self):
         self._root = Node(1.0, None, BLACK)
@@ -45,10 +49,10 @@ class MCTS:
         # must check whether the root is a leaf node before prediction
         pi = self._predict(board, last_action)
         """Action Decision"""
-        if stage <= self._careful_stage:  # Uncareful Stage where optimal action may not be taken
+        if self._is_train:  # stochastic policy
             position_list = [i for i in range(self._board_size * self._board_size)]
             action = np.random.choice(position_list, p=pi)
-        else:  # Careful Stage where we play optimally
+        else:  # deterministic policy
             action = np.argmax(pi)
         """Adjust the Root Node and discard the remainder of the tree"""
         if not self._is_self_play:
@@ -84,6 +88,10 @@ class MCTS:
             # calculate the prior probabilities and value
             p, v = self._network.predict(current_board, current_color, last_move)
             prior_prob = p[0]
+            if self._use_dirichlet:
+                alpha = [self._alpha] * (self._board_size * self._board_size)
+                noise = np.random.dirichlet(alpha)
+                prior_prob = (1-self._epsilon) * prior_prob + self._epsilon * noise
 
             # now check whether this leaf node is an end node
             if action is not None:
