@@ -55,10 +55,14 @@ class MCTS:
             action = np.random.choice(position_list, p=pi)
         else:  # deterministic policy
             action = np.argmax(pi)
-        """Adjust the Root Node and discard the remainder of the tree"""
+
+        next_node = self._root.children()[action]
+        value = next_node.value
+
+        # Adjust the Root Node and discard the remainder of the tree
         if not self._is_self_play:
             self._root = self._root.children()[action]
-        return action, pi  # You need to store pi for training use
+        return action, pi, value  # You need to store pi for training use
     
     def _predict(self, board, last_move):
         self._simulate(board, last_move)
@@ -88,6 +92,7 @@ class MCTS:
 
             # calculate the prior probabilities and value
             p, v = self._network.predict(current_board, current_color, last_move)
+            current_node.value = -v
             prior_prob = p[0]
             if self._use_dirichlet:
                 alpha = [self._alpha] * (self._board_size * self._board_size)

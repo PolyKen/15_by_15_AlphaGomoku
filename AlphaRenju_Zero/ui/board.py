@@ -31,7 +31,7 @@ class Board:
         return np.copy(self._board)
 
     # player take an action(coordinate)
-    def move(self, player, action):
+    def move(self, player, action, info=None):
         x = action[0]   # row
         y = action[1]   # col
 
@@ -48,13 +48,13 @@ class Board:
 
         if player == BLACK:
             if self._display:
-                self._renderer.move(player, (x, y))
+                self._renderer.move(player, (x, y), info)
             self._board[x][y] = BLACK
             self._player = WHITE
             self._round += 1
         else:
             if self._display:
-                self._renderer.move(player, (x, y))
+                self._renderer.move(player, (x, y), info)
             self._board[x][y] = WHITE
             self._player = BLACK
 

@@ -61,13 +61,13 @@ class Env:
         while True:
             if self._is_self_play:
                 self._agent_1.color = self._board.current_player()
-            action, pi = self._current_agent().play(self._obs(), self._board.last_move(), self._board.stone_num())
+            action, pi, value = self._current_agent().play(self._obs(), self._board.last_move(), self._board.stone_num())
             result = self._check_rules(action)
             if result == 'continue':
                 # print(result + ': ', action, color)
                 if record is not None:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
-                self._board.move(self._board.current_player(), action)
+                self._board.move(self._board.current_player(), action, str(round(-value, 3)))
             if result == 'occupied':
                 print(result + ': ' + str(action))
                 continue
@@ -75,7 +75,7 @@ class Env:
                 print(result)
                 if record is not None:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
-                self._board.move(self._board.current_player(), action)
+                self._board.move(self._board.current_player(), action, str(round(-value, 3)))
 
                 # add last position of this game
                 if record is not None:
@@ -88,6 +88,8 @@ class Env:
                     if result == 'draw':
                         flag = 0
                     record.set_z(flag)
+                if self._conf['mode'] in [2, 3, 4]:
+                    time.sleep(100)
                 break
         self._board.clear()
         if type(self._agent_1) == MCTSAgent:
