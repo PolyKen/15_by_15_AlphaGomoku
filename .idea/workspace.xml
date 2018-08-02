@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="ver 5">
-      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/network/model/model_8_ver_7.h5" afterDir="false" />
+    <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="ver 7">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/network/history/log_8_20_512.txt" beforeDir="false" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/network/history/log_8_20_512.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/network/model/model_8.h5" beforeDir="false" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/network/model/model_8.h5" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -50,12 +47,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="py" value="17" />
-          <entry key="txt" value="22" />
+          <entry key="txt" value="24" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="22" />
+          <entry key="PLAIN_TEXT" value="24" />
           <entry key="Python" value="17" />
         </counts>
       </usages-collector>
@@ -228,6 +225,13 @@
               <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
               <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
               <item name="dataset" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AlphaRenju_Zero" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+              <item name="dataset" type="462c0819:PsiDirectoryNode" />
+              <item name="self_play_data" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="AlphaRenju_Zero" type="b2602c69:ProjectViewProjectNode" />
@@ -548,7 +552,21 @@
       <option name="project" value="LOCAL" />
       <updated>1533193637765</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="ver 7">
+      <created>1533195042476</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1533195042476</updated>
+    </task>
+    <task id="LOCAL-00022" summary="ver 7">
+      <created>1533195083388</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1533195083388</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TodoView">
@@ -563,13 +581,13 @@
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="889" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18438661" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18438661" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32891247" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.76654273" visible="true" weight="0.3923382" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.76654273" visible="true" weight="0.3923382" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4626506" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -660,7 +678,8 @@
     <MESSAGE value="ver 5" />
     <MESSAGE value="ver 6" />
     <MESSAGE value="update" />
-    <option name="LAST_COMMIT_MESSAGE" value="update" />
+    <MESSAGE value="ver 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="ver 7" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
