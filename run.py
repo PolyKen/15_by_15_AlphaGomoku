@@ -7,8 +7,8 @@ warnings.filterwarnings("ignore")
 
 print('> Please enter the mode: '
       '(1: Training, 2: AI vs Human, 3: Human vs Human, '
-      '4: AI vs AI, 5: Collect human play data, 6: Collect self play data), '
-      '7: Train on external data')
+      '4: AI vs AI, 5: Collect human play data, 6: Collect self play data, '
+      '7: Train on external data)')
 mode = int(input('> mode = '))
 conf = Config()
 conf.set_mode(mode)
