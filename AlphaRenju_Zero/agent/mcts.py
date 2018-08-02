@@ -114,7 +114,7 @@ class MCTS:
             else:
                 # if action is None, then the root node is a leaf
                 current_node.expand(prior_prob, self._board_size)
-            current_node.backup(-v)
+            current_node.backup(-current_node.value)
 
 
 def index2coordinate(index, size):
