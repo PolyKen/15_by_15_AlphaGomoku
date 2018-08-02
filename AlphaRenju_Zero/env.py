@@ -269,12 +269,9 @@ class Env:
                     external_data_set.load(path)
                     obs, col, last_move, pi, z = external_data_set.get_sample(1)
                     self._agent_1.train(obs, col, last_move, pi, z)
-        if self.evaluate():
-            self._agent_1.save_model()
-            self._network_version += 1
-            external_data_set.clear()
-        else:
-            self._agent_1.load_model()
+        self.evaluate()
+        self._agent_1.save_model()
+        self._network_version += 1
         print('> network version = ' + str(self._network_version))
 
     def _obs(self):
