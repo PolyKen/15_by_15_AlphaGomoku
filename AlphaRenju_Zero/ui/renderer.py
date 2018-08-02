@@ -159,8 +159,8 @@ class Renderer(threading.Thread):
         return self._mouse_click_pos
 
     def show_info(self, info, player, action):
-        position = (int((action[1] + 0.65) * self._spacing), int((action[0] + 0.85) * self._spacing))
-        font = pygame.font.SysFont('Calibri', size=20)
+        position = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.85) * self._spacing))
+        font = pygame.font.SysFont('Calibri', size=16)
         color = (255, 0, 0)
         if player == BLACK:
             color = (255, 255, 255)
