@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="commit">
+    <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="ver 7">
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/network/model/model_8_ver_8.h5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_col.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_last_move.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_obs.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_pi.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_z.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_None_col.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_None_last_move.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_None_obs.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_None_pi.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_None_z.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_col.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_last_move.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_obs.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_pi.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_z.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_None_col.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_None_last_move.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_None_obs.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_None_pi.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_None_z.npy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/network/history/log_8_20_512.txt" beforeDir="false" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/network/history/log_8_20_512.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/network/model/model_8.h5" beforeDir="false" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/network/model/model_8.h5" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -35,12 +59,34 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="py" value="1" />
-          <entry key="txt" value="72" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="72" />
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+    </session>
+    <session id="1192726205">
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="17" />
+          <entry key="txt" value="24" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="24" />
+          <entry key="Python" value="17" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
           <entry key="Python" value="1" />
         </counts>
       </usages-collector>
@@ -48,7 +94,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="315">
@@ -78,11 +124,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="449">
-              <caret line="287" column="40" selection-start-line="287" selection-start-column="40" selection-end-line="287" selection-end-column="40" />
+            <state relative-caret-position="195">
+              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -200,16 +246,17 @@
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/agent/ai.py" />
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/network/network.py" />
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/dataset/dataset.py" />
-        <option value="$PROJECT_DIR$/AlphaRenju_Zero/env.py" />
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/config.py" />
         <option value="$PROJECT_DIR$/run.py" />
+        <option value="$PROJECT_DIR$/AlphaRenju_Zero/env.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="y" value="23" />
-    <option name="width" value="1440" />
-    <option name="height" value="808" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="2" />
+    <option name="y" value="2" />
+    <option name="width" value="2734" />
+    <option name="height" value="1750" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -224,6 +271,37 @@
             <path>
               <item name="AlphaRenju_Zero" type="b2602c69:ProjectViewProjectNode" />
               <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AlphaRenju_Zero" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AlphaRenju_Zero" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+              <item name="dataset" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AlphaRenju_Zero" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+              <item name="dataset" type="462c0819:PsiDirectoryNode" />
+              <item name="self_play_data" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AlphaRenju_Zero" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+              <item name="network" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="AlphaRenju_Zero" type="b2602c69:ProjectViewProjectNode" />
+              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
+              <item name="network" type="462c0819:PsiDirectoryNode" />
+              <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -241,6 +319,7 @@
       <recent name="C:\Users\Zheng Xie\PycharmProjects\AlphaRenju_Zero\test\image" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Administrator\PycharmProjects\AlphaRenju_Zero\AlphaRenju_Zero\network\model" />
       <recent name="C:\Users\Zheng Xie\PycharmProjects\AlphaRenju_Zero\AlphaRenju_Zero\network\model" />
     </key>
   </component>
@@ -267,35 +346,6 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_regexPattern" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Nosetests">
-      <module name="AlphaGomoku_Zero" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_regexPattern" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
-      <method v="2" />
-    </configuration>
-    <configuration default="true" type="tests" factoryName="Unittests">
-      <module name="AlphaGomoku_Zero" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
@@ -349,6 +399,35 @@
       <option name="MODULE_MODE" value="false" />
       <option name="REDIRECT_INPUT" value="false" />
       <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Nosetests">
+      <module name="AlphaGomoku_Zero" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_regexPattern" value="&quot;&quot;" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration default="true" type="tests" factoryName="Unittests">
+      <module name="AlphaGomoku_Zero" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
       <method v="2" />
     </configuration>
     <configuration default="true" type="tests" factoryName="py.test">
@@ -495,42 +574,49 @@
       <option name="project" value="LOCAL" />
       <updated>1533027209565</updated>
     </task>
-    <task id="LOCAL-00017" summary="Merge branch 'master' of github.com:/PolyKen/AlphaRenju_Zero&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml">
-      <created>1533179545129</created>
+    <task id="LOCAL-00017" summary="ver 4">
+      <created>1533181898840</created>
       <option name="number" value="00017" />
       <option name="presentableId" value="LOCAL-00017" />
       <option name="project" value="LOCAL" />
-      <updated>1533179545129</updated>
+      <updated>1533181898840</updated>
     </task>
-    <task id="LOCAL-00018" summary="training data updated">
-      <created>1533185012781</created>
+    <task id="LOCAL-00018" summary="ver 5">
+      <created>1533188469126</created>
       <option name="number" value="00018" />
       <option name="presentableId" value="LOCAL-00018" />
       <option name="project" value="LOCAL" />
-      <updated>1533185012781</updated>
+      <updated>1533188469126</updated>
     </task>
-    <task id="LOCAL-00019" summary="training data updated">
-      <created>1533193301630</created>
+    <task id="LOCAL-00019" summary="ver 6">
+      <created>1533190952999</created>
       <option name="number" value="00019" />
       <option name="presentableId" value="LOCAL-00019" />
       <option name="project" value="LOCAL" />
-      <updated>1533193301630</updated>
+      <updated>1533190952999</updated>
     </task>
-    <task id="LOCAL-00020" summary="commit">
-      <created>1533196633195</created>
+    <task id="LOCAL-00020" summary="update">
+      <created>1533193637765</created>
       <option name="number" value="00020" />
       <option name="presentableId" value="LOCAL-00020" />
       <option name="project" value="LOCAL" />
-      <updated>1533196633195</updated>
+      <updated>1533193637765</updated>
     </task>
-    <task id="LOCAL-00021" summary="commit">
-      <created>1533198205804</created>
+    <task id="LOCAL-00021" summary="ver 7">
+      <created>1533195042476</created>
       <option name="number" value="00021" />
       <option name="presentableId" value="LOCAL-00021" />
       <option name="project" value="LOCAL" />
-      <updated>1533198205804</updated>
+      <updated>1533195042476</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="ver 7">
+      <created>1533195083388</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1533195083388</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TodoView">
@@ -551,13 +637,13 @@
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32891247" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.63284004" visible="true" weight="0.2759036" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.63213533" visible="true" weight="0.2759036" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4626506" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32891566" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.36715996" side_tool="true" visible="true" weight="0.2759036" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.68851304" weight="0.32771084" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.23420075" side_tool="true" weight="0.31571993" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.68698883" weight="0.32760897" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32771084" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32891247" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -637,12 +723,13 @@
     <MESSAGE value="save model in each epoch" />
     <MESSAGE value="delete add_data_time and some useless func" />
     <MESSAGE value="delete end_reason(debug)" />
-    <MESSAGE value="update" />
-    <MESSAGE value="data updated" />
     <MESSAGE value="Merge branch 'master' of github.com:/PolyKen/AlphaRenju_Zero&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <MESSAGE value="training data updated" />
-    <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="ver 4" />
+    <MESSAGE value="ver 5" />
+    <MESSAGE value="ver 6" />
+    <MESSAGE value="update" />
+    <MESSAGE value="ver 7" />
+    <option name="LAST_COMMIT_MESSAGE" value="ver 7" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -734,9 +821,7 @@
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/dataset/human_play_data/data_8_obs.txt" />
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/dataset/human_play_data/data_8_pi.txt" />
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/dataset/human_play_data/data_8_z.txt" />
-    <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/network/history/log_8_1_256.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/network/history/log_8_1_256.txt" />
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/agent/node.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="268">
@@ -816,8 +901,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="287" column="40" selection-start-line="287" selection-start-column="40" selection-end-line="287" selection-end-column="40" />
+        <state relative-caret-position="195">
+          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
           </folding>
