@@ -93,7 +93,7 @@ class MCTS:
 
             # calculate the prior probabilities and value
             p, v = self._network.predict(current_board, current_color, last_move)
-            current_node.value = -v
+            current_node.value = v
             prior_prob = p[0]
             if self._use_dirichlet:
                 alpha = [self._alpha] * (self._board_size * self._board_size)
