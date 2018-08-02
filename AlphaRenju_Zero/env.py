@@ -61,13 +61,16 @@ class Env:
         while True:
             if self._is_self_play:
                 self._agent_1.color = self._board.current_player()
-            action, pi, value = self._current_agent().play(self._obs(), self._board.last_move(), self._board.stone_num())
+            action, pi, prior_prob, value = self._current_agent().play(self._obs(), self._board.last_move(), self._board.stone_num())
+            prior_prob = str(round(prior_prob, 3))
+            value = str(round(-value, 3))
+            info = prior_prob + '_' + value
             result = self._check_rules(action)
             if result == 'continue':
                 # print(result + ': ', action, color)
                 if record is not None:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
-                self._board.move(self._board.current_player(), action, str(round(-value, 3)))
+                self._board.move(self._board.current_player(), action, info)
             if result == 'occupied':
                 print(result + ': ' + str(action))
                 continue
@@ -75,7 +78,7 @@ class Env:
                 print(result)
                 if record is not None:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
-                self._board.move(self._board.current_player(), action, str(round(-value, 3)))
+                self._board.move(self._board.current_player(), action, info)
 
                 if record is not None:
                     if result == 'blackwins':

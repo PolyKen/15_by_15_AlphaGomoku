@@ -48,8 +48,8 @@ class Renderer(threading.Thread):
         self._update_clear = False
 
         self._update_info = False
-        self._info_surface_cache = None
-        self._info_rect_cache = None
+        self._info_surface_cache = []
+        self._info_rect_cache = []
 
         self._is_waiting_for_click = False
         self._mouse_click_pos = None
@@ -159,22 +159,28 @@ class Renderer(threading.Thread):
         return self._mouse_click_pos
 
     def show_info(self, info, player, action):
-        position = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.85) * self._spacing))
+        position_up = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.79) * self._spacing))
+        position_down = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.98) * self._spacing))
         font = pygame.font.SysFont('Calibri', size=16)
         color = (255, 0, 0)
         if player == BLACK:
             color = (255, 255, 255)
         if player == WHITE:
             color = (0, 0, 0)
-        info = 'v = ' + info
-        self._info_surface_cache = font.render(info, True, color)
-        self._info_rect_cache = position
+        infos = info.split('_')
+        p = 'p = ' + infos[0]
+        v = 'v = ' + infos[1]
+        self._info_surface_cache.append(font.render(p, True, color))
+        self._info_surface_cache.append(font.render(v, True, color))
+        self._info_rect_cache.append(position_up)
+        self._info_rect_cache.append(position_down)
         self._update_info = True
 
     def _show_info(self):
-        self._screen.blit(self._info_surface_cache, self._info_rect_cache)
-        self._info_surface_cache = None
-        self._info_rect_cache = None
+        self._screen.blit(self._info_surface_cache[0], self._info_rect_cache[0])
+        self._screen.blit(self._info_surface_cache[1], self._info_rect_cache[1])
+        self._info_surface_cache = []
+        self._info_rect_cache = []
 
         pygame.display.update()
         self._update_info = False

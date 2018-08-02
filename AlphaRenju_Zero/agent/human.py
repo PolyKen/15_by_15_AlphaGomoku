@@ -14,4 +14,4 @@ class HumanAgent(Agent):
         ind = coordinate2index((x, y), self._board_size)
         pi = np.zeros(self._board_size * self._board_size)
         pi[ind] = 1
-        return (x, y), pi, 0
+        return (x, y), pi, 1, 0

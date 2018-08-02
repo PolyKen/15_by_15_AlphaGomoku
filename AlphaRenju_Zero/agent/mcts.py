@@ -57,12 +57,13 @@ class MCTS:
             action = np.argmax(pi)
 
         next_node = self._root.children()[action]
+        prior_prob = next_node.P()
         value = next_node.value
 
         # Adjust the Root Node and discard the remainder of the tree
         if not self._is_self_play:
             self._root = self._root.children()[action]
-        return action, pi, value  # You need to store pi for training use
+        return action, pi, prior_prob, value  # You need to store pi for training use
     
     def _predict(self, board, last_move):
         self._simulate(board, last_move)

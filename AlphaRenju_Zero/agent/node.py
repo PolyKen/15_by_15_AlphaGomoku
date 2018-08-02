@@ -26,6 +26,9 @@ class Node:
         self.num = Node.count
         Node.count += 1
 
+    def P(self):
+        return self._P
+
     def N(self):
         return self._N
 
