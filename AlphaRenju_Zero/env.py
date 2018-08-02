@@ -170,7 +170,7 @@ class Env:
 
         # new model plays BLACK
         for i in range(int(total_num/2)):
-            result = self.run(is_train=False, record=None)
+            result = self.run(is_train=True, record=None)
             if result == BLACK:
                 new_model_wins_num += 1
             if result == WHITE:
@@ -183,7 +183,7 @@ class Env:
         self._agent_2.color = WHITE
 
         for i in range(int(total_num/2)):
-            result = self.run(is_train=False, record=None)
+            result = self.run(is_train=True, record=None)
             if result == BLACK:
                 old_model_wins_num += 1
             if result == WHITE:

@@ -84,6 +84,9 @@ class Config(dict):
         # use supervised learning
         self['is_supervised'] = True
 
+        # careful stage
+        self['careful_stage'] = 8
+
         self.update(**kwargs)
 
     def update(self, **kwargs):
