@@ -269,6 +269,7 @@ class Env:
                     external_data_set.load(path)
                     obs, col, last_move, pi, z = external_data_set.get_sample(1)
                     self._agent_1.train(obs, col, last_move, pi, z)
+                    external_data_set.clear()
         self.evaluate()
         self._agent_1.save_model()
         self._network_version += 1
