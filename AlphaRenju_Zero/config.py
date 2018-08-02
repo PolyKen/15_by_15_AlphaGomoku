@@ -133,6 +133,7 @@ class Config(dict):
             self['display'] = False
             self['is_self_play'] = True
             self['mode'] = 7
+            print('> Train on external data mode')
         if mode == 0:
             self['display'] = True
             self['is_self_play'] = True
