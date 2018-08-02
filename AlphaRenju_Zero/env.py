@@ -1,6 +1,8 @@
 from . import *
 from .dataset.dataset import *
 import matplotlib.pyplot as plt
+import os
+import re
 
 
 class Env:
@@ -19,7 +21,7 @@ class Env:
         self._network_version = 0
 
         # Training
-        if conf['mode'] == 1 or conf['mode'] == 0 or conf['mode'] == 6:
+        if conf['mode'] in [0, 1, 6, 7]:
             self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=True)
             self._agent_2 = None
         # AI vs Human
@@ -34,7 +36,7 @@ class Env:
             self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=False)
             self._agent_2 = MCTSAgent(conf, color=WHITE, is_train=False)
 
-        if conf['mode'] == 1 or conf['mode'] == 0:
+        if conf['mode'] in [0, 1, 7]:
             self._agent_eval = MCTSAgent(conf, color=WHITE, is_train=False)
             self._agent_eval.set_self_play(False)
 
@@ -215,17 +217,44 @@ class Env:
             human_data_set.save(self._conf['human_play_data_path'])
 
     def collect_self_play_data(self):
+        name = os.getenv('computername')
         for epoch in range(self._epoch):
             print('> epoch = ' + str(epoch+1))
             data_set = DataSet()
+            path = self._conf['self_play_data_path'] + str(epoch + 1) + '_' + str(name) + '_'
             for i in range(self._games_num):
                 record = GameRecord()
                 print('> game num = ' + str(i+1))
                 self.run(is_train=True, record=record)
                 data_set.add_record(record)
-            path = self._conf['self_play_data_path'] + str(epoch+1) + '_'
+                data_set.save(path)
             data_set.save(path)
 
+    def train_on_external_data(self):
+        root, prefix = os.path.split(self._conf['self_play_data_path'])
+        postfix_pattern = r'self\_play\_8\_\d+\_[0-9a-zA-Z\_\-]+\_col\.npy'
+        last_path = ''
+        external_data_set = DataSet()
+        count = 0
+        for filename in os.listdir(root):
+            if re.match(postfix_pattern, filename):
+                path = root + '/' + filename
+                path = path[0:-7]
+                if path != last_path:
+                    print('> data no.' + str(count+1))
+                    count += 1
+                    print('> external data path = ' + path)
+                    last_path = path
+                    external_data_set.load(path)
+                    obs, col, last_move, pi, z = external_data_set.get_sample(1)
+                    self._agent_1.train(obs, col, last_move, pi, z)
+                    if self.evaluate():
+                        self._agent_1.save_model()
+                        self._network_version += 1
+                        external_data_set.clear()
+                    else:
+                        self._agent_1.load_model()
+                    print('> network version = ' + str(self._network_version))
 
     def _obs(self):
         return self._board.board()

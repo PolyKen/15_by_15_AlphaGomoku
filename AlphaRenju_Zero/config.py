@@ -91,7 +91,7 @@ class Config(dict):
             self[key] = kwargs[key]
 
     def set_mode(self, mode):
-        if mode not in [1, 2, 3, 4, 5, 6, 0]:
+        if mode not in [1, 2, 3, 4, 5, 6, 7, 0]:
             mode = 1
         if mode == 1:
             self['display'] = False
@@ -126,6 +126,10 @@ class Config(dict):
             self['games_num'] = 30
             self['epoch'] = 20
             print('> Collect self play data mode')
+        if mode == 7:
+            self['display'] = False
+            self['is_self_play'] = True
+            self['mode'] = 7
         if mode == 0:
             self['display'] = True
             self['is_self_play'] = True
