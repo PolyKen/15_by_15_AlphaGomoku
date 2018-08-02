@@ -3,6 +3,7 @@ from .dataset.dataset import *
 import matplotlib.pyplot as plt
 import os
 import re
+from .rules import *
 
 
 class Env:
@@ -166,7 +167,9 @@ class Env:
 
         new_model_wins_num = 0
         old_model_wins_num = 0
+        draw_num = 0
         total_num = self._evaluate_games_num
+        end = False
 
         # new model plays BLACK
         for i in range(int(total_num/2)):
@@ -175,20 +178,35 @@ class Env:
                 new_model_wins_num += 1
             if result == WHITE:
                 old_model_wins_num += 1
+            if result == 0:
+                draw_num += 1
             print('> eval game ' + str(i+1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
+            if new_model_wins_num > (total_num - draw_num) / 2:
+                end = True
+                break
+            if old_model_wins_num > (total_num - draw_num) / 2:
+                end = True
+                break
 
         # switch agents
         self._agent_1, self._agent_2 = self._agent_2, self._agent_1
         self._agent_1.color = BLACK
         self._agent_2.color = WHITE
 
-        for i in range(int(total_num/2)):
-            result = self.run(is_train=True, record=None)
-            if result == BLACK:
-                old_model_wins_num += 1
-            if result == WHITE:
-                new_model_wins_num += 1
-            print('> eval game ' + str(i+1+int(total_num/2)) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
+        if not end:
+            for i in range(int(total_num/2)):
+                result = self.run(is_train=True, record=None)
+                if result == BLACK:
+                    old_model_wins_num += 1
+                if result == WHITE:
+                    new_model_wins_num += 1
+                if result == 0:
+                    draw_num += 1
+                print('> eval game ' + str(i+1+int(total_num/2)) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
+                if new_model_wins_num > (total_num - draw_num) / 2:
+                    break
+                if old_model_wins_num > (total_num - draw_num) / 2:
+                    break
 
         # so far self._agent_1 -> self._agent_eval
 
