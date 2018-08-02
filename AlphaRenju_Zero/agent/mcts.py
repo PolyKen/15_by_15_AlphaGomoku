@@ -20,6 +20,7 @@ class MCTS:
         self._network = net
         self._is_self_play = conf['is_self_play']
         self._is_train = is_train
+        self._careful_stage = conf['careful_stage']
 
     def set_self_play(self, is_self_play):
         self._is_self_play = is_self_play
@@ -49,7 +50,7 @@ class MCTS:
         # must check whether the root is a leaf node before prediction
         pi = self._predict(board, last_action)
         """Action Decision"""
-        if self._is_train:  # stochastic policy
+        if self._is_train and stage <= self._careful_stage:  # stochastic policy
             position_list = [i for i in range(self._board_size * self._board_size)]
             action = np.random.choice(position_list, p=pi)
         else:  # deterministic policy
