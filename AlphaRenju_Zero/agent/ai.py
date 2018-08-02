@@ -21,9 +21,9 @@ class MCTSAgent(AI):
         self._board_size = conf['board_size']
 
     def play(self, obs, action, stone_num):
-        act_ind, pi = self._mcts.action(obs, action, stone_num)
+        act_ind, pi, value = self._mcts.action(obs, action, stone_num)
         act_cor = index2coordinate(act_ind, self._board_size)
-        return act_cor, pi
+        return act_cor, pi, value
 
     def set_self_play(self, is_self_play):
         self._mcts.set_self_play(is_self_play)
