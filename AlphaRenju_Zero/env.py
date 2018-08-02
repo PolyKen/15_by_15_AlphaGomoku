@@ -77,10 +77,7 @@ class Env:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
                 self._board.move(self._board.current_player(), action, str(round(-value, 3)))
 
-                # add last position of this game
                 if record is not None:
-                    pi_0 = np.zeros(self._conf['board_size'] * self._conf['board_size'])
-                    record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi_0)
                     if result == 'blackwins':
                         flag = BLACK
                     if result == 'whitewins':

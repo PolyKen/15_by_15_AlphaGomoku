@@ -104,7 +104,10 @@ class MCTS:
                 end_flag = check_rules(current_board, action, -current_color)
                 if end_flag == 'blackwins' or end_flag == 'whitewins' or end_flag == 'full':
                     current_node.is_end = True
-                    current_node.value = -v
+                    if end_flag == 'full':
+                        current_node.value = 0
+                    else:
+                        current_node.value = -1
                 else:
                     current_node.expand(prior_prob, self._board_size)
             else:
