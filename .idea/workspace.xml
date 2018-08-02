@@ -1,41 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="ver 7">
-      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/network/model/model_8_ver_8.h5" afterDir="false" />
+    <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="ver 8">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_None_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_None_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_None_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_None_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_None_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_RENJU_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_RENJU_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_RENJU_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_RENJU_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_RENJU_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_None_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_None_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_None_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_None_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_None_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_RENJU_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_RENJU_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_RENJU_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_RENJU_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_RENJU_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/network/history/log_8_20_512.txt" beforeDir="false" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/network/history/log_8_20_512.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/network/model/model_8.h5" beforeDir="false" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/network/model/model_8.h5" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -80,12 +47,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="py" value="17" />
-          <entry key="txt" value="24" />
+          <entry key="txt" value="25" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="24" />
+          <entry key="PLAIN_TEXT" value="25" />
           <entry key="Python" value="17" />
         </counts>
       </usages-collector>
@@ -118,8 +85,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="270" column="29" selection-start-line="270" selection-start-column="29" selection-end-line="270" selection-end-column="29" />
+            <state relative-caret-position="149">
+              <caret line="266" column="36" lean-forward="true" selection-start-line="266" selection-start-column="36" selection-end-line="266" selection-end-column="36" />
             </state>
           </provider>
         </entry>
@@ -599,7 +566,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533195083388</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="ver 8">
+      <created>1533199642219</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1533199642219</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TodoView">
@@ -614,13 +588,13 @@
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="889" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.18438661" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.18438661" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32891247" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.7657993" visible="true" weight="0.31571993" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.7657993" visible="true" weight="0.31571993" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4626506" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -712,7 +686,8 @@
     <MESSAGE value="ver 6" />
     <MESSAGE value="update" />
     <MESSAGE value="ver 7" />
-    <option name="LAST_COMMIT_MESSAGE" value="ver 7" />
+    <MESSAGE value="ver 8" />
+    <option name="LAST_COMMIT_MESSAGE" value="ver 8" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -884,8 +859,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="270" column="29" selection-start-line="270" selection-start-column="29" selection-end-line="270" selection-end-column="29" />
+        <state relative-caret-position="149">
+          <caret line="266" column="36" lean-forward="true" selection-start-line="266" selection-start-column="36" selection-end-line="266" selection-end-column="36" />
         </state>
       </provider>
     </entry>
