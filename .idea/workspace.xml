@@ -2,40 +2,107 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="ver 7">
-      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/network/model/model_8_ver_11.h5" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_10_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_10_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_10_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_10_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_10_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_11_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_11_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_11_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_11_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_11_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_12_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_12_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_12_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_12_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_12_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_13_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_13_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_13_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_13_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_13_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_14_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_14_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_14_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_14_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_14_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_15_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_15_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_15_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_15_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_15_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_16_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_16_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_16_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_16_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_16_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_17_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_17_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_17_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_17_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_17_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_18_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_18_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_18_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_18_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_18_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_19_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_19_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_19_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_19_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_19_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_20_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_20_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_20_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_20_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_20_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_5_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_5_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_5_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_5_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_5_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_6_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_6_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_6_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_6_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_6_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_7_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_7_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_7_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_7_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_7_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_8_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_8_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_8_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_8_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_8_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_9_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_9_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_9_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_9_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_9_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_DESKTOP-4TAT0VN_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_DESKTOP-4TAT0VN_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_DESKTOP-4TAT0VN_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_DESKTOP-4TAT0VN_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_DESKTOP-4TAT0VN_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_5_DESKTOP-4TAT0VN_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_5_DESKTOP-4TAT0VN_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_5_DESKTOP-4TAT0VN_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_5_DESKTOP-4TAT0VN_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_5_DESKTOP-4TAT0VN_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_6_DESKTOP-4TAT0VN_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_6_DESKTOP-4TAT0VN_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_6_DESKTOP-4TAT0VN_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_6_DESKTOP-4TAT0VN_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_6_DESKTOP-4TAT0VN_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/network/history/log_8_20_512.txt" beforeDir="false" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/network/history/log_8_20_512.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/network/model/model_8.h5" beforeDir="false" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/network/model/model_8.h5" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -100,14 +167,38 @@
         </counts>
       </usages-collector>
     </session>
+    <session id="1700012811">
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="py" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Python" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="py" value="13" />
+          <entry key="txt" value="7" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="7" />
+          <entry key="Python" value="13" />
+        </counts>
+      </usages-collector>
+    </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="92">
-              <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+            <state relative-caret-position="239">
+              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -115,11 +206,23 @@
           </provider>
         </entry>
       </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/agent/mcts.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="116" column="45" selection-start-line="116" selection-start-column="45" selection-end-line="116" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3781">
-              <caret line="265" column="36" selection-start-line="265" selection-start-column="36" selection-end-line="265" selection-end-column="36" />
+            <state relative-caret-position="284">
+              <caret line="151" column="19" selection-start-line="151" selection-start-column="19" selection-end-line="151" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -212,21 +315,21 @@
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/dataset/human_play_data/data_8_z.txt" />
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/agent/node.py" />
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/agent/human.py" />
-        <option value="$PROJECT_DIR$/AlphaRenju_Zero/agent/mcts.py" />
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/agent/ai.py" />
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/network/network.py" />
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/dataset/dataset.py" />
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/config.py" />
         <option value="$PROJECT_DIR$/run.py" />
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/env.py" />
+        <option value="$PROJECT_DIR$/AlphaRenju_Zero/agent/mcts.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="1" />
-    <option name="y" value="1" />
-    <option name="width" value="1367" />
-    <option name="height" value="875" />
+    <option name="x" value="2" />
+    <option name="y" value="2" />
+    <option name="width" value="2734" />
+    <option name="height" value="1750" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -234,7 +337,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -277,19 +379,13 @@
               <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
               <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
               <item name="network" type="462c0819:PsiDirectoryNode" />
-              <item name="history" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AlphaRenju_Zero" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
-              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
-              <item name="network" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -634,7 +730,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533227577600</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="fix bug">
+      <created>1533231368697</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1533231368697</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TodoView">
@@ -647,21 +750,21 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-13" y="-13" width="1946" height="1060" extended-state="6" />
+    <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1406744" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24386618" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32891247" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.76290834" visible="true" weight="0.26651737" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.76290834" visible="true" weight="0.265252" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4626506" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.23709168" side_tool="true" weight="0.26651737" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.6849315" weight="0.32698768" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.6849315" weight="0.32625994" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32771084" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32891247" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -751,7 +854,8 @@
     <MESSAGE value="ver 7" />
     <MESSAGE value="conclude merge" />
     <MESSAGE value="ver 11" />
-    <option name="LAST_COMMIT_MESSAGE" value="ver 11" />
+    <MESSAGE value="fix bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="fix bug" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -890,13 +994,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/agent/mcts.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="540">
-          <caret line="38" column="30" selection-start-line="38" selection-start-column="30" selection-end-line="38" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/dataset/dataset.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="513">
@@ -913,18 +1010,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3781">
-          <caret line="265" column="36" selection-start-line="265" selection-start-column="36" selection-end-line="265" selection-end-column="36" />
+        <state relative-caret-position="284">
+          <caret line="151" column="19" selection-start-line="151" selection-start-column="19" selection-end-line="151" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="92">
-          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        <state relative-caret-position="239">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/agent/mcts.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="116" column="45" selection-start-line="116" selection-start-column="45" selection-end-line="116" selection-end-column="45" />
         </state>
       </provider>
     </entry>
