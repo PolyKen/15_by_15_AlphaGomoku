@@ -82,7 +82,7 @@ class Config(dict):
         self['fit_epochs'] = 20
 
         # use supervised learning
-        self['is_supervised'] = False
+        self['is_supervised'] = True
 
         # careful stage
         self['careful_stage'] = 8
