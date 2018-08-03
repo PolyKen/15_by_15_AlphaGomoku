@@ -2,26 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_col.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_last_move.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_obs.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_pi.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_z.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_col.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_last_move.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_obs.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_pi.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_z.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_col.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_last_move.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_obs.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_pi.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_z.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_KENNY_col.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_KENNY_last_move.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_KENNY_obs.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_KENNY_pi.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_4_KENNY_z.npy" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -130,8 +110,8 @@
       <file leaf-file-name="env.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="108" column="41" lean-forward="true" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
+            <state relative-caret-position="228">
+              <caret line="107" column="43" lean-forward="true" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
               <folding />
             </state>
           </provider>
@@ -714,7 +694,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533268438125</updated>
     </task>
-    <option name="localTasksCounter" value="35" />
+    <task id="LOCAL-00035" summary="upload data">
+      <created>1533271798151</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1533271798151</updated>
+    </task>
+    <option name="localTasksCounter" value="36" />
     <servers />
   </component>
   <component name="TodoView">
@@ -729,7 +716,7 @@
   <component name="ToolWindowManager">
     <frame x="-6" y="34" width="1381" height="885" extended-state="6" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20482808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20482808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28072444" sideWeight="0.22026432" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891247" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -807,13 +794,13 @@
     <MESSAGE value="ver 10" />
     <MESSAGE value="conclude merge" />
     <MESSAGE value="ver 11" />
-    <MESSAGE value="upload data" />
     <MESSAGE value="ver 7" />
     <MESSAGE value="commit" />
     <MESSAGE value="normalize winning rate showed on stone" />
     <MESSAGE value="nothing" />
     <MESSAGE value="Merge branch 'master' of https://github.com/PolyKen/AlphaRenju_Zero&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/PolyKen/AlphaRenju_Zero&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="upload data" />
+    <option name="LAST_COMMIT_MESSAGE" value="upload data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -987,8 +974,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="108" column="41" lean-forward="true" selection-start-line="108" selection-start-column="41" selection-end-line="108" selection-end-column="41" />
+        <state relative-caret-position="228">
+          <caret line="107" column="43" lean-forward="true" selection-start-line="107" selection-start-column="43" selection-end-line="107" selection-end-column="43" />
           <folding />
         </state>
       </provider>
