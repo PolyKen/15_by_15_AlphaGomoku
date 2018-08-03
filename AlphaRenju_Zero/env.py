@@ -63,7 +63,7 @@ class Env:
                 self._agent_1.color = self._board.current_player()
             action, pi, prior_prob, value = self._current_agent().play(self._obs(), self._board.last_move(), self._board.stone_num())
             prior_prob = str(round(prior_prob, 3))
-            value = str(round(-value, 3))
+            value = str(round((-value+1)/2, 3))
             info = prior_prob + '_' + value
             result = self._check_rules(action)
             if result == 'continue':
