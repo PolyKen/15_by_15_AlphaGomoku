@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="upload data">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="upload data" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,8 +107,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/agent/mcts.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="85">
-              <caret line="100" column="41" lean-forward="true" selection-start-line="100" selection-start-column="41" selection-end-line="100" selection-end-column="41" />
+            <state relative-caret-position="238">
+              <caret line="109" column="25" lean-forward="true" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -651,21 +649,20 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24386618" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24386618" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32891247" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.76290834" weight="0.265252" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.76290834" visible="true" weight="0.265252" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4626506" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32891566" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.23709168" side_tool="true" weight="0.26651737" />
-      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.6849315" visible="true" weight="0.32625994" />
+      <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.6849315" weight="0.32625994" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32771084" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32891247" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -932,8 +929,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/agent/mcts.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="100" column="41" lean-forward="true" selection-start-line="100" selection-start-column="41" selection-end-line="100" selection-end-column="41" />
+        <state relative-caret-position="238">
+          <caret line="109" column="25" lean-forward="true" selection-start-line="109" selection-start-column="25" selection-end-line="109" selection-end-column="25" />
         </state>
       </provider>
     </entry>
