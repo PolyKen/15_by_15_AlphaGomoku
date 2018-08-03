@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="ver 13" />
+    <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="update">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,12 +47,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="py" value="21" />
-          <entry key="txt" value="61" />
+          <entry key="txt" value="74" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="61" />
+          <entry key="PLAIN_TEXT" value="74" />
           <entry key="Python" value="21" />
         </counts>
       </usages-collector>
@@ -107,8 +109,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="111" column="38" lean-forward="true" selection-start-line="111" selection-start-column="38" selection-end-line="111" selection-end-column="38" />
+            <state relative-caret-position="152">
+              <caret line="110" column="20" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -673,7 +675,21 @@
       <option name="project" value="LOCAL" />
       <updated>1533267461737</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="nothing">
+      <created>1533267660461</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1533267660461</updated>
+    </task>
+    <task id="LOCAL-00033" summary="update">
+      <created>1533268369275</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1533268369275</updated>
+    </task>
+    <option name="localTasksCounter" value="34" />
     <servers />
   </component>
   <component name="TodoView">
@@ -688,18 +704,18 @@
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="889" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19851302" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19851302" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32891247" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.7605948" visible="true" weight="0.31175694" />
+      <window_info active="true" anchor="bottom" id="Run" order="3" sideWeight="0.7598513" visible="true" weight="0.31175694" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4626506" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="7" weight="0.32891566" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.2394052" side_tool="true" weight="0.31175694" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.2401487" side_tool="true" weight="0.31175694" />
       <window_info anchor="bottom" id="Version Control" order="9" sideWeight="0.6849315" weight="0.32625994" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.32771084" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.32891247" />
@@ -774,7 +790,6 @@
     <MESSAGE value="set games num = 10" />
     <MESSAGE value="eval starts after threshold" />
     <MESSAGE value="split renderer from board&#10;add display mode&#10;enable saving fitting history" />
-    <MESSAGE value="nothing" />
     <MESSAGE value="adjust config" />
     <MESSAGE value="save loss and plot when training finished" />
     <MESSAGE value="save model in each epoch" />
@@ -784,7 +799,6 @@
     <MESSAGE value="ver 4" />
     <MESSAGE value="ver 5" />
     <MESSAGE value="ver 6" />
-    <MESSAGE value="update" />
     <MESSAGE value="ver 9" />
     <MESSAGE value="ver 10" />
     <MESSAGE value="ver 7" />
@@ -794,7 +808,9 @@
     <MESSAGE value="commit" />
     <MESSAGE value="ver 12" />
     <MESSAGE value="ver 13" />
-    <option name="LAST_COMMIT_MESSAGE" value="ver 13" />
+    <MESSAGE value="nothing" />
+    <MESSAGE value="update" />
+    <option name="LAST_COMMIT_MESSAGE" value="update" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -972,8 +988,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="111" column="38" lean-forward="true" selection-start-line="111" selection-start-column="38" selection-end-line="111" selection-end-column="38" />
+        <state relative-caret-position="152">
+          <caret line="110" column="20" selection-start-line="110" selection-start-column="20" selection-end-line="110" selection-end-column="20" />
         </state>
       </provider>
     </entry>
