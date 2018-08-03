@@ -2,21 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_col.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_last_move.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_obs.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_pi.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_z.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_col.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_last_move.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_obs.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_pi.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_z.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_col.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_last_move.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_obs.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_pi.npy" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_z.npy" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -121,7 +107,7 @@
       <file leaf-file-name="run.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
+            <state relative-caret-position="0">
               <caret line="16" column="26" lean-forward="false" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
@@ -133,8 +119,8 @@
       <file leaf-file-name="env.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="79" column="53" lean-forward="false" selection-start-line="79" selection-start-column="53" selection-end-line="79" selection-end-column="53" />
+            <state relative-caret-position="133">
+              <caret line="72" column="37" lean-forward="true" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
               <folding />
             </state>
           </provider>
@@ -246,6 +232,7 @@
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/agent/mcts.py" />
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/env.py" />
         <option value="$PROJECT_DIR$/AlphaRenju_Zero/network/model/save model here.txt" />
+        <option value="$PROJECT_DIR$/.gitignore" />
       </list>
     </option>
   </component>
@@ -753,7 +740,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533273564317</updated>
     </task>
-    <option name="localTasksCounter" value="40" />
+    <task id="LOCAL-00040" summary="upload data">
+      <created>1533275874154</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1533275874154</updated>
+    </task>
+    <option name="localTasksCounter" value="41" />
     <servers />
   </component>
   <component name="TodoView">
@@ -767,8 +761,9 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="34" width="1381" height="885" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20482808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20482808" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28072444" sideWeight="0.22026432" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32891247" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
@@ -850,9 +845,9 @@
     <MESSAGE value="commit" />
     <MESSAGE value="normalize winning rate showed on stone" />
     <MESSAGE value="nothing" />
-    <MESSAGE value="upload data" />
     <MESSAGE value="Merge branch 'master' of https://github.com/PolyKen/AlphaRenju_Zero&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
-    <option name="LAST_COMMIT_MESSAGE" value="Merge branch 'master' of https://github.com/PolyKen/AlphaRenju_Zero&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml" />
+    <MESSAGE value="upload data" />
+    <option name="LAST_COMMIT_MESSAGE" value="upload data" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -907,13 +902,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-136">
           <caret line="4" column="45" lean-forward="true" selection-start-line="4" selection-start-column="45" selection-end-line="4" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="5" lean-forward="true" selection-start-line="3" selection-start-column="5" selection-end-line="3" selection-end-column="5" />
         </state>
       </provider>
     </entry>
@@ -1009,7 +997,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
+        <state relative-caret-position="0">
           <caret line="16" column="26" lean-forward="false" selection-start-line="16" selection-start-column="26" selection-end-line="16" selection-end-column="26" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
@@ -1024,10 +1012,18 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="76">
+          <caret line="4" column="13" lean-forward="false" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="79" column="53" lean-forward="false" selection-start-line="79" selection-start-column="53" selection-end-line="79" selection-end-column="53" />
+        <state relative-caret-position="133">
+          <caret line="72" column="37" lean-forward="true" selection-start-line="72" selection-start-column="37" selection-end-line="72" selection-end-column="37" />
           <folding />
         </state>
       </provider>
