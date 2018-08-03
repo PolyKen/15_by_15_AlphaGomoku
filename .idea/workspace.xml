@@ -3,31 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="Merge branch 'master' of https://github.com/PolyKen/AlphaRenju_Zero&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_col.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_last_move.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_obs.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_pi.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_z.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_col.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_last_move.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_obs.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_pi.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_z.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_col.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_last_move.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_obs.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_pi.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_z.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_col.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_last_move.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_obs.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_pi.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_z.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_col.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_last_move.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_obs.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_pi.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_z.npy">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_z.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_col.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_last_move.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_obs.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_pi.npy" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_z.npy" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -148,8 +123,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="572">
-              <caret line="85" column="45" lean-forward="true" selection-start-line="85" selection-start-column="45" selection-end-line="85" selection-end-column="45" />
+            <state relative-caret-position="317">
+              <caret line="70" column="38" lean-forward="true" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
             </state>
           </provider>
         </entry>
@@ -763,7 +738,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533276102259</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Merge branch 'master' of https://github.com/PolyKen/AlphaRenju_Zero&#10;&#10;# Conflicts:&#10;#&#9;.idea/workspace.xml&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_col.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_last_move.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_obs.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_pi.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_z.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_col.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_last_move.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_obs.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_pi.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_KENNY_z.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_col.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_last_move.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_obs.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_pi.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_z.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_col.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_last_move.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_obs.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_pi.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_KENNY_z.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_col.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_last_move.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_obs.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_pi.npy&#10;#&#9;AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_KENNY_z.npy">
+      <created>1533279879751</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1533279879751</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TodoView">
@@ -777,6 +759,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.20446096" />
       <window_info id="Structure" order="1" weight="0.25" />
@@ -1035,8 +1018,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="572">
-          <caret line="85" column="45" lean-forward="true" selection-start-line="85" selection-start-column="45" selection-end-line="85" selection-end-column="45" />
+        <state relative-caret-position="317">
+          <caret line="70" column="38" lean-forward="true" selection-start-line="70" selection-start-column="38" selection-end-line="70" selection-end-column="38" />
         </state>
       </provider>
     </entry>
