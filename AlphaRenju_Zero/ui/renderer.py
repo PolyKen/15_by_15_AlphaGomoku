@@ -47,6 +47,10 @@ class Renderer(threading.Thread):
 
         self._update_clear = False
 
+        self._update_info = False
+        self._info_surface_cache = []
+        self._info_rect_cache = []
+
         self._is_waiting_for_click = False
         self._mouse_click_pos = None
 
@@ -80,6 +84,8 @@ class Renderer(threading.Thread):
                 self._paint_background()
             if self._update_move:
                 self._move(self._next_player, self._next_pos)
+            if self._update_info:
+                self._show_info()
             if self._update_read:
                 self._read(self._new_board)
 
@@ -109,12 +115,14 @@ class Renderer(threading.Thread):
         self._update_clear = False
         self._init = True
 
-    def move(self, player, action):
+    def move(self, player, action, info=None):
         while self._update_move:
             time.sleep(.1)
         self._next_player = player
         self._next_pos = action
         self._update_move = True
+        if info is not None:
+            self.show_info(info, player, action)
 
     def _move(self, player, action):
         position = (int((action[1] + 0.5) * self._spacing), int((action[0] + 0.5) * self._spacing))
@@ -150,9 +158,32 @@ class Renderer(threading.Thread):
             time.sleep(.01)
         return self._mouse_click_pos
 
-    def show_result(self, result):
-        font = pygame.font.SysFont('Calibri', size=50)
-        text = font.render(result, True, [255, 255, 0])
+    def show_info(self, info, player, action):
+        position_up = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.79) * self._spacing))
+        position_down = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.98) * self._spacing))
+        font = pygame.font.SysFont('Calibri', size=16)
+        color = (255, 0, 0)
+        if player == BLACK:
+            color = (255, 255, 255)
+        if player == WHITE:
+            color = (0, 0, 0)
+        infos = info.split('_')
+        p = 'p = ' + infos[0]
+        v = 'v = ' + infos[1]
+        self._info_surface_cache.append(font.render(p, True, color))
+        self._info_surface_cache.append(font.render(v, True, color))
+        self._info_rect_cache.append(position_up)
+        self._info_rect_cache.append(position_down)
+        self._update_info = True
+
+    def _show_info(self):
+        self._screen.blit(self._info_surface_cache[0], self._info_rect_cache[0])
+        self._screen.blit(self._info_surface_cache[1], self._info_rect_cache[1])
+        self._info_surface_cache = []
+        self._info_rect_cache = []
+
+        pygame.display.update()
+        self._update_info = False
 
     def is_initialized(self):
         return self._init
