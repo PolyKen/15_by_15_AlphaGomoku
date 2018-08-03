@@ -1,7 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="ver 13" />
+    <list default="true" id="ad9e370d-059e-42f5-84c8-d8a90c8255c4" name="Default" comment="merge">
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_1_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_2_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_col.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_last_move.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_obs.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_pi.npy" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AlphaRenju_Zero/dataset/self_play_data/self_play_8_3_DESKTOP-4TAT0VN_z.npy" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,12 +96,12 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="py" value="13" />
-          <entry key="txt" value="7" />
+          <entry key="txt" value="13" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="7" />
+          <entry key="PLAIN_TEXT" value="13" />
           <entry key="Python" value="13" />
         </counts>
       </usages-collector>
@@ -95,8 +112,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/run.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="91">
-              <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+            <state relative-caret-position="239">
+              <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
               <folding>
                 <element signature="e#0#29#0" expanded="true" />
               </folding>
@@ -105,28 +122,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/agent/mcts.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="31" column="43" lean-forward="true" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="171">
-              <caret line="111" column="38" lean-forward="true" selection-start-line="111" selection-start-column="38" selection-end-line="111" selection-end-column="38" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/network/network.py">
-          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="284">
-              <caret line="145" selection-start-line="145" selection-end-line="145" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/config.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="84" column="36" selection-start-line="84" selection-start-column="36" selection-end-line="84" selection-end-column="36" />
+              <caret line="151" column="19" selection-start-line="151" selection-start-column="19" selection-end-line="151" selection-end-column="19" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -239,7 +250,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -282,25 +292,13 @@
               <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
               <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
               <item name="network" type="462c0819:PsiDirectoryNode" />
-              <item name="history" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AlphaRenju_Zero" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
-              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
-              <item name="network" type="462c0819:PsiDirectoryNode" />
               <item name="model" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AlphaRenju_Zero" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
-              <item name="AlphaRenju_Zero" type="462c0819:PsiDirectoryNode" />
-              <item name="ui" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -673,7 +671,14 @@
       <option name="project" value="LOCAL" />
       <updated>1533267461737</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="merge">
+      <created>1533268734937</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1533268734937</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TodoView">
@@ -686,15 +691,15 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-6" y="-6" width="1381" height="889" extended-state="6" />
+    <frame x="-6" y="-6" width="1381" height="885" extended-state="6" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19851302" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.24386618" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Messages" order="0" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.32891247" />
-      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.7605948" visible="true" weight="0.31175694" />
+      <window_info anchor="bottom" id="Run" order="3" sideWeight="0.7605948" visible="true" weight="0.31167108" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.4626506" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -794,7 +799,8 @@
     <MESSAGE value="commit" />
     <MESSAGE value="ver 12" />
     <MESSAGE value="ver 13" />
-    <option name="LAST_COMMIT_MESSAGE" value="ver 13" />
+    <MESSAGE value="merge" />
+    <option name="LAST_COMMIT_MESSAGE" value="merge" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -891,9 +897,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-359">
           <caret line="29" column="22" selection-start-line="29" selection-start-column="22" selection-end-line="29" selection-end-column="22" />
-          <folding>
-            <marker date="1533228199690" expanded="true" signature="798:827" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -926,9 +929,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="322">
           <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
-          <folding>
-            <marker date="1533228199697" expanded="true" signature="873:918" ph="..." />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -941,8 +941,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/agent/mcts.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="108" column="46" selection-start-line="108" selection-start-column="46" selection-end-line="108" selection-end-column="46" />
+        <state relative-caret-position="238">
+          <caret line="31" column="43" lean-forward="true" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
         </state>
       </provider>
     </entry>
@@ -955,8 +955,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/run.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="91">
-          <caret line="12" column="15" selection-start-line="12" selection-start-column="15" selection-end-line="12" selection-end-column="15" />
+        <state relative-caret-position="239">
+          <caret line="19" column="27" selection-start-line="19" selection-start-column="27" selection-end-line="19" selection-end-column="27" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
@@ -972,8 +972,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/AlphaRenju_Zero/env.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="171">
-          <caret line="111" column="38" lean-forward="true" selection-start-line="111" selection-start-column="38" selection-end-line="111" selection-end-column="38" />
+        <state relative-caret-position="284">
+          <caret line="151" column="19" selection-start-line="151" selection-start-column="19" selection-end-line="151" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
