@@ -47,6 +47,8 @@ class MCTS:
             last_action_ind = coordinate2index(last_action, self._board_size)
             self._root = self._root.children()[last_action_ind]
 
+        # now the root corresponds to the board
+
         # must check whether the root is a leaf node before prediction
         pi = self._predict(board, last_action)
         """Action Decision"""
