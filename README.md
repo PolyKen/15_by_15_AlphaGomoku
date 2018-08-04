@@ -6,7 +6,13 @@ Google DeepMind's recent AlphaZero algorithm, accepting no domain-specific knowl
 
 Simulated Games
 ====
-Coming.
+Human vs AI
+-------
+![image](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_1.png)
+
+![image](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_2.png)
+
+![image](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_3.png)
 
 Contributions
 ====
