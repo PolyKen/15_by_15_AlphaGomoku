@@ -11,6 +11,7 @@ AI vs AI
 <p align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/gif/ver23.gif" width="350px" height="350px"/>
 </p>
+
 Human vs AI
 -------
 <p class="half" align="center">
