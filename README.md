@@ -29,8 +29,7 @@ Human vs AI
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_6.png" width="350px" height="350px"/>
 </p>
 
-
-Contributions
+Contribution
 ====
 Main Contributors
 -------
