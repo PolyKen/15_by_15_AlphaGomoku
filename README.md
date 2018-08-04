@@ -16,12 +16,12 @@ Human vs AI
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_2.png" width="350px" height="350px"/>
 </p>
 
-<p class="half">
+<p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_3.png" width="350px" height="350px"/>
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_4.png" width="350px" height="350px"/>
 </p>
 
-<p class="half">
+<p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_5.png" width="350px" height="350px"/>
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_6.png" width="350px" height="350px"/>
 </p>
