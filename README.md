@@ -29,28 +29,28 @@ Human vs AI
 
 Contributions
 ====
-Main Contributors:
+Main Contributors
 -------
 - ***Zheng Xie***
 - ***XingYu Fu***
 - ***JinYuan Yu***
 
-Main Institutions:
+Main Institutions
 -------
 - ***AI&FintechLab of Likelihood Technology***
 - ***Sun Yat-sen University***
 
-Acknowledgement:
+Acknowledgement
 -------
 We would like to say thanks to BaiAn Chen from MIT and MingWen Liu from Gradient Trading for their generous help throughout the research. We are also grateful to ZhiPeng Liang and Hao Chen from Sun Yat-sen University for their supports of the training process of our Gomoku AI. Without their supports, it's hard for us to finish such a complicated task.
 
 Set up
 ====
-Python Version:
+Python Version
 -------
 - ***3.6***
 
-Modules needed:
+Modules needed
 -------
 - ***tensorflow***
 - ***keras***
