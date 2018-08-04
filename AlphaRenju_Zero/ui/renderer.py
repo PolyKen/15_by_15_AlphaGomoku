@@ -159,26 +159,46 @@ class Renderer(threading.Thread):
         return self._mouse_click_pos
 
     def show_info(self, info, player, action):
-        position_up = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.79) * self._spacing))
-        position_down = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.98) * self._spacing))
-        font = pygame.font.SysFont('Calibri', size=16)
+        infos = info.split('_')
+        # p = 'p = ' + infos[0]
+        v = 'v = ' + infos[1]
+        num = infos[2]
+
+        # position_1 = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.76) * self._spacing))
+        if float(infos[1]) >= 0:
+            position_2 = (int((action[1] + 0.62) * self._spacing), int((action[0] + 0.78) * self._spacing))
+        else:
+            position_2 = (int((action[1] + 0.61) * self._spacing), int((action[0] + 0.78) * self._spacing))
+
+        if int(num) < 10:
+            position_3 = (int((action[1] + 0.90) * self._spacing), int((action[0] + 0.96) * self._spacing))
+        else:
+            position_3 = (int((action[1] + 0.82) * self._spacing), int((action[0] + 0.96) * self._spacing))
+
+        small_font = pygame.font.SysFont('Calibri', size=16)
+        large_font = pygame.font.SysFont('Calibri', size=32)
+
         color = (255, 0, 0)
         if player == BLACK:
             color = (255, 255, 255)
         if player == WHITE:
             color = (0, 0, 0)
-        infos = info.split('_')
-        p = 'p = ' + infos[0]
-        v = 'v = ' + infos[1]
-        self._info_surface_cache.append(font.render(p, True, color))
-        self._info_surface_cache.append(font.render(v, True, color))
-        self._info_rect_cache.append(position_up)
-        self._info_rect_cache.append(position_down)
+
+        # self._info_surface_cache.append(small_font.render(p, True, color))
+        # self._info_rect_cache.append(position_1)
+
+        if infos[1] != '2':
+            self._info_surface_cache.append(small_font.render(v, True, color))
+            self._info_rect_cache.append(position_2)
+
+        self._info_surface_cache.append(large_font.render(num, True, color))
+        self._info_rect_cache.append(position_3)
         self._update_info = True
 
     def _show_info(self):
-        self._screen.blit(self._info_surface_cache[0], self._info_rect_cache[0])
-        self._screen.blit(self._info_surface_cache[1], self._info_rect_cache[1])
+        size = len(self._info_rect_cache)
+        for i in range(size):
+            self._screen.blit(self._info_surface_cache[i], self._info_rect_cache[i])
         self._info_surface_cache = []
         self._info_rect_cache = []
 
