@@ -66,7 +66,7 @@ class Env:
             if prior_prob is None:
                 info = '1_2'
             else:
-                prior_prob = str(round(prior_prob, 3))
+                prior_prob = str(round(float(prior_prob), 3))
                 value = str(round(-value, 3))
                 # now value indicates the winning rate of the last player of the current observation
                 info = prior_prob + '_' + value
