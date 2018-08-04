@@ -29,6 +29,9 @@ class Env:
         if conf['mode'] == 2:
             self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=False)
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
+        if conf['mode'] == 2.5:
+            self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
+            self._agent_2 = MCTSAgent(conf, color=WHITE, is_train=False)
         # Human vs Human
         if conf['mode'] == 3 or conf['mode'] == 5:
             self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
@@ -94,7 +97,7 @@ class Env:
                     if result == 'draw':
                         flag = 0
                     record.set_z(flag)
-                if self._conf['mode'] in [2, 3, 4]:
+                if self._conf['mode'] in [2, 2.5, 3, 4]:
                     time.sleep(100)
                 break
         self._board.clear()
