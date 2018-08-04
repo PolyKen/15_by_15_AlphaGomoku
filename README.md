@@ -11,7 +11,7 @@ AI vs AI
 
 Human vs AI
 -------
-![image](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_1.png){:height="15" width="15"}
+![image-w150](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_1.png)
 
 ![image](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_2.png)
 
