@@ -12,20 +12,28 @@ AI vs AI
 Human vs AI
 -------
 <p align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_1.png" width="300px" height="300px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_1.png" width="350px" height="350px"/>
 </p>
 
-![image](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_1.png)
+<p align="center">
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_2.png" width="350px" height="350px"/>
+</p>
 
-![image](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_2.png)
+<p align="center">
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_3.png" width="350px" height="350px"/>
+</p>
 
-![image](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_3.png)
+<p align="center">
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_4.png" width="350px" height="350px"/>
+</p>
 
-![image](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_4.png)
+</p>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_5.png" width="350px" height="350px"/>
+</p>
 
-![image](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_5.png)
-
-![image](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_6.png)
+</p>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/picture/man_vs_ai_6.png" width="350px" height="350px"/>
+</p>
 
 Contributions
 ====
