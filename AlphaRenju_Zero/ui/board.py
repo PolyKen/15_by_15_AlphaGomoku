@@ -46,6 +46,10 @@ class Board:
             print("x, y should be in [0, 14]")
             return 1, self.board()
 
+        num_str = str(self.stone_num() + 1)
+        if info is not None:
+            info = info + '_' + num_str
+
         if player == BLACK:
             if self._display:
                 self._renderer.move(player, (x, y), info)
