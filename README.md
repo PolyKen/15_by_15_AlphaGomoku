@@ -22,7 +22,7 @@ Human vs AI
 
 <p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_3.png" width="350px" height="350px"/>
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_4.png" width="350px" height="350px"/>
+   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_4.png" width="350px" height="350px"/>
 </p>
 
 <p class="half" align="center">
@@ -66,7 +66,7 @@ Modules needed
 
 Run
 -------
-Execute ***run.py*** and select the mode(1: Train, 2:AI vs Human, 3: Human vs Human, 4: AI vs AI, 5: Collect Human Play Data, 6: Collect self-play data, 7: Train on External Data.)
+Execute ***run.py*** and select the mode. (1: ***Train***, 2: ***AI vs Human***, 3: ***Human vs Human***, 4: ***AI vs AI***, 5: ***Collect Human Play Data***, 6: ***Collect self-play data***, 7: ***Train on External Data***.)
 
 Contact
 ====
