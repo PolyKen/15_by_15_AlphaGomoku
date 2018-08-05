@@ -31,13 +31,13 @@ Human vs AI
 
 Contribution
 ====
-Main Contributors
+Contributors
 -------
 - ***Zheng Xie***
 - ***XingYu Fu***
 - ***JinYuan Yu***
 
-Main Institutions
+Institutions
 -------
 - ***AI&FintechLab of Likelihood Technology***
 - ***Sun Yat-sen University***
