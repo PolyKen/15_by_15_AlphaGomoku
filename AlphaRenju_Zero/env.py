@@ -139,7 +139,7 @@ class Env:
             for i in range(self._games_num):
                 record = GameRecord()
                 print('> game num = ' + str(i+1))
-                self.run(is_train=True, record=record)
+                self.run(use_stochastic_policy=True, record=record)
                 data_set.add_record(record)
 
             # train
@@ -194,7 +194,7 @@ class Env:
 
         # new model plays BLACK
         for i in range(int(total_num/2)):
-            result = self.run(is_train=True, record=None)
+            result = self.run(use_stochastic_policy=True, record=None)
             if result == BLACK:
                 new_model_wins_num += 1
             if result == WHITE:
@@ -216,7 +216,7 @@ class Env:
 
         if not end:
             for i in range(int(total_num/2)):
-                result = self.run(is_train=True, record=None)
+                result = self.run(use_stochastic_policy=True, record=None)
                 if result == BLACK:
                     old_model_wins_num += 1
                 if result == WHITE:
@@ -254,7 +254,7 @@ class Env:
         for i in range(self._games_num):
             record = GameRecord()
             print('> game num = ' + str(i+1))
-            self.run(is_train=False, record=record)
+            self.run(use_stochastic_policy=False, record=record)
             human_data_set.add_record(record)
             human_data_set.save(self._conf['human_play_data_path'])
 
@@ -267,7 +267,7 @@ class Env:
             for i in range(self._games_num):
                 record = GameRecord()
                 print('> game num = ' + str(i+1))
-                self.run(is_train=True, record=record)
+                self.run(use_stochastic_policy=True, record=record)
                 data_set.add_record(record)
                 data_set.save(path)
             data_set.save(path)
