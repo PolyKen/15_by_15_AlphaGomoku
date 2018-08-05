@@ -35,7 +35,9 @@ AI adopts semi-stochastic policy with 800 simulations per move.
 
 Loss Function
 -------
-
+<p align="center">
+   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/loss_fun.jpg" width="350px" height="350px"/>
+</p>
 
 Contribution
 ====
