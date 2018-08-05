@@ -2,6 +2,12 @@ from sys import exit
 from ..rules import *
 import time
 display_mode = True
+use_dialog = True
+try:
+    import easygui
+except ImportError:
+    print('ERROR: module [easygui] not found')
+    use_dialog = False
 try:
     import pygame
 except ImportError:
@@ -207,3 +213,24 @@ class Renderer(threading.Thread):
 
     def is_initialized(self):
         return self._init
+
+
+def ask_for_draw():
+    if display_mode and use_dialog:
+        return easygui.ccbox(title='Request', msg='AlphaRenju requests a draw.', choices=['draw', 'continue'])
+    else:
+        print('> AlphaRenju requests a draw.')
+
+
+def show_result(result):
+    if display_mode and use_dialog:
+        info = ''
+        if result == 'blackwins':
+            info = 'Black wins!'
+        if result == 'whitewins':
+            info = 'White wins!'
+        if result == 'draw':
+            info = 'Draw!'
+        easygui.msgbox(title='Result', msg=info)
+    else:
+        print(result)

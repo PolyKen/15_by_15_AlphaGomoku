@@ -13,10 +13,10 @@ class AI(Agent):
 
 
 class MCTSAgent(AI):
-    def __init__(self, conf, color, is_train):
+    def __init__(self, conf, color, use_stochastic_policy):
         AI.__init__(self, color)
         network = Network(conf)
-        self._mcts = MCTS(conf, network, color, is_train)
+        self._mcts = MCTS(conf, network, color, use_stochastic_policy)
         self._network = network
         self._board_size = conf['board_size']
 
@@ -28,8 +28,8 @@ class MCTSAgent(AI):
     def set_self_play(self, is_self_play):
         self._mcts.set_self_play(is_self_play)
 
-    def set_train(self, is_train):
-        self._mcts.set_train(is_train)
+    def set_stochastic_policy(self, use_stochastic_policy):
+        self._mcts.set_stochastic_policy(use_stochastic_policy)
 
     def reset_mcts(self):
         self._mcts.reset()

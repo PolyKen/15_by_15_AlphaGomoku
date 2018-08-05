@@ -4,7 +4,7 @@ from ..rules import *
 
 
 class MCTS:
-    def __init__(self, conf, net, color, is_train):
+    def __init__(self, conf, net, color, use_stochastic_policy):
         """Hyperparameters"""
         self._c_puct = conf['c_puct']  # PUCT
         self._simulation_times = conf['simulation_times']  # number of simulation
@@ -19,14 +19,14 @@ class MCTS:
         """Convolutional Residual Neural Network"""
         self._network = net
         self._is_self_play = conf['is_self_play']
-        self._is_train = is_train
+        self._use_stochastic_policy = use_stochastic_policy
         self._careful_stage = conf['careful_stage']
 
     def set_self_play(self, is_self_play):
         self._is_self_play = is_self_play
 
-    def set_train(self, is_train):
-        self._is_train = is_train
+    def set_stochastic_policy(self, use_stochastic_policy):
+        self._use_stochastic_policy = use_stochastic_policy
 
     def reset(self):
         self._root = Node(1.0, None, BLACK)
@@ -52,7 +52,7 @@ class MCTS:
         # must check whether the root is a leaf node before prediction
         pi = self._predict(board, last_action)
         """Action Decision"""
-        if self._is_train and stage <= self._careful_stage:  # stochastic policy
+        if self._use_stochastic_policy and stage <= self._careful_stage:  # stochastic policy
             position_list = [i for i in range(self._board_size * self._board_size)]
             action = np.random.choice(position_list, p=pi)
         else:  # deterministic policy

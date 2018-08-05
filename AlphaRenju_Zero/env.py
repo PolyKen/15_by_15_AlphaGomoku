@@ -18,30 +18,31 @@ class Env:
         self._rules = Rules(conf)
         self._renderer = Renderer(conf['screen_size'], conf['board_size']) if conf['display'] else None
         self._board = Board(self._renderer, conf['board_size'])
+        self._value_list = []
 
         self._network_version = 0
 
         # Training
         if conf['mode'] in [0, 1, 6, 7]:
-            self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=True)
+            self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=True)
             self._agent_2 = None
         # AI vs Human
         if conf['mode'] == 2:
-            self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=False)
+            self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=False)
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
         if conf['mode'] == 2.5:
             self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
-            self._agent_2 = MCTSAgent(conf, color=WHITE, is_train=False)
+            self._agent_2 = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
         # Human vs Human
         if conf['mode'] == 3 or conf['mode'] == 5:
             self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
         if conf['mode'] == 4:
-            self._agent_1 = MCTSAgent(conf, color=BLACK, is_train=False)
-            self._agent_2 = MCTSAgent(conf, color=WHITE, is_train=False)
+            self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=False)
+            self._agent_2 = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
 
         if conf['mode'] in [0, 1, 7]:
-            self._agent_eval = MCTSAgent(conf, color=WHITE, is_train=False)
+            self._agent_eval = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
             self._agent_eval.set_self_play(False)
 
         if self._is_self_play:
@@ -55,11 +56,13 @@ class Env:
         self._loss_list = []
 
     @log
-    def run(self, is_train, record=None):
+    def run(self, use_stochastic_policy, record=None):
         if type(self._agent_1) == MCTSAgent:
-            self._agent_1.set_train(is_train)
+            self._agent_1.set_stochastic_policy(use_stochastic_policy)
         if type(self._agent_2) == MCTSAgent:
-            self._agent_2.set_train(is_train)
+            self._agent_2.set_stochastic_policy(use_stochastic_policy)
+
+        self._value_list = []
 
         while True:
             if self._is_self_play:
@@ -76,18 +79,25 @@ class Env:
 
             result = self._check_rules(action)
             if result == 'continue':
-                # print(result + ': ', action, color)
                 if record is not None:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
                 self._board.move(self._board.current_player(), action, info)
+
+                if value is not None:
+                    self._value_list.append(float(value))
+                if len(self._value_list) >= 5 and self._board.stone_num() >= 5:
+                    if self._conf['mode'] in [2, 2.5] and sum(list(map(np.abs, self._value_list[-5:]))) < 5:
+                        result = 'draw' if ask_for_draw() == 1 else 'continue'
+
             if result == 'occupied':
                 print(result + ': ' + str(action))
                 continue
             if result == 'blackwins' or result == 'whitewins' or result == 'draw':
-                print(result)
                 if record is not None:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
                 self._board.move(self._board.current_player(), action, info)
+
+                show_result(result)
 
                 if record is not None:
                     if result == 'blackwins':
