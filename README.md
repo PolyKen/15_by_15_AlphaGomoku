@@ -27,11 +27,15 @@ AI adopts deterministic policy with 1600 simulations per move.
 
 AI vs AI
 -------
-AI adopts semi-stochastic policy with 800 simulations per move
+AI adopts semi-stochastic policy with 800 simulations per move.
 <p class="half" align="center">
    <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/ai_vs_ai_1.png" width="350px" height="350px"/>
    <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/ai_vs_ai_2.png" width="350px" height="350px"/>
 </p>
+
+Loss Function
+-------
+
 
 Contribution
 ====
