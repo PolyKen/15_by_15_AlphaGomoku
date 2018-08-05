@@ -1,3 +1,4 @@
+
 # AlphaZero-version AI Program in the Game of Renju(Gomoku)
 
 Introduction
@@ -62,6 +63,10 @@ Modules needed
 - ***time***
 - ***numpy***
 - ***matplotlib***
+
+Run
+-------
+Execute ***run.py*** and select the mode(1: Train, 2:AI vs Human, 3: Human vs Human, 4: AI vs AI, 5: Collect Human Play Data, 6: Collect self-play data, 7: Train on External Data.)
 
 Contact
 ====
