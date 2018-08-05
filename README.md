@@ -1,43 +1,44 @@
+***
 # AlphaZero-version AI Program in the Game of Renju(Gomoku)
 
 Introduction
 ====
-Google DeepMind's recent AlphaZero algorithm, accepting no domain-specific knowledges, mastered the game of Go, chess and shogi through self-played reinforcement learning from scratch, showing the potential of general AI, which is the holy grail of the entire AI community. In this project, we implement an AlphaZero-version Renju(Gomoku) AI program and provide a step-by-step tutorial on the technique.
+Google DeepMind's recent AlphaZero algorithm, accepting no domain-specific knowledges, mastered the game of Go, chess and shogi through self-played reinforcement learning from scratch, showing the potential of general AI, which is the holy grail of the entire AI community. In this project, we implement an ***AlphaZero-version Renju(Gomoku) AI program*** and provide a ***step-by-step tutorial*** on the technique.
 
 Experiment
 ====
 AI vs AI
 -------
 <p align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/example/gif/ver23.gif" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/ver23.gif" width="350px" height="350px"/>
 </p>
 
 Human vs AI
 -------
 <p class="half" align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/example/picture/man_vs_ai_1.png" width="350px" height="350px"/>
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/example/picture/man_vs_ai_2.png" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_1.png" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_2.png" width="350px" height="350px"/>
 </p>
 
 <p class="half" align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/example/picture/man_vs_ai_3.png" width="350px" height="350px"/>
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/example/picture/man_vs_ai_4.png" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_3.png" width="350px" height="350px"/>
+   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_4.png" width="350px" height="350px"/>
 </p>
 
 <p class="half" align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/example/picture/man_vs_ai_5.png" width="350px" height="350px"/>
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/example/picture/man_vs_ai_6.png" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_5.png" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_6.png" width="350px" height="350px"/>
 </p>
 
 Contribution
 ====
-Main Contributors
+Contributors
 -------
 - ***Zheng Xie***
 - ***XingYu Fu***
 - ***JinYuan Yu***
 
-Main Institutions
+Institutions
 -------
 - ***AI&FintechLab of Likelihood Technology***
 - ***Sun Yat-sen University***
@@ -62,6 +63,10 @@ Modules needed
 - ***time***
 - ***numpy***
 - ***matplotlib***
+
+Run
+-------
+Execute ***run.py*** and select the mode. (1: ***Train***, 2: ***AI vs Human***, 3: ***Human vs Human***, 4: ***AI vs AI***, 5: ***Collect Human Play Data***, 6: ***Collect self-play data***, 7: ***Train on External Data***.)
 
 Contact
 ====
