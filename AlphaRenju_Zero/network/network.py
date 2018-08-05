@@ -113,7 +113,6 @@ class Network:
             if sum(sum(board_list[i])) == 1 and color_list[i] == BLACK:
                 print('error: network.train')
 
-
         # Data Augmentation through symmetric and self-rotation transformation
         board_aug = []
         color_aug = []
@@ -135,14 +134,12 @@ class Network:
         z_list.extend(z_aug)
 
         # Regularize Data
-
         board_list = np.array([board2tensor(board_list[i], color_list[i], last_move_list[i], reshape_flag=False)
                                for i in range(len(board_list))])
         pi_list = np.array(pi_list)
         z_list = np.array(z_list)
 
         # Training
-
         hist = self._model.fit(board_list, [pi_list, z_list], epochs=self._fit_epochs, batch_size=self._mini_batch_size, verbose=1)
         hist_path = self._fit_history_file + '_' + str(self._fit_epochs) + '_' + str(self._mini_batch_size) + '.txt'
         with open(hist_path, 'a') as f:
