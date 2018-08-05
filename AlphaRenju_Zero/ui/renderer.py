@@ -220,6 +220,7 @@ def ask_for_draw():
         return easygui.ccbox(title='Request', msg='AlphaRenju requests a draw.', choices=['draw', 'continue'])
     else:
         print('> AlphaRenju requests a draw.')
+        return 0
 
 
 def show_result(result):
