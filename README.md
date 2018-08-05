@@ -1,4 +1,3 @@
-
 ***
 # AlphaZero-version AI Program in the Game of Renju(Gomoku)
 
@@ -8,27 +7,33 @@ Google DeepMind's recent AlphaZero algorithm, accepting no domain-specific knowl
 
 Experiment
 ====
-AI vs AI
--------
-<p align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/ver23.gif" width="350px" height="350px"/>
-</p>
-
 Human vs AI
 -------
+AI adopts deterministic policy with 1600 simulations per move.
 <p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_1.png" width="350px" height="350px"/>
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_2.png" width="350px" height="350px"/>
 </p>
 
 <p class="half" align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_3.png" width="350px" height="350px"/>
+   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_3.png" width="350px" height="350px"/>
    <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_4.png" width="350px" height="350px"/>
 </p>
 
 <p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_5.png" width="350px" height="350px"/>
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_6.png" width="350px" height="350px"/>
+</p>
+
+AI vs AI
+-------
+<p class="half" align="center">
+   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/ai_vs_ai_1.png" width="350px" height="350px"/>
+   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/ai_vs_ai_2.png" width="350px" height="350px"/>
+</p>
+
+<p align="center">
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/ver23.gif" width="350px" height="350px"/>
 </p>
 
 Contribution
