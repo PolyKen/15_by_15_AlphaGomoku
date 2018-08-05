@@ -1,3 +1,4 @@
+
 ***
 # AlphaZero-version AI Program in the Game of Renju(Gomoku)
 
@@ -63,6 +64,7 @@ Modules needed
 - ***time***
 - ***numpy***
 - ***matplotlib***
+- ***easygui*** (optional)
 
 Run
 -------
