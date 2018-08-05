@@ -85,8 +85,8 @@ class Env:
 
                 if value is not None:
                     self._value_list.append(float(value))
-                if len(self._value_list) >= 5 and self._board.stone_num() >= 5:
-                    if self._conf['mode'] in [2, 2.5] and sum(list(map(np.abs, self._value_list[-5:]))) < 5:
+                if len(self._value_list) >= 5 and self._board.stone_num() >= 30:
+                    if self._conf['mode'] in [2, 2.5] and sum(list(map(np.abs, self._value_list[-5:]))) < 0.5:
                         result = 'draw' if ask_for_draw() == 1 else 'continue'
 
             if result == 'occupied':
@@ -97,7 +97,7 @@ class Env:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
                 self._board.move(self._board.current_player(), action, info)
 
-                show_result(result)
+                show_result(self._conf['mode'], result)
 
                 if record is not None:
                     if result == 'blackwins':
