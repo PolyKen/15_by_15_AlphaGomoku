@@ -7,7 +7,7 @@ class Config(dict):
         self['display'] = False
 
         # screen size of renderer
-        self['screen_size'] = (960, 960)
+        self['screen_size'] = (720, 720)
 
         # self play mode
         self['is_self_play'] = True
