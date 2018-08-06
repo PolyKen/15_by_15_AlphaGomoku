@@ -25,7 +25,7 @@ class MCTS:
         self._careful_stage = conf['careful_stage']
 
         self._loop = asyncio.get_event_loop()
-        self._threads_num = conf['threads_num']
+        self._coroutine_num = conf['coroutine_num']
         self._virtual_loss = conf['virtual_loss']
         self._expanding_list = []
 
@@ -78,12 +78,12 @@ class MCTS:
         return pi
 
     def _simulate(self, root_board, last_move):
-        tasks = [self._simulate_thread(root_board, last_move)] * self._threads_num
+        tasks = [self._simulate_coroutine(root_board, last_move)] * self._coroutine_num
         self._loop.run_until_complete(asyncio.wait(tasks))
 
-    async def _simulate_thread(self, root_board, last_move):    # ROOT BOARD MUST CORRESPOND TO THE ROOT NODE!!!
+    async def _simulate_coroutine(self, root_board, last_move):    # ROOT BOARD MUST CORRESPOND TO THE ROOT NODE!!!
         legal_vec_root = board2legalvec(root_board)
-        playouts = int(self._simulation_times / self._threads_num)
+        playouts = int(self._simulation_times / self._coroutine_num)
         for epoch in range(playouts):
             current_node = self._root
             legal_vec_current = np.copy(legal_vec_root)  # deep copy
@@ -94,7 +94,7 @@ class MCTS:
             while not current_node.is_leaf():
                 current_node, action = current_node.select(self._c_puct, legal_vec_current)
 
-                # add virtual loss in order to make other threads avoid this node
+                # add virtual loss in order to make other coroutines avoid this node
                 current_node.select_num += 1
                 current_node.N += self._virtual_loss
                 current_node.W -= self._virtual_loss
@@ -110,7 +110,7 @@ class MCTS:
                 current_color = -current_color
 
                 # if current node is not a leaf node, then it can't be in expanding list.
-                # if current node is a leaf node, it may be expanding in other threads, so here we wait until it
+                # if current node is a leaf node, it may be expanding in other coroutines, so here we wait until it
                 # is expanded (so that it is no longer a leaf node)
                 while current_node in self._expanding_list:
                     await asyncio.sleep(1e-4)

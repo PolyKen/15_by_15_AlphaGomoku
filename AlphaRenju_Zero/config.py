@@ -88,7 +88,7 @@ class Config(dict):
         self['careful_stage'] = 6
 
         # number of threads
-        self['threads_num'] = 32
+        self['coroutine_num'] = 64
 
         # virtual loss
         self['virtual_loss'] = 3
@@ -111,13 +111,13 @@ class Config(dict):
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 2
-            self['simulation_times'] = 3200
+            self['simulation_times'] = 6400
             print('> AI vs Human mode')
         if mode == 2.5:
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 2.5
-            self['simulation_times'] = 3200
+            self['simulation_times'] = 6400
             print('> AI vs Human mode')
         if mode == 3:
             self['display'] = True
@@ -128,7 +128,7 @@ class Config(dict):
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 4
-            self['simulation_times'] = 3200
+            self['simulation_times'] = 6400
             print('> AI vs AI mode')
         if mode == 5:
             self['display'] = True
