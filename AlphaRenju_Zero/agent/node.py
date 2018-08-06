@@ -5,14 +5,17 @@ import numpy as np
 class Node:
     count = 0
 
-    def __init__(self, prior_prob, parent, color):
+    def __init__(self, prior_prob, parent, color, virtual_loss):
         
         # actually N, Q, W, U are properties of edge
-        self._N = 0  # Number of visits
+        self.N = 0  # Number of visits
         self._Q = 0  # Quality of the edge
-        self._W = 0  # Intermediate value for Q update
+        self.W = 0  # Intermediate value for Q update
         self._P = prior_prob  # Prior probability predicted by network
         self._U = 0
+
+        self._virtual_loss = virtual_loss
+        self.select_num = 0
 
         self._parent = parent
         self._children = []  # if self._children is an empty list, it is viewed as a leaf node
@@ -27,9 +30,6 @@ class Node:
 
     def P(self):
         return self._P
-
-    def N(self):
-        return self._N
 
     def Q(self):
         return self._Q
@@ -50,7 +50,10 @@ class Node:
         return self._children == []
     
     def upper_confidence_bound(self, c_puct):
-        self._U = c_puct * self._P * sqrt(self._parent.N()) / (1+self._N)
+        try:
+            self._U = c_puct * self._P * sqrt(self._parent.N) / (1+self.N)
+        except ValueError:
+            print('Node.upper_confidence_bound(), ValueError')
         return self._U + self._Q
     
     def select(self, c_puct, legal_vec_current):
@@ -66,11 +69,17 @@ class Node:
     def expand(self, prior_prob, board_size=15):
         for i in range(board_size*board_size):
             prob = prior_prob[i]
-            self._children.append(Node(prob, self, -self.color))
+            self._children.append(Node(prob, self, -self.color, self._virtual_loss))
 
     def backup(self, value):
-        self._N += 1
-        self._W += value
-        self._Q = self._W / self._N
+        # remove virtual loss
+        if self.select_num > 0:
+            self.select_num -= 1
+            self.N -= self._virtual_loss
+            self.W += self._virtual_loss
+
+        self.N += 1
+        self.W += value
+        self._Q = self.W / self.N
         if not self.is_root():
             self._parent.backup(-value)

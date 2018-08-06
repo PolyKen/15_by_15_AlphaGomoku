@@ -1,6 +1,8 @@
 from .node import Node
 import numpy as np
 from ..rules import *
+import time
+import asyncio
 
 
 class MCTS:
@@ -15,12 +17,17 @@ class MCTS:
         self._board_size = conf['board_size']
         self._color = color  # MCTS Agent's color ( 1 for black; -1 for white)
 
-        self._root = Node(1.0, None, BLACK)  # Monte Carlo tree
+        self._root = Node(1.0, None, BLACK, conf['virtual_loss'])  # Monte Carlo tree
 
         self._network = net  # Residual neural network
         self._is_self_play = conf['is_self_play']
         self._use_stochastic_policy = use_stochastic_policy
         self._careful_stage = conf['careful_stage']
+
+        self._loop = asyncio.get_event_loop()
+        self._threads_num = conf['threads_num']
+        self._virtual_loss = conf['virtual_loss']
+        self._expanding_list = []
 
     def set_self_play(self, is_self_play):
         self._is_self_play = is_self_play
@@ -29,7 +36,7 @@ class MCTS:
         self._use_stochastic_policy = use_stochastic_policy
 
     def reset(self):
-        self._root = Node(1.0, None, BLACK)
+        self._root = Node(1.0, None, BLACK, self._virtual_loss)
 
     def action(self, board, last_action, stage):
         # so far the root corresponds to the last board = board - last_action
@@ -66,13 +73,18 @@ class MCTS:
     
     def _predict(self, board, last_move):
         self._simulate(board, last_move)
-        pi = np.array([(node.N())**(1/self._tau) for node in self._root.children()])
+        pi = np.array([node.N**(1/self._tau) for node in self._root.children()])
         pi = pi / sum(pi)
         return pi
-    
-    def _simulate(self, root_board, last_move):    # ROOT BOARD MUST CORRESPOND TO THE ROOT NODE!!!
+
+    def _simulate(self, root_board, last_move):
+        tasks = [self._simulate_thread(root_board, last_move)] * self._threads_num
+        self._loop.run_until_complete(asyncio.wait(tasks))
+
+    async def _simulate_thread(self, root_board, last_move):    # ROOT BOARD MUST CORRESPOND TO THE ROOT NODE!!!
         legal_vec_root = board2legalvec(root_board)
-        for epoch in range(self._simulation_times):
+        playouts = int(self._simulation_times / self._threads_num)
+        for epoch in range(playouts):
             current_node = self._root
             legal_vec_current = np.copy(legal_vec_root)  # deep copy
             current_color = self._root.color
@@ -81,15 +93,35 @@ class MCTS:
 
             while not current_node.is_leaf():
                 current_node, action = current_node.select(self._c_puct, legal_vec_current)
+
+                # add virtual loss in order to make other threads avoid this node
+                current_node.select_num += 1
+                current_node.N += self._virtual_loss
+                current_node.W -= self._virtual_loss
+
+                # update legal vector
                 legal_vec_current[action] = 0
+
+                # update current board
                 row, col = index2coordinate(action, self._board_size)
                 current_board[row][col] = current_color
-                current_color = -current_color
-            # now current_node must be a leaf
 
+                # update current color
+                current_color = -current_color
+
+                # if current node is not a leaf node, then it can't be in expanding list.
+                # if current node is a leaf node, it may be expanding in other threads, so here we wait until it
+                # is expanded (so that it is no longer a leaf node)
+                while current_node in self._expanding_list:
+                    await asyncio.sleep(1e-4)
+
+            # so far, current node must be a leaf node (including end node)
             if current_node.is_end:
                 current_node.backup(-current_node.value)
                 continue
+
+            # add current node to expanding list
+            self._expanding_list.append(current_node)
 
             # calculate the prior probabilities and value
             p, v = self._network.predict(current_board, current_color, last_move)
@@ -100,7 +132,7 @@ class MCTS:
                 noise = np.random.dirichlet(alpha)
                 prior_prob = (1-self._epsilon) * prior_prob + self._epsilon * noise
 
-            # now check whether this leaf node is an end node
+            # now check whether this leaf node is an end node or not
             if action is not None:
                 end_flag = check_rules(current_board, action, -current_color)
                 if end_flag == 'blackwins' or end_flag == 'whitewins' or end_flag == 'full':
@@ -112,8 +144,12 @@ class MCTS:
                 else:
                     current_node.expand(prior_prob, self._board_size)
             else:
-                # if action is None, then the root node is a leaf
+                # if action is None, then the root node must be a leaf
                 current_node.expand(prior_prob, self._board_size)
+
+            self._expanding_list.remove(current_node)
+
+            # backup
             current_node.backup(-current_node.value)
 
 
