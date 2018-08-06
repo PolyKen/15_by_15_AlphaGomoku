@@ -5,7 +5,7 @@ from ..rules import *
 
 class MCTS:
     def __init__(self, conf, net, color, use_stochastic_policy):
-        """Hyperparameters"""
+        # hyperparameters
         self._c_puct = conf['c_puct']  # PUCT
         self._simulation_times = conf['simulation_times']  # number of simulation
         self._tau = conf['initial_tau']  # temperature parameter
@@ -14,10 +14,10 @@ class MCTS:
         self._alpha = conf['alpha']
         self._board_size = conf['board_size']
         self._color = color  # MCTS Agent's color ( 1 for black; -1 for white)
-        """Monte Carlo Tree"""
-        self._root = Node(1.0, None, BLACK)
-        """Convolutional Residual Neural Network"""
-        self._network = net
+
+        self._root = Node(1.0, None, BLACK)  # Monte Carlo tree
+
+        self._network = net  # Residual neural network
         self._is_self_play = conf['is_self_play']
         self._use_stochastic_policy = use_stochastic_policy
         self._careful_stage = conf['careful_stage']
@@ -31,10 +31,8 @@ class MCTS:
     def reset(self):
         self._root = Node(1.0, None, BLACK)
 
-    def action(self, board, last_action, stage):  # Note that this function is open to the environment.
-        """Adjust the Root Node corresponding to the latest enemy action"""
-
-        # the root corresponds to the last board = board - last_action
+    def action(self, board, last_action, stage):
+        # so far the root corresponds to the last board = board - last_action
         if self._root.is_leaf():
             last_board = np.copy(board)
             if last_action is not None:
@@ -42,16 +40,15 @@ class MCTS:
                 last_board[row][col] = 0
             self._simulate(last_board, last_action)
 
-        # now move the root to the child corresponding to the board
+        # move the root to the child (node) corresponding to the board
         if last_action is not None:
             last_action_ind = coordinate2index(last_action, self._board_size)
             self._root = self._root.children()[last_action_ind]
 
         # now the root corresponds to the board
-
-        # must check whether the root is a leaf node before prediction
         pi = self._predict(board, last_action)
-        """Action Decision"""
+
+        # action decision
         if self._use_stochastic_policy and stage <= self._careful_stage:  # stochastic policy
             position_list = [i for i in range(self._board_size * self._board_size)]
             action = np.random.choice(position_list, p=pi)
@@ -70,7 +67,7 @@ class MCTS:
     def _predict(self, board, last_move):
         self._simulate(board, last_move)
         pi = np.array([(node.N())**(1/self._tau) for node in self._root.children()])
-        pi = pi/sum(pi)
+        pi = pi / sum(pi)
         return pi
     
     def _simulate(self, root_board, last_move):    # ROOT BOARD MUST CORRESPOND TO THE ROOT NODE!!!
@@ -81,6 +78,7 @@ class MCTS:
             current_color = self._root.color
             current_board = np.copy(root_board)
             action = None
+
             while not current_node.is_leaf():
                 current_node, action = current_node.select(self._c_puct, legal_vec_current)
                 legal_vec_current[action] = 0
