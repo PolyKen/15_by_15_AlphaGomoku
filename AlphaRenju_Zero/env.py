@@ -86,8 +86,9 @@ class Env:
                 if value is not None:
                     self._value_list.append(float(value))
                 if len(self._value_list) >= 5 and self._board.stone_num() >= 30:
-                    if self._conf['mode'] in [2, 2.5] and sum(list(map(np.abs, self._value_list[-5:]))) < 0.5:
+                    if self._conf['mode'] in [2, 2.5] and sum(list(map(np.abs, self._value_list[-5:]))) < 0.06:
                         result = 'draw' if ask_for_draw() == 1 else 'continue'
+                        self._value_list = []
 
             if result == 'occupied':
                 print(result + ': ' + str(action))
@@ -108,7 +109,7 @@ class Env:
                         flag = 0
                     record.set_z(flag)
                 if self._conf['mode'] in [2, 2.5, 3, 4]:
-                    time.sleep(100)
+                    time.sleep(20)
                 break
         self._board.clear()
         if type(self._agent_1) == MCTSAgent:
