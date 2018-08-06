@@ -85,7 +85,7 @@ class Config(dict):
         self['is_supervised'] = True
 
         # careful stage
-        self['careful_stage'] = 8
+        self['careful_stage'] = 6
 
         self.update(**kwargs)
 
