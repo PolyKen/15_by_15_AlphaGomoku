@@ -167,22 +167,38 @@ class Renderer(threading.Thread):
     def show_info(self, info, player, action):
         infos = info.split('_')
         # p = 'p = ' + infos[0]
-        v = 'v = ' + infos[1]
+        v = infos[1]
         num = infos[2]
 
-        # position_1 = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.76) * self._spacing))
-        if float(infos[1]) >= 0:
-            position_2 = (int((action[1] + 0.62) * self._spacing), int((action[0] + 0.78) * self._spacing))
-        else:
-            position_2 = (int((action[1] + 0.61) * self._spacing), int((action[0] + 0.78) * self._spacing))
+        if self._board_size == 8:
+            # position_1 = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.76) * self._spacing))
+            if float(infos[1]) >= 0:
+                position_2 = (int((action[1] + 0.62) * self._spacing), int((action[0] + 0.78) * self._spacing))
+            else:
+                position_2 = (int((action[1] + 0.61) * self._spacing), int((action[0] + 0.78) * self._spacing))
 
-        if int(num) < 10:
-            position_3 = (int((action[1] + 0.90) * self._spacing), int((action[0] + 0.96) * self._spacing))
-        else:
-            position_3 = (int((action[1] + 0.82) * self._spacing), int((action[0] + 0.96) * self._spacing))
+            if int(num) < 10:
+                position_3 = (int((action[1] + 0.90) * self._spacing), int((action[0] + 0.96) * self._spacing))
+            else:
+                position_3 = (int((action[1] + 0.82) * self._spacing), int((action[0] + 0.96) * self._spacing))
 
-        small_font = pygame.font.SysFont('Calibri', size=16)
-        large_font = pygame.font.SysFont('Calibri', size=32)
+            small_font = pygame.font.SysFont('Calibri', size=16)
+            large_font = pygame.font.SysFont('Calibri', size=32)
+
+        if self._board_size == 15:
+            # position_1 = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.76) * self._spacing))
+            if float(infos[1]) >= 0:
+                position_2 = (int((action[1] + 0.72) * self._spacing), int((action[0] + 0.78) * self._spacing))
+            else:
+                position_2 = (int((action[1] + 0.70) * self._spacing), int((action[0] + 0.78) * self._spacing))
+
+            if int(num) < 10:
+                position_3 = (int((action[1] + 0.90) * self._spacing), int((action[0] + 0.96) * self._spacing))
+            else:
+                position_3 = (int((action[1] + 0.82) * self._spacing), int((action[0] + 0.96) * self._spacing))
+
+            small_font = pygame.font.SysFont('Calibri', size=10)
+            large_font = pygame.font.SysFont('Calibri', size=20)
 
         color = (255, 0, 0)
         if player == BLACK:
