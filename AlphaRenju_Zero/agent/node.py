@@ -7,16 +7,15 @@ class Node:
 
     def __init__(self, prior_prob, parent, color):
         
-        """Information of the edge that leads to this node"""
+        # actually N, Q, W, U are properties of edge
         self._N = 0  # Number of visits
         self._Q = 0  # Quality of the edge
         self._W = 0  # Intermediate value for Q update
         self._P = prior_prob  # Prior probability predicted by network
         self._U = 0
-        
-        """parent and children nodes"""
-        self._parent = parent  # the parent node
-        self._children = []  # Empty list since it is not explored yet
+
+        self._parent = parent
+        self._children = []  # if self._children is an empty list, it is viewed as a leaf node
 
         # when it is an end leaf
         self.is_end = False
