@@ -122,7 +122,7 @@ class Config(dict):
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 4
-            self['simulation_times'] = 1600
+            self['simulation_times'] = 400
             print('> AI vs AI mode')
         if mode == 5:
             self['display'] = True

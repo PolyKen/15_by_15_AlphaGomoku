@@ -115,6 +115,7 @@ class Env:
                     time.sleep(20)
                 break
         self._board.clear()
+        print('> Node number of game tree = ' + str(Node.count))
         if type(self._agent_1) == MCTSAgent:
             self._agent_1.reset_mcts()
         if type(self._agent_2) == MCTSAgent:

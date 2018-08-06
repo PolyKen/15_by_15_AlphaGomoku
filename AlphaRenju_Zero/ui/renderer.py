@@ -123,7 +123,7 @@ class Renderer(threading.Thread):
 
     def move(self, player, action, info=None):
         while self._update_move:
-            time.sleep(.1)
+            time.sleep(.01)
         self._next_player = player
         self._next_pos = action
         self._update_move = True
@@ -142,7 +142,7 @@ class Renderer(threading.Thread):
 
     def read(self, new_board):
         while self._update_read:
-            time.sleep(.1)
+            time.sleep(.01)
         self._new_board = new_board
         self._update_read = True
 
