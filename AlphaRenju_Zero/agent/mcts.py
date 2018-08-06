@@ -141,7 +141,7 @@ def check_rules(board, action, color):
             return 'full'
         else:  # Greedy Match
             cor = index2coordinate(action, board.shape[0])
-            # Horizonal Check
+            # Horizontal Check
             count = 1
             for i in range(1, 5):
                 if cor[1] + i <= board.shape[0] - 1:
