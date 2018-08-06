@@ -87,8 +87,11 @@ class Env:
                     self._value_list.append(float(value))
                 if len(self._value_list) >= 5 and self._board.stone_num() >= 30:
                     if self._conf['mode'] in [2, 2.5] and sum(list(map(np.abs, self._value_list[-5:]))) < 0.06:
-                        result = 'draw' if ask_for_draw() == 1 else 'continue'
                         self._value_list = []
+                        if ask_for_draw() == 1:
+                            show_result(2, 'draw')
+                            time.sleep(20)
+                            break
 
             if result == 'occupied':
                 print(result + ': ' + str(action))
