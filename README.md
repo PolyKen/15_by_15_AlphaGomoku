@@ -68,6 +68,7 @@ Modules needed
 - ***keras***
 - ***pygame***
 - ***threading***
+- ***asyncio***
 - ***abc***
 - ***time***
 - ***numpy***
