@@ -20,11 +20,9 @@ class Rules:
     def _read(self, board):
         self._board = board
 
-    """The function that returns the current playboard"""    
     def board(self):
         return self._board
-        
-    """The function that helps the implementation of count_consecutive function"""
+
     def _count_on_direction(self, i, j, i_direction, j_direction, color):
         # Note: idirection has three options , i.e. -1,0,and 1 ,where -1 for up
         # 1 for down and 0 for unchange. jdirection also has three options -1,0,1
@@ -42,7 +40,7 @@ class Rules:
                 break
         return count
     
-    """The function that returns the maximal number of consecutive stones"""
+    # find the maximal number of consecutive stones
     def _count_consecutive(self, i, j, color):
         # The purpose of the function is to check if the consecutive number reaches 5 so that
         # the Renju can end or if it is more than 5 so that the forbidden overline is formed(Black can't overline)
@@ -55,9 +53,7 @@ class Rules:
             counts.append(count)
         return 5 if 5 in counts else max(counts)
         # Note: the reason why we return this is that once 5 is found, then overline is ignored
-    
-    """The function that updates all the locations of live3 pattern"""
-    """We use fliters to capture features of board"""
+
     def _update_live3_list(self):
         M = -10
         N = -20
@@ -151,9 +147,7 @@ class Rules:
                 if flag_R == 3:
                     pos = [[i + 1, 13 - j], [i + 3, 11 - j], [i + 4, 10 - j]]
                     self._live3_list.append(pos)
-    
-    """The function that updates all the locations of live4 pattern"""
-    """We use fliters to capture features of board"""
+
     def _update_live4_list(self):
         M = -100
         feature_A = [M, 1, 1, 1, 1, M] # 4 or 104
@@ -495,7 +489,6 @@ class Rules:
             pos = [[10, 4], [12, 2], [13, 1], [14, 0]]
             self._live4_list.append(pos)
 
-        # I feature_I = [1, 1, M, 1, 1] # 4 only
         for i in range(15):
             u1 = self._board[i][0:5]
             u2 = self._board[i][10:15]
@@ -565,8 +558,7 @@ class Rules:
         if self._dot(u16, feature_I) == 4:
             pos = [[10, 4], [11, 3], [13, 1], [14, 0]]
             self._live4_list.append(pos)
-           
-    """The function checks for double three which is forbidden for Black"""
+
     def _check_forbidden_moves(self):
         if not self._conf['forbidden_moves']:
             return False
@@ -584,8 +576,7 @@ class Rules:
             return True
         else:
             return False
-          
-    """This is the function that """
+
     def check_rules(self, board, action, color):
         self._read(board)
         i = action[0]
@@ -639,10 +630,10 @@ class Rules:
 
         return 'continue'
 
-    def _dot(self, A, B):
-        if len(A) != len(B):
+    def _dot(self, x, y):
+        if len(x) != len(y):
             return 'error'
         s = 0
-        for i in range(len(A)):
-            s += A[i] * B[i]
+        for i in range(len(x)):
+            s += x[i] * y[i]
         return s
