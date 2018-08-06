@@ -131,7 +131,7 @@ class Env:
         if self._conf['is_supervised']:
             human_play_data_set = DataSet()
             human_play_data_set.load(self._conf['human_play_data_path'])
-            alt_path = 'AlphaRenju_Zero/dataset/human_play_data/human_1_' + str(self['board_size']) + '_'
+            alt_path = 'AlphaRenju_Zero/dataset/human_play_data/human_1_' + str(15) + '_'
             human_play_data_set.load(alt_path)
             obs, col, last_move, pi, z = human_play_data_set.get_sample(1)
             self._agent_1.train(obs, col, last_move, pi, z)
