@@ -52,7 +52,7 @@ class Network:
         # Two Residual Blocks
         x = self._residual_block(x)
         x = self._residual_block(x)
-        # x = self._residual_block(x)
+        x = self._residual_block(x)
 
         # Policy Head for generating prior probability vector for each action
         policy = Conv2D(filters=2, kernel_size=(1, 1), strides=(1, 1), padding='same',

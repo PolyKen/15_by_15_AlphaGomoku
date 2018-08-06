@@ -7,7 +7,7 @@ class Config(dict):
         self['display'] = False
 
         # screen size of renderer
-        self['screen_size'] = (720, 720)
+        self['screen_size'] = (960, 960)
 
         # self play mode
         self['is_self_play'] = True
@@ -34,7 +34,7 @@ class Config(dict):
         self['use_dirichlet'] = False
 
         # board size
-        self['board_size'] = 8
+        self['board_size'] = 15
 
         # epoch: number of games played to train
         self['epoch'] = 60
@@ -67,7 +67,7 @@ class Config(dict):
         self['self_play_data_path'] = 'AlphaRenju_Zero/dataset/self_play_data/self_play_' + str(self['board_size']) + '_'
         
         # use previous model
-        self['use_previous_model'] = True
+        self['use_previous_model'] = False
 
         # number of games played for evaluation, must be an even number!!!
         self['evaluate_games_num'] = 10
@@ -111,13 +111,13 @@ class Config(dict):
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 2
-            self['simulation_times'] = 6400
+            self['simulation_times'] = 1200
             print('> AI vs Human mode')
         if mode == 2.5:
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 2.5
-            self['simulation_times'] = 6400
+            self['simulation_times'] = 1200
             print('> AI vs Human mode')
         if mode == 3:
             self['display'] = True
@@ -128,7 +128,7 @@ class Config(dict):
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 4
-            self['simulation_times'] = 6400
+            self['simulation_times'] = 1200
             print('> AI vs AI mode')
         if mode == 5:
             self['display'] = True
