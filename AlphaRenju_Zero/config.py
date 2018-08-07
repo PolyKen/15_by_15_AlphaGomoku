@@ -88,7 +88,7 @@ class Config(dict):
         self['careful_stage'] = 6
 
         # number of threads
-        self['coroutine_num'] = 1024
+        self['coroutine_num'] = 512
 
         # virtual loss
         self['virtual_loss'] = 5
