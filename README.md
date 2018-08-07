@@ -7,7 +7,7 @@ Google DeepMind's recent AlphaZero algorithm, accepting no domain-specific knowl
 
 To Do
 ====
-We are now cracking ***15 by 15*** free-styule Gomoku.
+We are now cracking ***15 by 15*** free-style Gomoku.
 
 Experiment
 ====
