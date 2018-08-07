@@ -153,20 +153,11 @@ class Env:
             self._loss_list.append(loss)
 
             # evaluate
-            if epoch >= self._conf['evaluate_start_epoch'] - 1:
-                if self.evaluate():
-                    self._agent_1.save_model()
-                    self._network_version += 1
-                    data_set.clear()
-                else:
-                    self._agent_1.load_model()
-                    name = os.getenv('computername')
-                    path = self._conf['self_play_data_path'] + str(0) + '_' + str(name) + '_'
-                    data_set.save(path)
-                print('> network version = ' + str(self._network_version))
-            else:
-                self._agent_1.save_model()
-                data_set.clear()
+            self.evaluate()
+            self._agent_1.save_model()
+            self._network_version += 1
+            data_set.clear()
+            print('> network version = ' + str(self._network_version))
             print('*****************************************************')
 
         # save loss
@@ -255,6 +246,7 @@ class Env:
 
     def collect_human_data(self):
         human_data_set = DataSet()
+        human_data_set.load(self._conf['human_play_data_path'])
 
         for i in range(self._games_num):
             record = GameRecord()
