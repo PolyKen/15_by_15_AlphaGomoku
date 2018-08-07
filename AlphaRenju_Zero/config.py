@@ -19,7 +19,7 @@ class Config(dict):
         self['c_puct'] = 5
 
         # simulation times
-        self['simulation_times'] = 400
+        self['simulation_times'] = 1600
 
         # initial tau
         self['initial_tau'] = 1
@@ -40,7 +40,7 @@ class Config(dict):
         self['epoch'] = 60
         
         # sample percentage
-        self['sample_percentage'] = 0.5
+        self['sample_percentage'] = 1
         
         # number of games in each training epoch
         self['games_num'] = 1000
@@ -88,7 +88,7 @@ class Config(dict):
         self['careful_stage'] = 6
 
         # number of threads
-        self['coroutine_num'] = 128
+        self['coroutine_num'] = 1024
 
         # virtual loss
         self['virtual_loss'] = 5
@@ -111,13 +111,13 @@ class Config(dict):
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 2
-            self['simulation_times'] = 1200
+            self['simulation_times'] = 1600
             print('> AI vs Human mode')
         if mode == 2.5:
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 2.5
-            self['simulation_times'] = 1200
+            self['simulation_times'] = 1600
             print('> AI vs Human mode')
         if mode == 3:
             self['display'] = True
@@ -128,7 +128,7 @@ class Config(dict):
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 4
-            self['simulation_times'] = 1200
+            self['simulation_times'] = 1600
             print('> AI vs AI mode')
         if mode == 5:
             self['display'] = True
