@@ -63,6 +63,7 @@ class Env:
             self._agent_2.set_stochastic_policy(use_stochastic_policy)
 
         self._value_list = []
+        Node.count = 0
 
         while True:
             if self._is_self_play:
