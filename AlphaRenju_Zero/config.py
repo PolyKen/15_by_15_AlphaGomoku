@@ -70,7 +70,7 @@ class Config(dict):
         self['use_previous_model'] = True
 
         # number of games played for evaluation, must be an even number!!!
-        self['evaluate_games_num'] = 1
+        self['evaluate_games_num'] = 30
 
         # epoch from which evaluation starts
         self['evaluate_start_epoch'] = 1
