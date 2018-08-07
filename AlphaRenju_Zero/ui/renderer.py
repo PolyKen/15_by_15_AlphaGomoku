@@ -103,6 +103,7 @@ class Renderer(threading.Thread):
 
     def _paint_background(self):
         self._screen.blit(self._background, (0, 0))
+        black_color = (0, 0, 0)
 
         for i in range(1, self._board_size + 1):
             start_horizontal = (self._spacing, i * self._spacing)
@@ -111,11 +112,17 @@ class Renderer(threading.Thread):
             end_vertical = (i * self._spacing, self._screen_size[1] - self._spacing)
 
             if i == 1 or i == self._board_size + 1:
-                pygame.draw.line(self._screen, (0, 0, 0), start_horizontal, end_horizontal, 3)
-                pygame.draw.line(self._screen, (0, 0, 0), start_vertical, end_vertical, 3)
+                pygame.draw.line(self._screen, black_color, start_horizontal, end_horizontal, 3)
+                pygame.draw.line(self._screen, black_color, start_vertical, end_vertical, 3)
             else:
-                pygame.draw.line(self._screen, (0, 0, 0), start_horizontal, end_horizontal, 2)
-                pygame.draw.line(self._screen, (0, 0, 0), start_vertical, end_vertical, 2)
+                pygame.draw.line(self._screen, black_color, start_horizontal, end_horizontal, 2)
+                pygame.draw.line(self._screen, black_color, start_vertical, end_vertical, 2)
+
+        if self._board_size % 2 == 1:
+            mid = (self._board_size + 1) / 2
+            start_pos = (self._spacing * int(mid) - 2, self._spacing * int(mid) - 2)
+            size = (6, 6)
+            pygame.draw.rect(self._screen, black_color, pygame.rect.Rect(start_pos, size))
 
         pygame.display.update()
         self._update_clear = False
@@ -123,7 +130,7 @@ class Renderer(threading.Thread):
 
     def move(self, player, action, info=None):
         while self._update_move:
-            time.sleep(.01)
+            time.sleep(1e-4)
         self._next_player = player
         self._next_pos = action
         self._update_move = True
@@ -142,7 +149,7 @@ class Renderer(threading.Thread):
 
     def read(self, new_board):
         while self._update_read:
-            time.sleep(.01)
+            time.sleep(1e-4)
         self._new_board = new_board
         self._update_read = True
 
@@ -161,7 +168,7 @@ class Renderer(threading.Thread):
     def ask_for_click(self):
         self._is_waiting_for_click = True
         while self._is_waiting_for_click:
-            time.sleep(.01)
+            time.sleep(1e-4)
         return self._mouse_click_pos
 
     def show_info(self, info, player, action):
