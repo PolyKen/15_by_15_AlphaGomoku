@@ -139,9 +139,9 @@ class Env:
                 new_pi = pi.copy()
                 new_z = z.copy()
                 self._agent_1.train(new_obs, new_col, new_last_move, new_pi, new_z)
-            self._agent_1.save_model()
 
         self.evaluate()
+        self._agent_1.save_model()
 
         # training based on self-play
         data_set = DataSet()
