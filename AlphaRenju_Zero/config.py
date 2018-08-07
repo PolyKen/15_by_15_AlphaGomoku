@@ -43,7 +43,7 @@ class Config(dict):
         self['sample_percentage'] = 0.5
         
         # number of games in each training epoch
-        self['games_num'] = 50
+        self['games_num'] = 1000
 
         # learning rate
         self['learning_rate'] = 2e-3
@@ -79,7 +79,7 @@ class Config(dict):
         self['mini_batch_size'] = 512
 
         # fit epochs, number of each sample used
-        self['fit_epochs'] = 100
+        self['fit_epochs'] = 20
 
         # use supervised learning
         self['is_supervised'] = True

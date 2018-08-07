@@ -135,6 +135,8 @@ class Env:
             self._agent_1.train(obs, col, last_move, pi, z)
             self._agent_1.save_model()
 
+        self.evaluate()
+
         # training based on self-play
         data_set = DataSet()
         for epoch in range(self._epoch):
