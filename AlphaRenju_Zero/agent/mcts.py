@@ -97,7 +97,6 @@ class MCTS:
                 # add virtual loss in order to make other coroutines avoid this node
                 current_node.select_num += 1
                 current_node.N += self._virtual_loss
-                current_node.W -= self._virtual_loss
 
                 # update legal vector
                 legal_vec_current[action] = 0

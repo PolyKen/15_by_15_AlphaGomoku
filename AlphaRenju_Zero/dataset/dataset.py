@@ -48,7 +48,7 @@ class DataSet:
         z_path = path + 'z'
         np.save(z_path, z)
 
-        print(str(len(self._game_record)) + ' games of data saved')
+        print(str(len(z)) + ' positions of data saved')
 
     def load(self, path):
         obs_path = path + 'obs.npy'
