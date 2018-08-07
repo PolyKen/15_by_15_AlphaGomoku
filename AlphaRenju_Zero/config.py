@@ -67,10 +67,10 @@ class Config(dict):
         self['self_play_data_path'] = 'AlphaRenju_Zero/dataset/self_play_data/self_play_' + str(self['board_size']) + '_'
         
         # use previous model
-        self['use_previous_model'] = False
+        self['use_previous_model'] = True
 
         # number of games played for evaluation, must be an even number!!!
-        self['evaluate_games_num'] = 10
+        self['evaluate_games_num'] = 1
 
         # epoch from which evaluation starts
         self['evaluate_start_epoch'] = 1
@@ -88,7 +88,7 @@ class Config(dict):
         self['careful_stage'] = 6
 
         # number of threads
-        self['coroutine_num'] = 64
+        self['coroutine_num'] = 128
 
         # virtual loss
         self['virtual_loss'] = 3

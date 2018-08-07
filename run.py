@@ -4,7 +4,6 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 warnings.filterwarnings("ignore")
 
-
 print('> Please enter the mode: '
       '(1: Training, 2: AI vs Human, 3: Human vs Human, '
       '4: AI vs AI, 5: Collect human play data, 6: Collect self play data, '
