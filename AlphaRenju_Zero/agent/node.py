@@ -76,7 +76,6 @@ class Node:
         if self.select_num > 0:
             self.select_num -= 1
             self.N -= self._virtual_loss
-            self.W += self._virtual_loss
 
         self.N += 1
         self.W += value
