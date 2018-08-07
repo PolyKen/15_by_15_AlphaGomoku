@@ -195,9 +195,9 @@ class Renderer(threading.Thread):
         if self._board_size == 15:
             # position_1 = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.76) * self._spacing))
             if float(infos[1]) >= 0:
-                position_2 = (int((action[1] + 0.72) * self._spacing), int((action[0] + 0.78) * self._spacing))
+                position_2 = (int((action[1] + 0.72) * self._spacing), int((action[0] + 0.75) * self._spacing))
             else:
-                position_2 = (int((action[1] + 0.70) * self._spacing), int((action[0] + 0.78) * self._spacing))
+                position_2 = (int((action[1] + 0.70) * self._spacing), int((action[0] + 0.75) * self._spacing))
 
             if int(num) < 10:
                 position_3 = (int((action[1] + 0.90) * self._spacing), int((action[0] + 0.96) * self._spacing))
