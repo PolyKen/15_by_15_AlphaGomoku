@@ -208,10 +208,10 @@ class Env:
             print('> eval game ' + str(i+1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
             if new_model_wins_num > (total_num - draw_num) / 2:
                 end = True
-                break
+                # break
             if old_model_wins_num > (total_num - draw_num) / 2:
                 end = True
-                break
+                # break
 
         # switch agents
         self._agent_1, self._agent_2 = self._agent_2, self._agent_1
@@ -229,9 +229,11 @@ class Env:
                     draw_num += 1
                 print('> eval game ' + str(i+1+int(total_num/2)) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
                 if new_model_wins_num > (total_num - draw_num) / 2:
-                    break
+                    pass
+                    # break
                 if old_model_wins_num > (total_num - draw_num) / 2:
-                    break
+                    pass
+                    # break
 
         # so far self._agent_1 -> self._agent_eval
 
