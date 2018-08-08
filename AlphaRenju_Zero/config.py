@@ -16,7 +16,7 @@ class Config(dict):
         self['forbidden_moves'] = False
 
         # PUCT: when c_puct gets smaller, the simulation becomes deeper
-        self['c_puct'] = 0.5
+        self['c_puct'] = 0.1
 
         # simulation times
         self['simulation_times'] = 1600
