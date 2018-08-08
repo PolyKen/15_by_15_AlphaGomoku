@@ -34,7 +34,7 @@ class Config(dict):
         self['use_dirichlet'] = False
 
         # board size
-        self['board_size'] = 15
+        self['board_size'] = 8
 
         # epoch: number of games played to train
         self['epoch'] = 60
