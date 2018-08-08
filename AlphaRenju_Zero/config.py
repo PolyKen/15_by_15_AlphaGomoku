@@ -91,7 +91,7 @@ class Config(dict):
         self['coroutine_num'] = 512
 
         # virtual loss
-        self['virtual_loss'] = 5
+        self['virtual_loss'] = 1
 
         self.update(**kwargs)
 
