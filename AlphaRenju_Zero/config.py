@@ -19,7 +19,7 @@ class Config(dict):
         self['c_puct'] = 0.1
 
         # simulation times
-        self['simulation_times'] = 1600
+        self['simulation_times'] = 800
 
         # initial tau
         self['initial_tau'] = 1
@@ -88,7 +88,7 @@ class Config(dict):
         self['careful_stage'] = 6
 
         # number of threads
-        self['coroutine_num'] = 512
+        self['coroutine_num'] = 128
 
         # virtual loss
         self['virtual_loss'] = 1

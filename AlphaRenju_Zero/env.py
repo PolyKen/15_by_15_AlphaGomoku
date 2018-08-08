@@ -133,7 +133,7 @@ class Env:
             human_play_data_set = DataSet()
             human_play_data_set.load(self._conf['human_play_data_path'])
             obs, col, last_move, pi, z = human_play_data_set.get_sample(1)
-            for i in range(10):
+            for i in range(25):
                 new_obs = obs.copy()
                 new_col = col.copy()
                 new_last_move = last_move.copy()
@@ -141,7 +141,6 @@ class Env:
                 new_z = z.copy()
                 self._agent_1.train(new_obs, new_col, new_last_move, new_pi, new_z)
 
-        self.evaluate()
         self._agent_1.save_model()
 
         # training based on self-play
