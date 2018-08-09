@@ -278,7 +278,10 @@ class Env:
             print('> game num = ' + str(i+1))
             self.run(use_stochastic_policy=False, record=record)
             data_set.add_record(record)
-            data_set.save(self._conf['human_play_data_path'])
+            if i % 10 == 0:
+                data_set.save(self._conf['human_play_data_path'])
+
+        data_set.save(self._conf['human_play_data_path'])
 
     def collect_self_play_data(self):
         name = os.getenv('computername')
