@@ -12,14 +12,14 @@ class DataSet:
     def add_record(self, record):
         self._game_record.append(record)
         
-    def get_sample(self, percentage):
+    def get_sample(self, percentage, shuffle=True):
         obs = []
         col = []
         last_move = []
         pi = []
         z = []
         for record in self._game_record:
-            a, b, c, d, e = record.get_sample(percentage)
+            a, b, c, d, e = record.get_sample(percentage, shuffle)
             obs.extend(a)
             col.extend(b)
             last_move.extend(c)
@@ -101,13 +101,17 @@ class GameRecord:
             else:
                 self._z_list[i] = -1
 
-    def get_sample(self, percentage):
-        sample_num = int(self._total_num * percentage)
-        indices = random.sample([i for i in range(self._total_num)], sample_num)
-        obs_sample = [self._obs_list[index] for index in indices]
-        color_sample = [self._color_list[index] for index in indices]
-        last_move_sample = [self._last_move_list[index] for index in indices]
-        pi_sample = [self._pi_list[index] for index in indices]
-        z_sample = [self._z_list[index] for index in indices]
-        return obs_sample, color_sample, last_move_sample, pi_sample, z_sample
+    def get_sample(self, percentage, shuffle=True):
+        if shuffle:
+            sample_num = int(self._total_num * percentage)
+            indices = random.sample([i for i in range(self._total_num)], sample_num)
+            obs_sample = [self._obs_list[index] for index in indices]
+            color_sample = [self._color_list[index] for index in indices]
+            last_move_sample = [self._last_move_list[index] for index in indices]
+            pi_sample = [self._pi_list[index] for index in indices]
+            z_sample = [self._z_list[index] for index in indices]
+            return obs_sample, color_sample, last_move_sample, pi_sample, z_sample
+        else:
+            return self._obs_list, self._color_list, self._last_move_list, self._pi_list, self._z_list
+
 

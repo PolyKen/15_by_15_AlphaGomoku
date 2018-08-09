@@ -40,7 +40,7 @@ class Network:
     @log
     def _build_network(self):
         # Input_Layer
-        init_x = Input((4, self._board_size, self._board_size))  # the input is a tensor with the shape 3*(15*15)
+        init_x = Input((3, self._board_size, self._board_size))  # the input is a tensor with the shape 3*(15*15)
         x = init_x
 
         # First Convolutional Layer with 32 filters
@@ -176,11 +176,11 @@ def board2tensor(board, color, last_move, reshape_flag=True):
         l[last_move[0]][last_move[1]] = 1
 
     # Color Layer
-    flag = (1 if color == BLACK else 0)
-    c = flag * np.ones((board.shape[0], board.shape[1]))
+    # flag = (1 if color == BLACK else 0)
+    # c = flag * np.ones((board.shape[0], board.shape[1]))
 
     # Stack cur,e,c into tensor
-    tensor = np.array([cur, e, l, c])
+    tensor = np.array([cur, e, l])
     if reshape_flag:
         tensor = tensor.reshape(1, tensor.shape[0], tensor.shape[1], tensor.shape[2])
     return tensor
