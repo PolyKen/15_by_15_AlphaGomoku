@@ -133,7 +133,7 @@ class Env:
             human_play_data_set = DataSet()
             human_play_data_set.load(self._conf['human_play_data_path'])
             obs, col, last_move, pi, z = human_play_data_set.get_sample(1)
-            for i in range(25):
+            for i in range(50):
                 new_obs = obs.copy()
                 new_col = col.copy()
                 new_last_move = last_move.copy()

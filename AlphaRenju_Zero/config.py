@@ -16,7 +16,7 @@ class Config(dict):
         self['forbidden_moves'] = False
 
         # PUCT: when c_puct gets smaller, the simulation becomes deeper
-        self['c_puct'] = 0.1
+        self['c_puct'] = 0.5
 
         # simulation times
         self['simulation_times'] = 800
@@ -82,7 +82,7 @@ class Config(dict):
         self['fit_epochs'] = 20
 
         # use supervised learning
-        self['is_supervised'] = False
+        self['is_supervised'] = True
 
         # careful stage
         self['careful_stage'] = 6
