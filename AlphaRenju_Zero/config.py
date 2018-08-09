@@ -37,7 +37,7 @@ class Config(dict):
         self['board_size'] = 15
 
         # epoch: number of games played to train
-        self['epoch'] = 60
+        self['epoch'] = 300
         
         # sample percentage
         self['sample_percentage'] = 1

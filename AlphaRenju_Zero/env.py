@@ -144,8 +144,7 @@ class Env:
         self._agent_1.save_model()
 
         # training based on self-play
-        b_data_set = DataSet()
-        w_data_set = DataSet()
+        data_set = DataSet()
         for epoch in range(self._epoch):
             print('> epoch = ' + str(epoch+1))
 
@@ -153,33 +152,19 @@ class Env:
             for i in range(self._games_num):
                 record = GameRecord()
                 print('> game num = ' + str(i+1))
-                winner = self.run(use_stochastic_policy=True, record=record)
-                if winner == BLACK:
-                    b_data_set.add_record(record)
-                else:
-                    w_data_set.add_record(record)
+                self.run(use_stochastic_policy=True, record=record)
+                data_set.add_record(record)
 
             # train
-            b_obs, b_col, b_last_move, b_pi, b_z = b_data_set.get_sample(self._sample_percentage)
-            w_obs, w_col, w_last_move, w_pi, w_z = w_data_set.get_sample(self._sample_percentage)
-            r = len(b_z) // len(w_z)
-            print('> black to white winning ratio = ' + str(r))
-            if r > 2:
-                w_obs, w_col, w_last_move, w_pi, w_z = w_obs * r, w_col * r, w_last_move * r, w_pi * r, w_z * r
-            b_obs.extend(w_obs)
-            b_col.extend(w_col)
-            b_last_move.extend(w_last_move)
-            b_pi.extend(w_pi)
-            b_z.extend(w_z)
-            loss = self._agent_1.train(b_obs, b_col, b_last_move, b_pi, b_z)
+            obs, col, last_move, pi, z = data_set.get_sample(self._sample_percentage)
+            loss = self._agent_1.train(obs, col, last_move, pi, z)
             self._loss_list.append(loss)
 
             # evaluate
             self.evaluate()
             self._agent_1.save_model()
             self._network_version += 1
-            b_data_set.clear()
-            w_data_set.clear()
+            data_set.clear()
             print('> network version = ' + str(self._network_version))
             print('*****************************************************')
 
