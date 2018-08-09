@@ -1,5 +1,6 @@
 import random
 import numpy as np
+import os
 
 
 class DataSet:
@@ -51,6 +52,9 @@ class DataSet:
         print(str(len(z)) + ' positions of data saved')
 
     def load(self, path):
+        if not os.path.exists(path + 'obs.py'):
+            return
+
         obs_path = path + 'obs.npy'
         obs = np.load(obs_path)
 
