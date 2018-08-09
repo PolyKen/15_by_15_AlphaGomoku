@@ -45,6 +45,10 @@ class Env:
             self._agent_eval = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
             self._agent_eval.set_self_play(False)
 
+        if conf['mode'] == 8:
+            self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=False)
+            self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
+
         if self._is_self_play:
             self._agent_2 = self._agent_1
 
@@ -262,6 +266,17 @@ class Env:
             self.run(use_stochastic_policy=False, record=record)
             human_data_set.add_record(record)
             human_data_set.save(self._conf['human_play_data_path'])
+
+    def collect_human_vs_ai_data(self):
+        data_set = DataSet()
+        data_set.load(self._conf['human_play_data_path'])
+
+        for i in range(self._games_num):
+            record = GameRecord()
+            print('> game num = ' + str(i+1))
+            self.run(use_stochastic_policy=False, record=record)
+            data_set.add_record(record)
+            data_set.save(self._conf['human_play_data_path'])
 
     def collect_self_play_data(self):
         name = os.getenv('computername')

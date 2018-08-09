@@ -100,7 +100,7 @@ class Config(dict):
             self[key] = kwargs[key]
 
     def set_mode(self, mode):
-        if mode not in [1, 2, 2.5, 3, 4, 5, 6, 7, 0]:
+        if mode not in [1, 2, 2.5, 3, 4, 5, 6, 7, 8, 0]:
             mode = 1
         if mode == 1:
             self['display'] = False
@@ -148,6 +148,11 @@ class Config(dict):
             self['is_self_play'] = True
             self['mode'] = 7
             print('> Train on external data mode')
+        if mode == 8:
+            self['display'] = True
+            self['is_self_play'] = False
+            self['mode'] = 8
+            print('> Collect human vs AI play data mode')
         if mode == 0:
             self['display'] = True
             self['is_self_play'] = True

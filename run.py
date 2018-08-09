@@ -32,3 +32,5 @@ if mode == 6:
     env.collect_self_play_data()
 if mode == 7:
     env.train_on_external_data()
+if mode == 8:
+    env.collect_human_vs_ai_data()
