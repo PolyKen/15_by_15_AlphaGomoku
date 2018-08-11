@@ -22,6 +22,8 @@ class Env:
 
         self._network_version = 0
 
+        self._naive_agent = NaiveAgent(color=BLACK)
+
         # Training
         if conf['mode'] in [0, 1, 6, 7]:
             self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=True)
@@ -41,13 +43,21 @@ class Env:
             self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=False)
             self._agent_2 = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
 
-        if conf['mode'] in [0, 1, 7]:
-            self._agent_eval = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
-            self._agent_eval.set_self_play(False)
-
         if conf['mode'] == 8:
             self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=False)
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
+
+        if conf['mode'] == 9:
+            self._agent_1 = NaiveAgent(color=BLACK)
+            self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
+
+        if conf['mode'] == 10:
+            self._agent_1 = NaiveAgent(color=BLACK)
+            self._agent_2 = NaiveAgent(color=WHITE)
+
+        if conf['mode'] in [0, 1, 7]:
+            self._agent_eval = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
+            self._agent_eval.set_self_play(False)
 
         if self._is_self_play:
             self._agent_2 = self._agent_1
@@ -87,6 +97,8 @@ class Env:
                 if record is not None:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
                 self._board.move(self._board.current_player(), action, info)
+                # print(self._naive_agent.evaluate_point(self._obs(), action))
+                # print(self._naive_agent.evaluate(self._obs()))
 
                 if value is not None:
                     self._value_list.append(float(value))

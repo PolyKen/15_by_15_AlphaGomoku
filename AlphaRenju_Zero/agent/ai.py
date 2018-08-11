@@ -5,6 +5,18 @@ from ..decorator import *
 import asyncio
 
 
+MIN = -99999999
+MAX = 99999999
+
+score_5 = 100000
+score_4_live = 10000
+score_4 = 1000
+score_3_live = 1000
+score_3 = 100
+score_2_live = 50
+score_2 = 10
+
+
 class AI(Agent):
     def __init__(self, color):
         Agent.__init__(self, color)
@@ -49,729 +61,239 @@ class MCTSAgent(AI):
 
 
 class NaiveAgent(AI):
-    def __init__(self, color):
+    def __init__(self, color, depth=2):
         AI.__init__(self, color)
-        self._alpha = 0.8
         self._loop = asyncio.get_event_loop()
         self._action_list = []
         self._score_list = []
+        self._depth = depth
+        self._cut_count = 0
+        self._last_move_list = []
 
-    def play(self, obs, *args):
+    def play(self, obs, last_move, *args):
         self._action_list = []
         self._score_list = []
-        ind = np.where(obs)
-        x_min, x_max = min(ind[0]), max(ind[0])
-        y_min, y_max = min(ind[1]), max(ind[1])
+        if last_move is not None:
+            self._last_move_list.append(last_move)
+
         size = obs.shape[0]
+        if sum(sum(abs(obs))) == 0:
+            pi = [0 for _ in range(size*size)]
+            pi[int((size*size)/2)] = 1
+            self._last_move_list.append((7, 7))
+            return (7, 7), pi, None, None
 
-        tasks = []
+        pos_list = self._generate(obs)
+        alpha, beta = MIN, MAX
+        action = pos_list[0]
+        for i, j in pos_list:
+            new_obs = obs.copy()
+            new_obs[i][j] = self.color
+            value = self._min(new_obs, (i, j), alpha, beta, self._depth)
+            self._action_list.append((int(i), int(j)))
+            self._score_list.append(value)
+            if value > alpha:
+                alpha = value
+                action = (int(i), int(j))
+            # print(str((i, j)) + ': ' + str(score))
 
-        for i in range(size):
-            if i < x_min - 1 or i > x_max + 1:
-                continue
-            for j in range(size):
-                if j < y_min - 1 or j > y_max + 1:
-                    continue
-                if obs[i][j] != 0:
-                    continue    # occupied
-                else:
-                    new_obs = obs.copy()
-                    new_obs[i][j] = self.color
-                    tasks.append(self._simulate(new_obs, (i, j)))
+        s_min = min(self._score_list)
+        s_max = max(self._score_list)
 
-        self._loop.run_until_complete(asyncio.wait(tasks))
+        try:
+            pi = [((score - s_min)/(s_max - s_min))**10 for score in self._score_list]
+            m = sum(pi)
+            pi = [score/m for score in pi]
+        except ZeroDivisionError:
+            m = sum(self._score_list)
+            pi = [score/m for score in self._score_list]
 
-        m = sum(self._score_list)
-        pi = [score / m for score in self._score_list]
-        ind = np.random.choice([i for i in range(len(self._action_list))], p=pi)
-        action = self._action_list[ind]
-        pi = [0 for i in range(size*size)]
-        pi[ind] = 1
-        print(action)
+        ind = np.random.choice([i for i in range(len(pi))], p=pi)
+        # action = self._action_list[ind]
+
+        pi = [0 for _ in range(size*size)]
+        pi[coordinate2index(action, size)] = 1
+
+        self._last_move_list.append(action)
         return action, pi, None, None
 
-    async def _simulate(self, obs, action):
-        max_score = -1000000
-        current_score = self._evaluate(obs, self.color)
-        ind = np.where(obs)
-        x_min, x_max = min(ind[0]), max(ind[0])
-        y_min, y_max = min(ind[1]), max(ind[1])
-        for i in range(obs.shape[0]):
-            if i < x_min - 1 or i > x_max + 1:
+    # if an obs is in max layer, then the agent is supposed to select the action with max score
+    # alpha represents the lower bound of the value of this node
+    def _max(self, obs, last_move, alpha, beta, depth):
+        if alpha >= beta:
+            return alpha
+        if depth == 0:
+            return self.evaluate(obs)
+
+        self._last_move_list.append(last_move)
+        pos_list = self._generate(obs)
+
+        for i, j in pos_list:
+            obs[i][j] = self.color
+            value = self._min(obs, (i, j), alpha, beta, depth - 1)
+            if value > alpha:
+                alpha = value
+            obs[i][j] = 0
+
+        self._last_move_list.pop()
+        return alpha
+
+    # if an obs is in min layer, then the agent is supposed to select the action with min scores
+    # beta represents the upper bound of the value of this node
+    def _min(self, obs, last_move, alpha, beta, depth):
+        if alpha >= beta:
+            return beta
+            # this indicates that the parent node (belongs to max layer) will select a node with value
+            # no less than alpha, however, the value of child selected in this node (belongs to min layer)
+            # will no more than beta <= alpha, so there is no need to search this node
+        if depth == 0:
+            return self.evaluate(obs)
+
+        self._last_move_list.append(last_move)
+        pos_list = self._generate(obs)
+
+        for i, j in pos_list:
+            obs[i][j] = -self.color
+            value = self._max(obs, (i, j), alpha, beta, depth - 1)
+            if value < beta:
+                beta = value
+            obs[i][j] = 0
+
+        self._last_move_list.pop()
+        return beta
+
+    # the obs is better for this agent if the score is larger
+    def evaluate(self, obs):
+        pos_ind = np.where(obs)
+        pos_set = [(pos_ind[0][i], pos_ind[1][i]) for i in range(len(pos_ind[0]))]
+
+        score = 0
+
+        for x, y in pos_set:
+            c = obs[x][y]
+            each = self.evaluate_point(obs, (x, y))
+            score += (self.color * c) * each
+
+        return score
+
+    def _check_consecutive(self, obs, pos, direction):
+        i, j = pos[0], pos[1]
+        color = obs[i][j]
+
+        count = 0
+        for k in range(5):
+            if i + k*direction[0] in range(0, 15) and j + k*direction[1] in range(0, 15):
+                c = obs[i+k*direction[0]][j+k*direction[1]]
+                if c == color:
+                    count += 1
+                elif c == -color:
+                    break
+        return count, color
+
+    def evaluate_point(self, obs, pos):
+        i, j = pos[0], pos[1]
+        color = obs[i][j]
+        dir_set = [(1, 0), (0, 1), (1, 1), (1, -1)]
+        max_count = 0
+        max_score = 0
+        for dir in dir_set:
+            score = 0
+            count_1, count_2 = 0, 0
+            space_1, space_2 = 0, 0
+            block_1, block_2 = 0, 0
+            for k in range(1, 5):
+                if i + k*dir[0] in range(0, 15) and j + k*dir[1] in range(0, 15):
+                    if obs[i+k*dir[0]][j+k*dir[1]] == color:
+                        count_1 += 1
+                    if obs[i+k*dir[0]][j+k*dir[1]] == -color:
+                        block_1 = 1
+                        break
+                    if obs[i+k*dir[0]][j+k*dir[1]] == 0:
+                        space_1 += 1
+                        if space_1 == 2:
+                            break
+            for k in range(1, 5):
+                if i - k*dir[0] in range(0, 15) and j - k*dir[1] in range(0, 15):
+                    if obs[i-k*dir[0]][j-k*dir[1]] == color:
+                        count_2 += 1
+                    if obs[i-k*dir[0]][j-k*dir[1]] == -color:
+                        block_2 = 1
+                        break
+                    if obs[i-k*dir[0]][j-k*dir[1]] == 0:
+                        space_2 += 1
+                        if space_2 == 2:
+                            break
+            count = 1 + count_1 + count_2
+
+            if count < max_count:
                 continue
-            for j in range(obs.shape[1]):
-                if j < y_min - 1 or j > y_max + 1:
-                    continue
-                if obs[i][j] != 0:
-                    continue
+
+            if count == 5:
+                return score_5
+            if count == 4:
+                if block_1 == 0 and block_2 == 0 and space_1 == 2 and space_2 == 2:
+                    score = score_4_live
+                elif block_1 == 0 or block_2 == 0:
+                    score = score_4
+            if count == 3:
+                if block_1 == 0 and block_2 == 0 and space_1 == 2 and space_2 == 2:
+                    score = score_3_live
+                elif block_1 == 0 or block_2 == 0:
+                    score = score_3
+            if count == 2:
+                if block_1 == 0 and block_2 == 0 and space_1 == 2 and space_2 == 2:
+                    score = score_2_live
+                elif block_1 == 0 or block_2 == 0:
+                    score = score_2
+
+            if score >= max_score:
+                if max_score == score_4:
+                    max_score = score_4_live
                 else:
-                    new_obs = obs.copy()
-                    new_obs[i][j] = -self.color
-                    score = 0
-                    # score = self._evaluate(new_obs, -self.color)
-                    if score > max_score:
-                        max_score = score
+                    max_score = score
 
-        score = current_score - self._alpha * max_score
-        self._action_list.append(action)
-        self._score_list.append(score)
+        return max_score
 
-    def _evaluate(self, obs, color):
-        score_5 = 10000 * self._convolution_5(obs, color)
-        convs = self._convolution_4_1(obs, color)
-        score_4_1 = 1000 * convs[0] + 100 * convs[1]
-        score_4_2 = 100 * self._convolution_4_2(obs, color)
-        score_4_3 = 100 * self._convolution_4_3(obs, color)
-        convs = self._convolution_3_1(obs, color)
-        score_3_1 = 100 * convs[0] + 50 * convs[1]
-        convs = self._convolution_3_2(obs, color)
-        score_3_2 = 100 * convs[0] + 50 * convs[1]
-        convs = self._convolution_3_3(obs, color)
-        score_3_3 = 100 * convs[0] + 50 * convs[1]
-        convs = self._convolution_2_1(obs, color)
-        score_2_1 = 10 * convs[0] + 5 * convs[1]
-        convs = self._convolution_2_2(obs, color)
-        score_2_2 = 10 * convs[0] + 5 * convs[1]
-        convs = self._convolution_2_3(obs, color)
-        score_2_3 = 10 * convs[0] + 5 * convs[1]
+    def _generate(self, obs):
+        good_pts = []
+        good_scores = []
+        near = []
+        scores = []
+        dir_set = [(1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1)]
 
-        score = score_5
-        score += score_4_1 + score_4_2 + score_4_3
-        score += score_3_1 + score_3_2 + score_3_3
-        score += score_2_1 + score_2_2 + score_2_3
+        if len(self._last_move_list) > 5:
+            last_move_list = self._last_move_list[-5:]
+        else:
+            last_move_list = self._last_move_list
 
-        return score
+        for x0, y0 in last_move_list:
+            for dir in dir_set:
+                if x0 + dir[0] in range(0, 15) and y0 + dir[1] in range(0, 15):
+                    pos = (x0 + dir[0], y0 + dir[1])
+                    if obs[pos[0]][pos[1]] == 0 and pos not in good_pts and pos not in near:
+                        obs[pos[0]][pos[1]] = 1
+                        score_atk = self.evaluate_point(obs, pos)
+                        obs[pos[0]][pos[1]] = -1
+                        score_def = self.evaluate_point(obs, pos)
+                        score = max(score_atk, score_def)
+                        if score >= score_4:
+                            good_pts.append(pos)
+                            good_scores.append(score)
+                            if score == score_5:
+                                good_pts.reverse()
+                                return good_pts
+                        else:
+                            near.append(pos)
+                            scores.append(score)
+                        obs[pos[0]][pos[1]] = 0
 
-    def _convolution_5(self, obs, color):
-        filter = color * np.array([1] * 5)
-        size = len(filter)
-        board_size = obs.shape[0]
-        count = 0
-        # horizontal
-        for i in range(board_size):
-            for j in range(board_size - size + 1):
-                result = np.dot(filter, obs[i, j:j+size])
-                if result == 5:
-                    count += 1
-                if result == -5:
-                    count -= 1
-
-        # vertical
-        for i in range(board_size - size + 1):
-            for j in range(board_size):
-                result = np.dot(filter, obs[i:i+size, j])
-                if result == 5:
-                    count += 1
-                if result == -5:
-                    count -= 1
-
-        # diagonal
-        for i in range(board_size - size + 1):
-            for j in range(board_size - size + 1):
-                list = [obs[i+k][j+k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 5:
-                    count += 1
-                if result == -5:
-                    count -= 1
-
-        # anti-diagonal
-        for i in range(board_size - size + 1):
-            for j in range(size - 1, board_size):
-                list = [obs[i+k][j-k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 5:
-                    count += 1
-                if result == -5:
-                    count -= 1
-
-        return score
-
-
-    def _convolution_4_1(self, obs, color):
-        filter = color * np.array([1000, 1, 1, 1, 1, 1000])
-        size = len(filter)
-        board_size = obs.shape[0]
-
-        live = 0
-        dead = 0
-        # horizontal
-        for i in range(board_size):
-            for j in range(board_size - size + 1):
-                result = np.dot(filter, obs[i, j:j+size])
-                if result == 4:
-                    live += 1
-                if result == -996:
-                    dead += 1
-                if result == -4:
-                    live -= 1
-                if result == 996:
-                    dead -= 1
-
-        # vertical
-        for i in range(board_size - size + 1):
-            for j in range(board_size):
-                result = np.dot(filter, obs[i:i+size, j])
-                if result == 4:
-                    live += 1
-                if result == -996:
-                    dead += 1
-                if result == -4:
-                    live -= 1
-                if result == 996:
-                    dead -= 1
-
-        # diagonal
-        for i in range(board_size - size + 1):
-            for j in range(board_size - size + 1):
-                list = [obs[i+k][j+k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 4:
-                    live += 1
-                if result == -996:
-                    dead += 1
-                if result == -4:
-                    live -= 1
-                if result == 996:
-                    dead -= 1
-
-        # anti-diagonal
-        for i in range(board_size - size + 1):
-            for j in range(size - 1, board_size):
-                list = [obs[i+k][j-k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 4:
-                    live += 1
-                if result == -996:
-                    dead += 1
-                if result == -4:
-                    live -= 1
-                if result == 996:
-                    dead -= 1
-
-        return live, dead
-
-    def _convolution_4_2(self, obs, color):
-        filter = color * np.array([1, 1, 1000, 1, 1])
-        size = len(filter)
-        board_size = obs.shape[0]
-        count = 0
-        # horizontal
-        for i in range(board_size):
-            for j in range(board_size - size + 1):
-                result = np.dot(filter, obs[i, j:j + size])
-                if result == 4:
-                    count += 1
-                if result == -4:
-                    count -= 1
-
-        # vertical
-        for i in range(board_size - size + 1):
-            for j in range(board_size):
-                result = np.dot(filter, obs[i:i + size, j])
-                if result == 4:
-                    count += 1
-                if result == -4:
-                    count -= 1
-
-        # diagonal
-        for i in range(board_size - size + 1):
-            for j in range(board_size - size + 1):
-                list = [obs[i+k][j+k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 4:
-                    count += 1
-
-        # anti-diagonal
-        for i in range(board_size - size + 1):
-            for j in range(size - 1, board_size):
-                list = [obs[i+k][j-k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 4:
-                    count += 1
-                if result == -4:
-                    count -= 1
-
-        return count
-
-    def _convolution_4_3(self, obs, color):
-        filter_1 = color * np.array([1, 1, 1, 1000, 1])
-        filter_2 = color * np.array([1, 1000, 1, 1, 1])
-        size = len(filter_1)
-        board_size = obs.shape[0]
-        count = 0
-        # horizontal
-        for i in range(board_size):
-            for j in range(board_size - size + 1):
-                result = np.dot(filter_1, obs[i, j:j+size])
-                if result == 4:
-                    count += 1
-                if result == -4:
-                    count -= 1
-                result = np.dot(filter_2, obs[i, j:j+size])
-                if result == 4:
-                    count += 1
-                if result == -4:
-                    count -= 1
-
-        # vertical
-        for i in range(board_size - size + 1):
-            for j in range(board_size):
-                result = np.dot(filter_1, obs[i:i + size, j])
-                if result == 4:
-                    count += 1
-                if result == -4:
-                    count -= 1
-                result = np.dot(filter_2, obs[i:i + size, j])
-                if result == 4:
-                    count += 1
-                if result == -4:
-                    count -= 1
-
-        # diagonal
-        for i in range(board_size - size + 1):
-            for j in range(board_size - size + 1):
-                list = [obs[i + k][j + k] for k in range(size)]
-                result = np.dot(filter_1, list)
-                if result == 4:
-                    count += 1
-                if result == -4:
-                    count -= 1
-                result = np.dot(filter_2, list)
-                if result == 4:
-                    count += 1
-                if result == -4:
-                    count -= 1
-
-        # anti-diagonal
-        for i in range(board_size - size + 1):
-            for j in range(size - 1, board_size):
-                list = [obs[i + k][j - k] for k in range(size)]
-                result = np.dot(filter_1, list)
-                if result == 4:
-                    count += 1
-                if result == -4:
-                    count -= 1
-                result = np.dot(filter_2, list)
-                if result == 4:
-                    count += 1
-                if result == -4:
-                    count -= 1
-
-        return count
-
-    def _convolution_3_1(self, obs, color):
-        filter = color * np.array([1000, 1, 1, 1, 1000])
-        size = len(filter)
-        board_size = obs.shape[0]
-        live = 0
-        dead = 0
-        # horizontal
-        for i in range(board_size):
-            for j in range(board_size - size + 1):
-                result = np.dot(filter, obs[i, j:j + size])
-                if result == 3:
-                    live += 1
-                if result == -1997:
-                    dead += 1
-                if result == -3:
-                    live -= 1
-                if result == 1997:
-                    dead -= 1
-
-
-        # vertical
-        for i in range(board_size - size + 1):
-            for j in range(board_size):
-                result = np.dot(filter, obs[i:i + size, j])
-                if result == 3:
-                    live += 1
-                if result == -1997:
-                    dead += 1
-                if result == -3:
-                    live -= 1
-                if result == 1997:
-                    dead -= 1
-
-        # diagonal
-        for i in range(board_size - size + 1):
-            for j in range(board_size - size + 1):
-                list = [obs[i+k][j+k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 3:
-                    live += 1
-                if result == -1997:
-                    dead += 1
-                if result == -3:
-                    live -= 1
-                if result == 1997:
-                    dead -= 1
-
-        # anti-diagonal
-        for i in range(board_size - size + 1):
-            for j in range(size - 1, board_size):
-                list = [obs[i+k][j-k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 3:
-                    live += 1
-                if result == -1997:
-                    dead += 1
-                if result == -3:
-                    live -= 1
-                if result == 1997:
-                    dead -= 1
-
-        return live, dead
-
-    def _convolution_3_2(self, obs, color):
-        filter_1 = color * np.array([1000, 1, 10000, 1, 1, 1000])
-        filter_2 = color * np.array([1000, 1, 1, 10000, 1, 1000])
-        size = len(filter_1)
-        board_size = obs.shape[0]
-        live = 0
-        dead = 0
-
-        # horizontal
-        for i in range(board_size):
-            for j in range(board_size - size + 1):
-                result = np.dot(filter_1, obs[i, j:j + size])
-                if result == 3:
-                    live += 1
-                if result == -997:
-                    dead += 1
-                if result == -3:
-                    live -= 1
-                if result == 997:
-                    dead -= 1
-                result = np.dot(filter_2, obs[i, j:j + size])
-                if result == 3:
-                    live += 1
-                if result == -997:
-                    dead += 1
-                if result == -3:
-                    live -= 1
-                if result == 997:
-                    dead -= 1
-
-        # vertical
-        for i in range(board_size - size + 1):
-            for j in range(board_size):
-                result = np.dot(filter_1, obs[i:i + size, j])
-                if result == 3:
-                    live += 1
-                if result == -997:
-                    dead += 1
-                if result == -3:
-                    live -= 1
-                if result == 997:
-                    dead -= 1
-                result = np.dot(filter_2, obs[i:i + size, j])
-                if result == 3:
-                    live += 1
-                if result == -997:
-                    dead += 1
-                if result == -3:
-                    live -= 1
-                if result == 997:
-                    dead -= 1
-
-        # diagonal
-        for i in range(board_size - size + 1):
-            for j in range(board_size - size + 1):
-                list = [obs[i + k][j + k] for k in range(size)]
-                result = np.dot(filter_1, list)
-                if result == 3:
-                    live += 1
-                if result == -997:
-                    dead += 1
-                if result == -3:
-                    live -= 1
-                if result == 997:
-                    dead -= 1
-                result = np.dot(filter_2, list)
-                if result == 3:
-                    live += 1
-                if result == -997:
-                    dead += 1
-                if result == -3:
-                    live -= 1
-                if result == 997:
-                    dead -= 1
-
-
-        # anti-diagonal
-        for i in range(board_size - size + 1):
-            for j in range(size - 1, board_size):
-                list = [obs[i + k][j - k] for k in range(size)]
-                result = np.dot(filter_1, list)
-                if result == 3:
-                    live += 1
-                if result == -997:
-                    dead += 1
-                if result == -3:
-                    live -= 1
-                if result == 997:
-                    dead -= 1
-                result = np.dot(filter_2, list)
-                if result == 3:
-                    live += 1
-                if result == -997:
-                    dead += 1
-                if result == -3:
-                    live -= 1
-                if result == 997:
-                    dead -= 1
-
-        return live, dead
-
-    def _convolution_3_3(self, obs, color):
-        filter = color * np.array([1000, 1, 1, 1000])
-        size = len(filter)
-        board_size = obs.shape[0]
-        live = 0
-        dead = 0
-
-        # horizontal
-        for i in range(board_size):
-            for j in range(board_size - size + 1):
-                result = np.dot(filter, obs[i, j:j + size])
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        # vertical
-        for i in range(board_size - size + 1):
-            for j in range(board_size):
-                result = np.dot(filter, obs[i:i + size, j])
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        # diagonal
-        for i in range(board_size - size + 1):
-            for j in range(board_size - size + 1):
-                list = [obs[i + k][j + k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        # anti-diagonal
-        for i in range(board_size - size + 1):
-            for j in range(size - 1, board_size):
-                list = [obs[i + k][j - k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        return live, dead
-
-    def _convolution_2_1(self, obs, color):
-        filter = color * np.array([1000, 1, 1, 1000])
-        size = len(filter)
-        board_size = obs.shape[0]
-        live = 0
-        dead = 0
-
-        # horizontal
-        for i in range(board_size):
-            for j in range(board_size - size + 1):
-                result = np.dot(filter, obs[i, j:j + size])
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        # vertical
-        for i in range(board_size - size + 1):
-            for j in range(board_size):
-                result = np.dot(filter, obs[i:i + size, j])
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        # diagonal
-        for i in range(board_size - size + 1):
-            for j in range(board_size - size + 1):
-                list = [obs[i + k][j + k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        # anti-diagonal
-        for i in range(board_size - size + 1):
-            for j in range(size - 1, board_size):
-                list = [obs[i + k][j - k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        return live, dead
-
-    def _convolution_2_2(self, obs, color):
-        filter = color * np.array([1000, 1, 10000, 1, 1000])
-        size = len(filter)
-        board_size = obs.shape[0]
-        live = 0
-        dead = 0
-
-        # horizontal
-        for i in range(board_size):
-            for j in range(board_size - size + 1):
-                result = np.dot(filter, obs[i, j:j + size])
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        # vertical
-        for i in range(board_size - size + 1):
-            for j in range(board_size):
-                result = np.dot(filter, obs[i:i + size, j])
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        # diagonal
-        for i in range(board_size - size + 1):
-            for j in range(board_size - size + 1):
-                list = [obs[i + k][j + k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        # anti-diagonal
-        for i in range(board_size - size + 1):
-            for j in range(size - 1, board_size):
-                list = [obs[i + k][j - k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        return live, dead
-
-    def _convolution_2_3(self, obs, color):
-        filter = color * np.array([1000, 1, 10000, 10000, 1, 1000])
-        size = len(filter)
-        board_size = obs.shape[0]
-        live = 0
-        dead = 0
-
-        # horizontal
-        for i in range(board_size):
-            for j in range(board_size - size + 1):
-                result = np.dot(filter, obs[i, j:j + size])
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        # vertical
-        for i in range(board_size - size + 1):
-            for j in range(board_size):
-                result = np.dot(filter, obs[i:i + size, j])
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        # diagonal
-        for i in range(board_size - size + 1):
-            for j in range(board_size - size + 1):
-                list = [obs[i + k][j + k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        # anti-diagonal
-        for i in range(board_size - size + 1):
-            for j in range(size - 1, board_size):
-                list = [obs[i + k][j - k] for k in range(size)]
-                result = np.dot(filter, list)
-                if result == 2:
-                    live += 1
-                if result == -998:
-                    dead += 1
-                if result == -2:
-                    live -= 1
-                if result == 998:
-                    dead -= 1
-
-        return live, dead
+        if len(good_pts) > 0:
+            lst = np.array([good_pts, good_scores])
+            good_pts = lst[:, lst[1].argsort()][0]
+            pos_list = list(good_pts)
+        else:
+            lst = np.array([near, scores])
+            near = lst[:, lst[1].argsort()][0]
+            pos_list = list(near)
+        pos_list.reverse()
+        return pos_list

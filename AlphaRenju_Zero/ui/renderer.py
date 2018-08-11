@@ -247,7 +247,7 @@ def ask_for_draw():
 
 
 def show_result(mode, result):
-    if display_mode and use_dialog and mode in [2, 2.5, 3, 4]:
+    if display_mode and use_dialog and mode in [2, 2.5, 3, 4, 9]:
         info = ''
         if result == 'blackwins':
             info = 'Black wins!'
