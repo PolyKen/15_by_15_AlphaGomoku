@@ -83,7 +83,7 @@ class NaiveAgent(AI):
             self._last_move_list.append((7, 7))
             return (7, 7), pi, None, None
 
-        pos_list = self._generate(obs)
+        pos_list = self._generate(obs, all=True)
         alpha, beta = MIN, MAX
         action = pos_list[0]
         for i, j in pos_list:
@@ -248,25 +248,29 @@ class NaiveAgent(AI):
 
             if score >= max_score:
                 if max_score == score_4:
-                    max_score = score_4_live
+                    max_score = 1.5 * score_4   # double live 3 or live 3 + 4 or double 4
                 else:
                     max_score = score
 
         return max_score
 
-    def _generate(self, obs):
+    def _generate(self, obs, all=False):
         good_pts = []
         good_scores = []
         near = []
         scores = []
         dir_set = [(1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1)]
 
-        if len(self._last_move_list) > 5:
-            last_move_list = self._last_move_list[-5:]
+        if all:
+            indices = np.where(obs)
+            check_list = [(indices[0][i], indices[1][i]) for i in range(len(indices[0]))]
         else:
-            last_move_list = self._last_move_list
+            if len(self._last_move_list) > 5:
+                check_list = self._last_move_list[-5:]
+            else:
+                check_list = self._last_move_list
 
-        for x0, y0 in last_move_list:
+        for x0, y0 in check_list:
             for dir in dir_set:
                 if x0 + dir[0] in range(0, 15) and y0 + dir[1] in range(0, 15):
                     pos = (x0 + dir[0], y0 + dir[1])
