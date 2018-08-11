@@ -201,26 +201,39 @@ class NaiveAgent(AI):
             count_1, count_2 = 0, 0
             space_1, space_2 = 0, 0
             block_1, block_2 = 0, 0
+            consecutive_count = 1
+            consecutive_flag = True
             for k in range(1, 5):
                 if i + k*dir[0] in range(0, 15) and j + k*dir[1] in range(0, 15):
                     if obs[i+k*dir[0]][j+k*dir[1]] == color:
                         count_1 += 1
                     if obs[i+k*dir[0]][j+k*dir[1]] == -color:
                         block_1 = 1
+                        if consecutive_flag:
+                            consecutive_count += count_1
                         break
                     if obs[i+k*dir[0]][j+k*dir[1]] == 0:
                         space_1 += 1
+                        if consecutive_flag:
+                            consecutive_count += count_1
+                            consecutive_flag = False
                         if space_1 == 2:
                             break
+            consecutive_flag = True
             for k in range(1, 5):
                 if i - k*dir[0] in range(0, 15) and j - k*dir[1] in range(0, 15):
                     if obs[i-k*dir[0]][j-k*dir[1]] == color:
                         count_2 += 1
                     if obs[i-k*dir[0]][j-k*dir[1]] == -color:
                         block_2 = 1
+                        if consecutive_flag:
+                            consecutive_count += count_2
                         break
                     if obs[i-k*dir[0]][j-k*dir[1]] == 0:
                         space_2 += 1
+                        if consecutive_flag:
+                            consecutive_count += count_2
+                            consecutive_flag = False
                         if space_2 == 2:
                             break
             count = 1 + count_1 + count_2
@@ -231,17 +244,17 @@ class NaiveAgent(AI):
             if count == 5:
                 return score_5
             if count == 4:
-                if block_1 == 0 and block_2 == 0 and space_1 == 2 and space_2 == 2:
+                if block_1 == 0 and block_2 == 0 and consecutive_count == count:
                     score = score_4_live
                 elif block_1 == 0 or block_2 == 0:
                     score = score_4
             if count == 3:
-                if block_1 == 0 and block_2 == 0 and space_1 == 2 and space_2 == 2:
+                if block_1 == 0 and block_2 == 0 and consecutive_count == count:
                     score = score_3_live
                 elif block_1 == 0 or block_2 == 0:
                     score = score_3
             if count == 2:
-                if block_1 == 0 and block_2 == 0 and space_1 == 2 and space_2 == 2:
+                if block_1 == 0 and block_2 == 0 and consecutive_count == count:
                     score = score_2_live
                 elif block_1 == 0 or block_2 == 0:
                     score = score_2
