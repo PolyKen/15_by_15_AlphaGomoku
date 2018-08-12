@@ -97,7 +97,7 @@ class Env:
                 if record is not None:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
                 self._board.move(self._board.current_player(), action, info)
-                # print(self._naive_agent.evaluate_point(self._obs(), action))
+                # print(self._naive_agent.evaluate(self._obs()))
                 # print(self._naive_agent.evaluate(self._obs()))
 
                 if value is not None:
@@ -128,7 +128,7 @@ class Env:
                     if result == 'draw':
                         flag = 0
                     record.set_z(flag)
-                if self._conf['mode'] in [2, 2.5, 3, 4]:
+                if self._conf['mode'] in [2, 2.5, 3, 4, 9]:
                     time.sleep(20)
                 break
         self._board.clear()

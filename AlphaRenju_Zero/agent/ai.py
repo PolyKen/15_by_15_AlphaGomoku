@@ -8,13 +8,13 @@ import asyncio
 MIN = -99999999
 MAX = 99999999
 
-score_5 = 100000
-score_4_live = 10000
-score_4 = 1000
-score_3_live = 1000
-score_3 = 100
-score_2_live = 50
-score_2 = 10
+score_5 = 5
+score_4_live = 4.5
+score_4 = 4
+score_3_live = 3.5
+score_3 = 3
+score_2_live = 2.5
+score_2 = 2
 
 
 class AI(Agent):
@@ -61,7 +61,7 @@ class MCTSAgent(AI):
 
 
 class NaiveAgent(AI):
-    def __init__(self, color, depth=2):
+    def __init__(self, color, depth=2):     # depth must be even
         AI.__init__(self, color)
         self._loop = asyncio.get_event_loop()
         self._action_list = []
@@ -85,31 +85,22 @@ class NaiveAgent(AI):
 
         pos_list = self._generate(obs, all=True)
         alpha, beta = MIN, MAX
-        action = pos_list[0]
+        best_action_list = []
         for i, j in pos_list:
             new_obs = obs.copy()
             new_obs[i][j] = self.color
-            value = self._min(new_obs, (i, j), alpha, beta, self._depth)
+            value = self._min(new_obs, (i, j), alpha, beta, self._depth - 1)
+            # print(str((i, j)) + ' : ' + str(value))
             self._action_list.append((int(i), int(j)))
             self._score_list.append(value)
             if value > alpha:
                 alpha = value
-                action = (int(i), int(j))
-            # print(str((i, j)) + ': ' + str(score))
+                best_action_list = [(int(i), int(j))]
+            elif value == alpha:
+                best_action_list.append((int(i), int(j)))
 
-        s_min = min(self._score_list)
-        s_max = max(self._score_list)
-
-        try:
-            pi = [((score - s_min)/(s_max - s_min))**10 for score in self._score_list]
-            m = sum(pi)
-            pi = [score/m for score in pi]
-        except ZeroDivisionError:
-            m = sum(self._score_list)
-            pi = [score/m for score in self._score_list]
-
-        ind = np.random.choice([i for i in range(len(pi))], p=pi)
-        # action = self._action_list[ind]
+        ind = np.random.choice([i for i in range(len(best_action_list))])
+        action = best_action_list[ind]
 
         pi = [0 for _ in range(size*size)]
         pi[coordinate2index(action, size)] = 1
@@ -120,12 +111,12 @@ class NaiveAgent(AI):
     # if an obs is in max layer, then the agent is supposed to select the action with max score
     # alpha represents the lower bound of the value of this node
     def _max(self, obs, last_move, alpha, beta, depth):
-        if alpha >= beta:
-            return alpha
-        if depth == 0:
-            return self.evaluate(obs)
-
         self._last_move_list.append(last_move)
+        if depth == 0:
+            score = self.evaluate(obs)
+            self._last_move_list.pop()
+            return score
+
         pos_list = self._generate(obs)
 
         for i, j in pos_list:
@@ -134,6 +125,8 @@ class NaiveAgent(AI):
             if value > alpha:
                 alpha = value
             obs[i][j] = 0
+            if alpha > beta:
+                break
 
         self._last_move_list.pop()
         return alpha
@@ -141,54 +134,47 @@ class NaiveAgent(AI):
     # if an obs is in min layer, then the agent is supposed to select the action with min scores
     # beta represents the upper bound of the value of this node
     def _min(self, obs, last_move, alpha, beta, depth):
-        if alpha >= beta:
-            return beta
-            # this indicates that the parent node (belongs to max layer) will select a node with value
-            # no less than alpha, however, the value of child selected in this node (belongs to min layer)
-            # will no more than beta <= alpha, so there is no need to search this node
-        if depth == 0:
-            return self.evaluate(obs)
-
         self._last_move_list.append(last_move)
+        if depth == 0:
+            score = self.evaluate(obs)
+            self._last_move_list.pop()
+            return score
+
         pos_list = self._generate(obs)
 
         for i, j in pos_list:
             obs[i][j] = -self.color
             value = self._max(obs, (i, j), alpha, beta, depth - 1)
+            # print((i, j), value)
             if value < beta:
                 beta = value
             obs[i][j] = 0
+            if alpha > beta:
+                break
+                # this indicates that the parent node (belongs to max layer) will select a node with value
+                # no less than alpha, however, the value of child selected in this node (belongs to min layer)
+                # will no more than beta <= alpha, so there is no need to search this node
 
         self._last_move_list.pop()
         return beta
 
-    # the obs is better for this agent if the score is larger
     def evaluate(self, obs):
         pos_ind = np.where(obs)
         pos_set = [(pos_ind[0][i], pos_ind[1][i]) for i in range(len(pos_ind[0]))]
 
         score = 0
-
         for x, y in pos_set:
             c = obs[x][y]
-            each = self.evaluate_point(obs, (x, y))
-            score += (self.color * c) * each
+            pt_score = self.evaluate_point(obs, (x, y))
+            if c != self.color:
+                pt_score += 0.1
+                if abs(score) < pt_score:
+                    score = -pt_score
+            else:
+                if abs(score) < pt_score:
+                    score = pt_score
 
         return score
-
-    def _check_consecutive(self, obs, pos, direction):
-        i, j = pos[0], pos[1]
-        color = obs[i][j]
-
-        count = 0
-        for k in range(5):
-            if i + k*direction[0] in range(0, 15) and j + k*direction[1] in range(0, 15):
-                c = obs[i+k*direction[0]][j+k*direction[1]]
-                if c == color:
-                    count += 1
-                elif c == -color:
-                    break
-        return count, color
 
     def evaluate_point(self, obs, pos):
         i, j = pos[0], pos[1]
@@ -198,48 +184,47 @@ class NaiveAgent(AI):
         max_score = 0
         for dir in dir_set:
             score = 0
-            count_1, count_2 = 0, 0
+            count = 1
+            consecutive_count = 1
             space_1, space_2 = 0, 0
             block_1, block_2 = 0, 0
-            consecutive_count = 1
             consecutive_flag = True
             for k in range(1, 5):
                 if i + k*dir[0] in range(0, 15) and j + k*dir[1] in range(0, 15):
                     if obs[i+k*dir[0]][j+k*dir[1]] == color:
-                        count_1 += 1
-                    if obs[i+k*dir[0]][j+k*dir[1]] == -color:
-                        block_1 = 1
+                        count += 1
                         if consecutive_flag:
-                            consecutive_count += count_1
+                            consecutive_count += 1
+                    if obs[i+k*dir[0]][j+k*dir[1]] == -color:
+                        if space_1 == 0:
+                            block_1 = 1
                         break
                     if obs[i+k*dir[0]][j+k*dir[1]] == 0:
                         space_1 += 1
-                        if consecutive_flag:
-                            consecutive_count += count_1
-                            consecutive_flag = False
+                        consecutive_flag = False
                         if space_1 == 2:
                             break
             consecutive_flag = True
             for k in range(1, 5):
                 if i - k*dir[0] in range(0, 15) and j - k*dir[1] in range(0, 15):
                     if obs[i-k*dir[0]][j-k*dir[1]] == color:
-                        count_2 += 1
-                    if obs[i-k*dir[0]][j-k*dir[1]] == -color:
-                        block_2 = 1
+                        count += 1
                         if consecutive_flag:
-                            consecutive_count += count_2
+                            consecutive_count += 1
+                    if obs[i-k*dir[0]][j-k*dir[1]] == -color:
+                        if space_2 == 0:
+                            block_2 = 1
                         break
                     if obs[i-k*dir[0]][j-k*dir[1]] == 0:
                         space_2 += 1
-                        if consecutive_flag:
-                            consecutive_count += count_2
-                            consecutive_flag = False
+                        consecutive_flag = False
                         if space_2 == 2:
                             break
-            count = 1 + count_1 + count_2
 
             if count < max_count:
                 continue
+            else:
+                max_count = count
 
             if count == 5:
                 return score_5
@@ -249,19 +234,19 @@ class NaiveAgent(AI):
                 elif block_1 == 0 or block_2 == 0:
                     score = score_4
             if count == 3:
-                if block_1 == 0 and block_2 == 0 and consecutive_count == count:
+                if block_1 == 0 and block_2 == 0:
                     score = score_3_live
                 elif block_1 == 0 or block_2 == 0:
                     score = score_3
             if count == 2:
-                if block_1 == 0 and block_2 == 0 and consecutive_count == count:
+                if block_1 == 0 and block_2 == 0:
                     score = score_2_live
                 elif block_1 == 0 or block_2 == 0:
                     score = score_2
 
             if score >= max_score:
                 if max_score == score_4:
-                    max_score = 1.5 * score_4   # double live 3 or live 3 + 4 or double 4
+                    max_score = score_4_live   # double live 3 or live 3 + 4 or double 4
                 else:
                     max_score = score
 
@@ -288,17 +273,16 @@ class NaiveAgent(AI):
                 if x0 + dir[0] in range(0, 15) and y0 + dir[1] in range(0, 15):
                     pos = (x0 + dir[0], y0 + dir[1])
                     if obs[pos[0]][pos[1]] == 0 and pos not in good_pts and pos not in near:
-                        obs[pos[0]][pos[1]] = 1
+                        obs[pos[0]][pos[1]] = self.color
                         score_atk = self.evaluate_point(obs, pos)
-                        obs[pos[0]][pos[1]] = -1
+                        obs[pos[0]][pos[1]] = -self.color
                         score_def = self.evaluate_point(obs, pos)
                         score = max(score_atk, score_def)
-                        if score >= score_4:
+                        if score >= score_3_live:
                             good_pts.append(pos)
                             good_scores.append(score)
-                            if score == score_5:
-                                good_pts.reverse()
-                                return good_pts
+                            if score_atk == score_5:
+                                break
                         else:
                             near.append(pos)
                             scores.append(score)
@@ -312,5 +296,6 @@ class NaiveAgent(AI):
             lst = np.array([near, scores])
             near = lst[:, lst[1].argsort()][0]
             pos_list = list(near)
+
         pos_list.reverse()
         return pos_list
