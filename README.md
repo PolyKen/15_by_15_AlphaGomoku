@@ -7,6 +7,13 @@ Google DeepMind's recent AlphaZero algorithm, accepting no domain-specific knowl
 
 Experiment
 ====
+Animation
+-------
+<p class="half" align="center">
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/ai_self_play.gif" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/human(black)_vs_ai(white).gif" width="350px" height="350px"/>
+</p>
+
 Human vs AI (8 by 8 board)
 -------
 AI adopts deterministic policy with 1600 simulations per move.
