@@ -7,7 +7,7 @@ Google DeepMind's recent AlphaZero algorithm, accepting no domain-specific knowl
 
 Experiment
 ====
-Animation
+Animation (8 by 8 board)
 -------
 <p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/ai_self_play.gif" width="350px" height="350px"/>
