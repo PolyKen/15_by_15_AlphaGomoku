@@ -90,7 +90,6 @@ class NaiveAgent(AI):
             new_obs = obs.copy()
             new_obs[i][j] = self.color
             value = self._min(new_obs, (i, j), alpha, beta, self._depth - 1)
-            # print(str((i, j)) + ' : ' + str(value))
             self._action_list.append((int(i), int(j)))
             self._score_list.append(value)
             if value > alpha:
