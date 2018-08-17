@@ -91,7 +91,7 @@ class Env:
                         self._value_list = []
                         if ask_for_draw() == 1:
                             show_result(2, 'draw')
-                            time.sleep(20)
+                            # time.sleep(20)
                             break
 
             if result == 'occupied':
@@ -113,7 +113,7 @@ class Env:
                         flag = 0
                     record.set_z(flag)
                 if self._conf['mode'] in [2, 2.5, 3, 4]:
-                    time.sleep(20)
+                    time.sleep(1)
                 break
         self._board.clear()
         print('> Node number of game tree = ' + str(Node.count))

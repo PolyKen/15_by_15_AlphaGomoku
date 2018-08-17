@@ -23,7 +23,8 @@ env = Env(conf)
 if mode == 1 or mode == 0:
     env.train()
 if mode in [2, 2.5, 3]:
-    env.run(use_stochastic_policy=False)
+    while True:
+        env.run(use_stochastic_policy=False)
 if mode == 4:
     env.run(use_stochastic_policy=True)
 if mode == 5:
