@@ -56,7 +56,7 @@ Contributors
 
 Institutions
 -------
-- ***AI&FintechLab of Likelihood Technology***
+- ***Likelihood Lab***
 - ***Sun Yat-sen University***
 
 Acknowledgement
