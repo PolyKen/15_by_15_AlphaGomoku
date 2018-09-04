@@ -149,6 +149,7 @@ class Env:
             human_play_data_set = DataSet()
             human_play_data_set.load(self._conf['human_play_data_path'])
             obs, col, last_move, pi, z = human_play_data_set.get_sample(1)
+            print('> ' + str(len(obs)) + ' positions of data loaded')
             for i in range(50):
                 print('supervise stage = ' + str(i+1))
                 new_obs = obs.copy()

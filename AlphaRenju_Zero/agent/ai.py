@@ -1,7 +1,7 @@
 from .agent import Agent
 from ..network.network import *
 from .mcts import *
-from ..decorator import *
+from ..utils import *
 import asyncio
 
 
@@ -28,9 +28,13 @@ class AI(Agent):
 class MCTSAgent(AI):
     def __init__(self, conf, color, use_stochastic_policy):
         AI.__init__(self, color)
-        network = Network(conf)
-        self._mcts = MCTS(conf, network, color, use_stochastic_policy)
-        self._network = network
+        conf.update(net_para_file='AlphaRenju_Zero/network/model/model_b_' + str(conf['board_size']) + '.h5')
+        black_net = Network(conf)
+        conf.update(net_para_file='AlphaRenju_Zero/network/model/model_w_' + str(conf['board_size']) + '.h5')
+        white_net = Network(conf)
+        self._mcts = MCTS(conf, black_net, white_net, color, use_stochastic_policy)
+        self._black_net = black_net
+        self._white_net = white_net
         self._board_size = conf['board_size']
 
     def play(self, obs, action, stone_num):
@@ -49,15 +53,24 @@ class MCTSAgent(AI):
 
     @log
     def train(self, obs, color, last_move, pi, z):
-        loss = self._network.train(obs, color, last_move, pi, z)
-        return loss
+        obs_b, obs_w = obs[0::2], obs[1::2]
+        color_b, color_w = color[0::2], color[1::2]
+        last_move_b, last_move_w = last_move[0::2], last_move[1::2]
+        pi_b, pi_w = pi[0::2], pi[1::2]
+        z_b, z_w = z[0::2], z[1::2]
+
+        loss_b = self._black_net.train(obs_b, color_b, last_move_b, pi_b, z_b)
+        loss_w = self._white_net.train(obs_w, color_w, last_move_w, pi_w, z_w)
+        return loss_b, loss_w
         
     def save_model(self):
-        self._network.save_model()
+        self._black_net.save_model()
+        self._white_net.save_model()
         print('> model saved')
 
     def load_model(self):
-        self._network.load_model()
+        self._black_net.load_model()
+        self._white_net.load_model()
 
 
 class NaiveAgent(AI):

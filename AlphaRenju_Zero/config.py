@@ -1,3 +1,5 @@
+decay = 0.9
+
 class Config(dict):
     def __init__(self, **kwargs):
         # mode   1: training mode, 2: AI vs Human, 3: Human vs Human, 0: Debug
@@ -147,6 +149,7 @@ class Config(dict):
             self['display'] = False
             self['is_self_play'] = True
             self['mode'] = 7
+            self['is_supervised'] = True
             print('> Train on external data mode')
         if mode == 8:
             self['display'] = True
@@ -167,7 +170,7 @@ class Config(dict):
             self['display'] = True
             self['is_self_play'] = True
             self['mode'] = 0
-            self['simulation_times'] = 5
+            self['simulation_times'] = 400
             self['games_num'] = 3
             self['epoch'] = 2
             print('> Debug mode')

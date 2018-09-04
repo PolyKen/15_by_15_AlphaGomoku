@@ -1,5 +1,6 @@
 from math import sqrt
 import numpy as np
+from ..config import *
 
 
 class Node:
@@ -81,4 +82,4 @@ class Node:
         self.W += value
         self._Q = self.W / self.N
         if not self.is_root():
-            self._parent.backup(-value)
+            self._parent.backup(-decay * value)

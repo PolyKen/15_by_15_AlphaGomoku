@@ -52,7 +52,8 @@ class DataSet:
         print(str(len(z)) + ' positions of data saved')
 
     def load(self, path):
-        if not os.path.exists(path + 'obs.py'):
+        if not os.path.exists(path + 'obs.npy'):
+            print('> error: model ' + path + 'obs.npy' + 'not found')
             return
 
         obs_path = path + 'obs.npy'

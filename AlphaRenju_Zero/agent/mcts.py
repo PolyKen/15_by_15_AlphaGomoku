@@ -6,7 +6,7 @@ import asyncio
 
 
 class MCTS:
-    def __init__(self, conf, net, color, use_stochastic_policy):
+    def __init__(self, conf, black_net, white_net, color, use_stochastic_policy):
         # hyperparameters
         self._c_puct = conf['c_puct']  # PUCT
         self._simulation_times = conf['simulation_times']  # number of simulation
@@ -19,7 +19,9 @@ class MCTS:
 
         self._root = Node(1.0, None, BLACK, conf['virtual_loss'])  # Monte Carlo tree
 
-        self._network = net  # Residual neural network
+        self._black_net = black_net
+        self._white_net = white_net
+
         self._is_self_play = conf['is_self_play']
         self._use_stochastic_policy = use_stochastic_policy
         self._careful_stage = conf['careful_stage']
@@ -74,7 +76,10 @@ class MCTS:
     def _predict(self, board, last_move):
         self._simulate(board, last_move)
         pi = np.array([node.N**(1/self._tau) for node in self._root.children()])
-        pi = pi / sum(pi)
+        if len(pi) != len(board)**2:
+            print('>> error: MCTS._predict')
+            return
+        pi /= sum(pi)
         return pi
 
     def _simulate(self, root_board, last_move):
@@ -123,9 +128,14 @@ class MCTS:
             self._expanding_list.append(current_node)
 
             # calculate the prior probabilities and value
-            p, v = self._network.predict(current_board, current_color, last_move)
+            if current_color is BLACK:
+                net = self._black_net
+            else:
+                net = self._white_net
+            p, v = net.predict(current_board, current_color, last_move)
             current_node.value = v
             prior_prob = p[0]
+
             if self._use_dirichlet:
                 alpha = [self._alpha] * (self._board_size * self._board_size)
                 noise = np.random.dirichlet(alpha)

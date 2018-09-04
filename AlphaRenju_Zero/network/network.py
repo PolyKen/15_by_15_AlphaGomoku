@@ -7,7 +7,7 @@ from keras.layers.normalization import BatchNormalization
 from keras.regularizers import l2
 from keras.optimizers import SGD
 from ..rules import *
-from ..decorator import *
+from ..utils import *
 import numpy as np
 import os
 
@@ -60,7 +60,7 @@ class Network:
         policy = BatchNormalization()(policy)
         policy = Activation('relu')(policy)
         policy = Flatten()(policy)
-        policy = Dense(self._board_size*self._board_size, kernel_regularizer=l2(self._l2_coef))(policy)
+        policy = Dense(self._board_size * self._board_size, kernel_regularizer=l2(self._l2_coef))(policy)
         self._policy = Activation('softmax')(policy)
 
         # Value Head for generating value of each action
@@ -86,15 +86,15 @@ class Network:
         x_shortcut = x
         x = Conv2D(filters=32, kernel_size=(3, 3), strides=(1, 1), padding='same',
                    data_format="channels_first", kernel_regularizer=l2(self._l2_coef))(x)
-        x = BatchNormalization()(x) 
+        x = BatchNormalization()(x)
         x = Activation('relu')(x)
         x = Conv2D(filters=32, kernel_size=(3, 3), strides=(1, 1), padding='same',
                    data_format="channels_first", kernel_regularizer=l2(self._l2_coef))(x)
-        x = BatchNormalization()(x) 
+        x = BatchNormalization()(x)
         x = add([x, x_shortcut])  # Skip Connection
         x = Activation('relu')(x)
         return x
-        
+
     def predict(self, board, color, last_move):
         if sum(sum(board)) == 0 and color == WHITE:
             print('error: network.predict')
@@ -140,14 +140,15 @@ class Network:
         z_list = np.array(z_list)
 
         # Training
-        hist = self._model.fit(board_list, [pi_list, z_list], epochs=self._fit_epochs, batch_size=self._mini_batch_size, verbose=1)
+        hist = self._model.fit(board_list, [pi_list, z_list], epochs=self._fit_epochs, batch_size=self._mini_batch_size,
+                               verbose=1)
         hist_path = self._fit_history_file + '_' + str(self._fit_epochs) + '_' + str(self._mini_batch_size) + '.txt'
         with open(hist_path, 'a') as f:
             f.write(str(hist.history))
             return hist.history['loss'][0]  # only sample loss of first epoch
-        
+
     def get_para(self):
-        net_para = self._model.get_weights() 
+        net_para = self._model.get_weights()
         return net_para
 
     def save_model(self):
@@ -163,7 +164,6 @@ class Network:
 
 # Transform a board(matrix) to a tensor
 def board2tensor(board, color, last_move, reshape_flag=True):
-
     # Current-Stone Layer
     cur = np.array(np.array(board) == color, dtype=np.int)
 
@@ -189,10 +189,10 @@ def board2tensor(board, color, last_move, reshape_flag=True):
 # Augment the training data pool through plane transformation
 def data_augmentation(board, color, last_move, pi, z):
     new_board = []
-    new_color = [color]*7
+    new_color = [color] * 7
     new_last_move = []
     new_pi = []
-    new_z = [z]*7
+    new_z = [z] * 7
     for type in range(1, 8):
         board_t = board_transform(board, type, flag=1)
         last_move_t = coordinate_transform(last_move, type, board.shape[0], flag=1)
@@ -207,15 +207,15 @@ def data_augmentation(board, color, last_move, pi, z):
 def input_encode(vec, num, size):
     mat = np.reshape(vec, (size, size))  # reshape vector into matrix
     mat = board_transform(mat, num, flag=1)
-    vec = np.reshape(mat, (1, size**2))
+    vec = np.reshape(mat, (1, size ** 2))
     return vec[0]
 
 
 # Transform the output vector to its initial shape given the transformation type
 def output_decode(vec, num, size):
-    mat = np.reshape(vec, (size,size))   # reshape vector into matrix
+    mat = np.reshape(vec, (size, size))  # reshape vector into matrix
     inv_mat = board_transform(mat, num, flag=2)
-    vec = np.reshape(inv_mat, (1, size**2))
+    vec = np.reshape(inv_mat, (1, size ** 2))
     return vec[0]
 
 
@@ -232,7 +232,6 @@ def coordinate_transform(move, type, size, flag):
 
 # Transform the input board by simple plane transformation
 def board_transform(mat, num, flag=0):
-
     def R0(mat):
         return mat
 
@@ -269,7 +268,7 @@ def board_transform(mat, num, flag=0):
         num = int(np.random.randint(8, size=1))
         total_type = ['R0', 'R1', 'R2', 'R3', 'S', 'SR1', 'SR2', 'SR3']
         real_type = total_type[num]
-        return eval(real_type)(mat),num
+        return eval(real_type)(mat), num
 
     # Encode
     elif flag == 1:  # encode
