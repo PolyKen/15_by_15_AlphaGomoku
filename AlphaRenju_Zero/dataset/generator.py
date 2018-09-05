@@ -13,33 +13,254 @@ class Generator:
     def generate_live_4_attack(self, sample_num=10000):
         color = np.random.random_integers(0, 1) * 2 - 1
         record = GameRecord()
-        for i in range(sample_num):
+        i = 0
+        while i < sample_num:
             board = self._empty_board()
             pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=4)
+            if len(fix_pos_list) == 0:
+                continue
 
             for x, y in pos_list:
                 board[x][y] = color
-            self._add_noise(board=board, next_player=color, max_stone_num=self._max_noise_stone_num,
-                            fix_pos_list=fix_pos_list)
-            pi = np.array([0 for _ in range(self._board_size ** 2)])
+
+            pi = np.array([0.0 for _ in range(self._board_size ** 2)])
             if len(fix_pos_list) == 2:
                 ind_1 = coordinate2index(fix_pos_list[0], self._board_size)
                 ind_2 = coordinate2index(fix_pos_list[1], self._board_size)
                 pi[ind_1], pi[ind_2] = 0.5, 0.5
-            else:
+            if len(fix_pos_list) == 1:
                 ind = coordinate2index(fix_pos_list[0], self._board_size)
                 pi[ind] = 1
+
+            self._add_noise(board=board, next_player=color, max_stone_num=self._max_noise_stone_num,
+                            fix_pos_list=fix_pos_list)
+
             record.add(obs=board, color=color, last_move=pos_list[0], pi=pi, z=1)
+            i += 1
         return record
 
+    @log
     def generate_live_4_defend(self, sample_num=10000):
-        pass
+        color = np.random.random_integers(0, 1) * 2 - 1
+        record = GameRecord()
+        i = 0
+        while i < sample_num:
+            board = self._empty_board()
+            pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=4)
+            if len(fix_pos_list) == 0:
+                continue
 
-    def generate_dead_4_defend(self, sample_num=10000):
-        pass
+            for x, y in pos_list:
+                board[x][y] = color
 
-    def generate_live_3_defend(self, sample_num=10000):
-        pass
+            pi = np.array([0.0 for _ in range(self._board_size ** 2)])
+            if len(fix_pos_list) == 2:
+                ind_1 = coordinate2index(fix_pos_list[0], self._board_size)
+                ind_2 = coordinate2index(fix_pos_list[1], self._board_size)
+                pi[ind_1], pi[ind_2] = 0.5, 0.5
+            if len(fix_pos_list) == 1:
+                ind = coordinate2index(fix_pos_list[0], self._board_size)
+                pi[ind] = 1
+
+            self._add_noise(board=board, next_player=-color, max_stone_num=self._max_noise_stone_num,
+                            fix_pos_list=fix_pos_list)
+
+            record.add(obs=board, color=-color, last_move=pos_list[0], pi=pi, z=-1)
+            i += 1
+        return record
+
+    @log
+    def generate_dead_4_oooo_defend(self, sample_num=10000):
+        color = np.random.random_integers(0, 1) * 2 - 1
+        record = GameRecord()
+        i = 0
+        while i < sample_num:
+            board = self._empty_board()
+            pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=4)
+            if len(fix_pos_list) == 0:
+                continue
+
+            for x, y in pos_list:
+                board[x][y] = color
+
+            pi = np.array([0.0 for _ in range(self._board_size ** 2)])
+            if len(fix_pos_list) == 2:
+                ind = coordinate2index(fix_pos_list[0], self._board_size)
+                pi[ind] = 1
+                fx, fy = fix_pos_list[1][0], fix_pos_list[1][1]
+                board[fx][fy] = -color
+            if len(fix_pos_list) == 1:
+                ind = coordinate2index(fix_pos_list[0], self._board_size)
+                pi[ind] = 1
+
+            self._add_noise(board=board, next_player=-color, max_stone_num=self._max_noise_stone_num,
+                            fix_pos_list=fix_pos_list)
+
+            record.add(obs=board, color=-color, last_move=pos_list[0], pi=pi,
+                       z=0)  # last move should be next to an empty position
+            i += 1
+        return record
+
+    @log
+    def generate_dead_4_ooo_o_defend(self, sample_num=10000):
+        color = np.random.random_integers(0, 1) * 2 - 1
+        record = GameRecord()
+        for _ in range(sample_num):
+            board = self._empty_board()
+            pos_list, _ = self._generate_consecutive_line(consecutive_num=5)
+            fix_pos_list = [pos_list[3]]
+
+            for x, y in pos_list:
+                board[x][y] = color
+            board[pos_list[3][0]][pos_list[3][1]] = 0
+
+            pi = np.array([0.0 for _ in range(self._board_size ** 2)])
+
+            ind = coordinate2index(pos_list[3], self._board_size)
+            pi[ind] = 1
+
+            self._add_noise(board=board, next_player=-color, max_stone_num=self._max_noise_stone_num,
+                            fix_pos_list=fix_pos_list)
+
+            record.add(obs=board, color=-color, last_move=pos_list[1], pi=pi,
+                       z=0)  # last move should be next to an empty position
+        return record
+
+    @log
+    def generate_dead_4_oo_oo_defend(self, sample_num=10000):
+        color = np.random.random_integers(0, 1) * 2 - 1
+        record = GameRecord()
+        for _ in range(sample_num):
+            board = self._empty_board()
+            pos_list, _ = self._generate_consecutive_line(consecutive_num=5)
+            fix_pos_list = [pos_list[2]]
+
+            for x, y in pos_list:
+                board[x][y] = color
+            board[pos_list[2][0]][pos_list[2][1]] = 0
+
+            pi = np.array([0.0 for _ in range(self._board_size ** 2)])
+
+            ind = coordinate2index(pos_list[2], self._board_size)
+            pi[ind] = 1
+
+            self._add_noise(board=board, next_player=-color, max_stone_num=self._max_noise_stone_num,
+                            fix_pos_list=fix_pos_list)
+
+            record.add(obs=board, color=-color, last_move=pos_list[1], pi=pi,
+                       z=0)  # last move should be next to an empty position
+        return record
+
+    @log
+    def generate_live_3_ooo_attack(self, sample_num=10000):
+        color = np.random.random_integers(0, 1) * 2 - 1
+        record = GameRecord()
+        i = 0
+        while i < sample_num:
+            board = self._empty_board()
+            pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=3)
+            if len(fix_pos_list) == 0 or len(fix_pos_list) == 1:
+                continue
+
+            for x, y in pos_list:
+                board[x][y] = color
+
+            pi = np.array([0.0 for _ in range(self._board_size ** 2)])
+            ind_1 = coordinate2index(fix_pos_list[0], self._board_size)
+            ind_2 = coordinate2index(fix_pos_list[1], self._board_size)
+            pi[ind_1], pi[ind_2] = 0.5, 0.5
+
+            self._add_noise(board=board, next_player=color, max_stone_num=self._max_noise_stone_num,
+                            fix_pos_list=fix_pos_list)
+
+            record.add(obs=board, color=color, last_move=pos_list[1], pi=pi, z=1)
+            i += 1
+        return record
+
+    @log
+    def generate_live_3_oo_o_attack(self, sample_num=10000):
+        color = np.random.random_integers(0, 1) * 2 - 1
+        record = GameRecord()
+        i = 0
+        while i < sample_num:
+            board = self._empty_board()
+            pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=4)
+            if len(fix_pos_list) == 0 or len(fix_pos_list) == 1:
+                continue
+
+            fix_pos_list.append(list(pos_list[2]))
+
+            for x, y in pos_list:
+                board[x][y] = color
+            board[pos_list[2][0]][pos_list[2][1]] = 0
+
+            pi = np.array([0.0 for _ in range(self._board_size ** 2)])
+            ind = coordinate2index(pos_list[2], self._board_size)
+            pi[ind] = 1
+
+            self._add_noise(board=board, next_player=color, max_stone_num=self._max_noise_stone_num,
+                            fix_pos_list=fix_pos_list)
+
+            record.add(obs=board, color=color, last_move=pos_list[1], pi=pi, z=1)
+            i += 1
+        return record
+
+    @log
+    def generate_live_3_ooo_defend(self, sample_num=10000):
+        color = np.random.random_integers(0, 1) * 2 - 1
+        record = GameRecord()
+        i = 0
+        while i < sample_num:
+            board = self._empty_board()
+            pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=3)
+            if len(fix_pos_list) == 0 or len(fix_pos_list) == 1:
+                continue
+
+            for x, y in pos_list:
+                board[x][y] = color
+
+            pi = np.array([0.0 for _ in range(self._board_size ** 2)])
+            ind_1 = coordinate2index(fix_pos_list[0], self._board_size)
+            ind_2 = coordinate2index(fix_pos_list[1], self._board_size)
+            pi[ind_1], pi[ind_2] = 0.5, 0.5
+            self._add_noise(board=board, next_player=-color, max_stone_num=self._max_noise_stone_num,
+                            fix_pos_list=fix_pos_list)
+
+            record.add(obs=board, color=-color, last_move=pos_list[1], pi=pi,
+                       z=0)  # last move should be next to an empty position
+            i += 1
+        return record
+
+    @log
+    def generate_live_3_oo_o_defend(self, sample_num=10000):
+        color = np.random.random_integers(0, 1) * 2 - 1
+        record = GameRecord()
+        i = 0
+        while i < sample_num:
+            board = self._empty_board()
+            pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=4)
+            if len(fix_pos_list) == 0 or len(fix_pos_list) == 1:
+                continue
+
+            fix_pos_list.append(list(pos_list[2]))
+
+            for x, y in pos_list:
+                board[x][y] = color
+            board[pos_list[2][0]][pos_list[2][1]] = 0
+
+            pi = np.array([0.0 for _ in range(self._board_size ** 2)])
+            ind_1 = coordinate2index(fix_pos_list[0], self._board_size)
+            ind_2 = coordinate2index(fix_pos_list[1], self._board_size)
+            ind_3 = coordinate2index(fix_pos_list[2], self._board_size)
+            pi[ind_1], pi[ind_2], pi[ind_3] = 0.25, 0.25, 0.5
+
+            self._add_noise(board=board, next_player=-color, max_stone_num=self._max_noise_stone_num,
+                            fix_pos_list=fix_pos_list)
+
+            record.add(obs=board, color=-color, last_move=pos_list[1], pi=pi,
+                       z=0)  # last move should be next to an empty position
+            i += 1
+        return record
 
     def _generate_consecutive_line(self, consecutive_num):
         start_pos = np.random.random_integers(0, self._board_size - 1, 2)
@@ -48,16 +269,17 @@ class Generator:
             dx, dy = list(np.random.random_integers(-1, 1, 2))
             if dx == 0 and dy == 0:
                 continue
-            end_pos[0], end_pos[1] = start_pos[0] + consecutive_num * dx, start_pos[1] + consecutive_num * dy
+            end_pos[0] = start_pos[0] + (consecutive_num - 1) * dx
+            end_pos[1] = start_pos[1] + (consecutive_num - 1) * dy
         fix_pos_list = []
         if dx == 0:
             x_list = [start_pos[0]] * consecutive_num
         else:
-            x_list = list(range(start_pos[0], end_pos[0], dx))
+            x_list = list(range(start_pos[0], end_pos[0] + dx, dx))
         if dy == 0:
             y_list = [start_pos[1]] * consecutive_num
         else:
-            y_list = list(range(start_pos[1], end_pos[1], dy))
+            y_list = list(range(start_pos[1], end_pos[1] + dy, dy))
 
         fp_1 = [start_pos[0] - dx, start_pos[1] - dy]
         if fp_1[0] in list(range(0, self._board_size)) and fp_1[1] in list(range(0, self._board_size)):
