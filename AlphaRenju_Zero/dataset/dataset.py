@@ -98,7 +98,7 @@ class GameRecord:
 # the method to define the value of z
     def set_z(self, result):
         if result == 0:
-            self._z_list = [0 for i in range(self._total_num)]
+            self._z_list = [0 for _ in range(self._total_num)]
             return
         for i in range(self._total_num):
             if result == self._color_list[i]:

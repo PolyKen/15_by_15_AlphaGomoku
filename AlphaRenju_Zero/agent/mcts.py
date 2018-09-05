@@ -1,6 +1,7 @@
 from .node import Node
 import numpy as np
 from ..rules import *
+from ..utils import *
 import time
 import asyncio
 
@@ -160,21 +161,6 @@ class MCTS:
 
             # backup
             current_node.backup(-current_node.value)
-
-
-def index2coordinate(index, size):
-    row = index // size
-    col = index % size
-    return int(row), int(col)
-
-
-def coordinate2index(cor, size):
-    return size * cor[0] + cor[1]
-
-
-def board2legalvec(board):
-    vec = np.array(np.array(board) == 0, dtype=np.int)
-    return vec.flatten()
 
 
 def check_rules(board, action, color):
