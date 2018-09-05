@@ -95,7 +95,9 @@ class Board:
         elif black_num == white_num + 1:
             self._player = WHITE
         else:
-            print("Illegal Position")
+            print("> error: illegal stone num")
+            print('> black_num = ' + str(black_num))
+            print('> white_num = ' + str(white_num))
 
     def round(self):
         return self._round
