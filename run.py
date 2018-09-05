@@ -1,13 +1,14 @@
 from AlphaRenju_Zero import *
 import warnings
 import os
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 warnings.filterwarnings("ignore")
 
-print('> Please enter the mode: '
-      '(1: Training, 2: AI vs Human, 3: Human vs Human, '
+print('> Please enter the mode: (1: Training, 2: AI vs Human, 3: Human vs Human, '
       '4: AI vs AI, 5: Collect human play data, 6: Collect self play data, '
-      '7: Train on external data)')
+      '7: Train on external data, 8: Collect human vs AI play data mode, '
+      '9: AI(NaiveAgent) vs Human mode, 10: AI vs AI(NaiveAgent) mode)')
 mode = int(input('> mode = '))
 
 if mode == 2:
