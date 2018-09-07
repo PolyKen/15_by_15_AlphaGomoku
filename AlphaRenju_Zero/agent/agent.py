@@ -19,7 +19,7 @@ class Agent:
 
     @color.setter
     def color(self, value):
-        if value != BLACK or value != WHITE:
+        if value != BLACK and value != WHITE:
             self._color = BLACK
         else:
             self._color = value

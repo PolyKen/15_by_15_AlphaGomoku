@@ -22,7 +22,7 @@ class Env:
 
         self._network_version = 0
 
-        self._naive_agent = NaiveAgent(color=BLACK)
+        self._evaluator_agent = FastAgent(color=BLACK)
 
         # Training
         if conf['mode'] in [0, 1, 6, 7]:
@@ -48,12 +48,12 @@ class Env:
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
 
         if conf['mode'] == 9:
-            self._agent_1 = NaiveAgent(color=BLACK)
+            self._agent_1 = FastAgent(color=BLACK)
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
 
         if conf['mode'] == 10:
-            self._agent_1 = NaiveAgent(color=BLACK)
-            self._agent_2 = NaiveAgent(color=WHITE)
+            self._agent_1 = FastAgent(color=BLACK)
+            self._agent_2 = FastAgent(color=WHITE)
 
         if conf['mode'] in [0, 1, 7]:
             self._agent_eval = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
@@ -96,9 +96,10 @@ class Env:
             if result == 'continue':
                 if record is not None:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
+
+                self._evaluator_agent.color = self._board.current_player()
                 self._board.move(self._board.current_player(), action, info)
-                # print(self._naive_agent.evaluate(self._obs()))
-                # print(self._naive_agent.evaluate(self._obs()))
+                print(self._evaluator_agent.evaluate(self._obs()))
 
                 if value is not None:
                     self._value_list.append(float(value))
