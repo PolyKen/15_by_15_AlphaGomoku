@@ -25,6 +25,11 @@ class Network:
         # Define Network
         self._build_network()
 
+        # the following three lines are for a special bug, see also: https://www.jianshu.com/p/c84ae0527a3f
+        temp_board = np.array([[0 for _ in range(conf['board_size'])] for _ in range(conf['board_size'])])
+        temp_board[0][0] = BLACK
+        self.predict(board=temp_board, color=WHITE, last_move=(0, 0))
+
         # The location of the file which stores the parameters of the network
         self._net_para_file = conf['net_para_file']
         self._fit_history_file = conf['fit_history_file']

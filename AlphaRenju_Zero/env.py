@@ -14,6 +14,7 @@ class Env:
 
         self._conf = conf
         self._is_self_play = conf['is_self_play']
+        self._show_score = conf['show_score']
 
         self._rules = Rules(conf)
         self._renderer = Renderer(conf['screen_size'], conf['board_size']) if conf['display'] else None
@@ -82,7 +83,27 @@ class Env:
         while True:
             if self._is_self_play:
                 self._agent_1.color = self._board.current_player()
-            action, pi, prior_prob, value = self._current_agent().play(self._obs(), self._board.last_move(), self._board.stone_num())
+
+            # input.obs: current board
+            # input.action: the last move of current board
+            # input.stone_num: the stone num of current board
+            # output.action: the action given by current agent
+            # output.pi: the action distribution given by current agent, it will be added in the game record
+            # output.prior_prob: the prior probability of this action given by the neural network of current agent
+            # output.value: the winning rate given by the current agent
+            action, pi, prior_prob, value = self._current_agent().play(obs=self._obs(), action=self._board.last_move(),
+                                                                       stone_num=self._board.stone_num())
+
+            # show score: an agent will work as an evaluator, giving its evaluation of each possible position
+            if self._show_score:
+                legal_moves = self._evaluator_agent.generate(self._obs(), all=True)
+                score_list = []
+                for legal_move in legal_moves:
+                    temp_board = np.copy(self._obs())
+                    temp_board[legal_move[0]][legal_move[1]] = self._board.current_player()
+                    score = self._evaluator_agent.evaluate(temp_board)
+                    score_list.append(score)
+                self._board.show_scores(action_list=legal_moves, score_list=score_list)
 
             if prior_prob is None:
                 info = '1_2'
@@ -97,9 +118,9 @@ class Env:
                 if record is not None:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)
 
-                self._evaluator_agent.color = self._board.current_player()
+                # self._evaluator_agent.color = self._board.current_player()
                 self._board.move(self._board.current_player(), action, info)
-                print(self._evaluator_agent.evaluate(self._obs()))
+                # print(self._evaluator_agent.evaluate(self._obs()))
 
                 if value is not None:
                     self._value_list.append(float(value))
@@ -152,7 +173,7 @@ class Env:
             obs, col, last_move, pi, z = human_play_data_set.get_sample(1)
             print('> ' + str(len(obs)) + ' positions of data loaded')
             for i in range(50):
-                print('supervise stage = ' + str(i+1))
+                print('supervise stage = ' + str(i + 1))
                 new_obs = obs.copy()
                 new_col = col.copy()
                 new_last_move = last_move.copy()
@@ -165,12 +186,12 @@ class Env:
         # training based on self-play
         data_set = DataSet()
         for epoch in range(self._epoch):
-            print('> epoch = ' + str(epoch+1))
+            print('> epoch = ' + str(epoch + 1))
 
             # self-play
             for i in range(self._games_num):
                 record = GameRecord()
-                print('> game num = ' + str(i+1))
+                print('> game num = ' + str(i + 1))
                 self.run(use_stochastic_policy=True, record=record)
                 data_set.add_record(record)
 
@@ -192,7 +213,7 @@ class Env:
         with open(hist_path, 'a') as f:
             f.write(str(self._loss_list))
         # plot loss
-        x = range(1, len(self._loss_list)+1)
+        x = range(1, len(self._loss_list) + 1)
         y = self._loss_list
         plt.plot(x, y)
         plt.xlabel('epoch')
@@ -216,7 +237,7 @@ class Env:
         end = False
 
         # new model plays BLACK
-        for i in range(int(total_num/2)):
+        for i in range(int(total_num / 2)):
             result = self.run(use_stochastic_policy=True, record=None)
             if result == BLACK:
                 new_model_wins_num += 1
@@ -224,7 +245,7 @@ class Env:
                 old_model_wins_num += 1
             if result == 0:
                 draw_num += 1
-            print('> eval game ' + str(i+1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
+            print('> eval game ' + str(i + 1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
             if new_model_wins_num > (total_num - draw_num) / 2:
                 end = True
                 # break
@@ -238,7 +259,7 @@ class Env:
         self._agent_2.color = WHITE
 
         if not end:
-            for i in range(int(total_num/2)):
+            for i in range(int(total_num / 2)):
                 result = self.run(use_stochastic_policy=True, record=None)
                 if result == BLACK:
                     old_model_wins_num += 1
@@ -246,7 +267,8 @@ class Env:
                     new_model_wins_num += 1
                 if result == 0:
                     draw_num += 1
-                print('> eval game ' + str(i+1+int(total_num/2)) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
+                print('> eval game ' + str(i + 1 + int(total_num / 2)) + ' , score: ' + str(
+                    new_model_wins_num) + ':' + str(old_model_wins_num))
                 if new_model_wins_num > (total_num - draw_num) / 2:
                     pass
                     # break
@@ -279,7 +301,7 @@ class Env:
 
         for i in range(self._games_num):
             record = GameRecord()
-            print('> game num = ' + str(i+1))
+            print('> game num = ' + str(i + 1))
             self.run(use_stochastic_policy=False, record=record)
             human_data_set.add_record(record)
             human_data_set.save(self._conf['human_play_data_path'])
@@ -290,7 +312,7 @@ class Env:
 
         for i in range(self._games_num):
             record = GameRecord()
-            print('> game num = ' + str(i+1))
+            print('> game num = ' + str(i + 1))
             self.run(use_stochastic_policy=False, record=record)
             data_set.add_record(record)
             if i % 10 == 0:
@@ -301,12 +323,12 @@ class Env:
     def collect_self_play_data(self):
         name = os.getenv('computername')
         for epoch in range(self._epoch):
-            print('> epoch = ' + str(epoch+1))
+            print('> epoch = ' + str(epoch + 1))
             data_set = DataSet()
             path = self._conf['self_play_data_path'] + str(epoch + 1) + '_' + str(name) + '_'
             for i in range(self._games_num):
                 record = GameRecord()
-                print('> game num = ' + str(i+1))
+                print('> game num = ' + str(i + 1))
                 self.run(use_stochastic_policy=True, record=record)
                 data_set.add_record(record)
                 data_set.save(path)
@@ -323,7 +345,7 @@ class Env:
                 path = root + '/' + filename
                 path = path[0:-7]
                 if path != last_path:
-                    print('> data no.' + str(count+1))
+                    print('> data no.' + str(count + 1))
                     count += 1
                     print('> external data path = ' + path)
                     last_path = path

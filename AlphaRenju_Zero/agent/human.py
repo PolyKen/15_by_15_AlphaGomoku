@@ -9,7 +9,7 @@ class HumanAgent(Agent):
         self._color = color
         self._board_size = board_size
 
-    def play(self, *args):
+    def play(self, obs, action, stone_num, *args):
         x, y = self._renderer.ask_for_click()
         ind = coordinate2index((x, y), self._board_size)
         pi = np.zeros(self._board_size * self._board_size)

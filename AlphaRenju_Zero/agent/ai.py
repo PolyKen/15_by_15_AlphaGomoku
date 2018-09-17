@@ -100,24 +100,17 @@ class NaiveAgent(AI):
         pos_list = self._generate(obs, all=True)
         alpha, beta = MIN, MAX
         best_action_list = []
-        tasks = []
-        # score_dict = dict()
         for i, j in pos_list:
             new_obs = obs.copy()
             new_obs[i][j] = self.color
             value = self._min(new_obs, (i, j), alpha, beta, self._depth - 1)
             self._action_list.append((int(i), int(j)))
-            # tasks.append(self._min_coroutine(new_obs, (i, j), alpha, beta, self._depth - 1, score_dict))
             self._score_list.append(value)
             if value > alpha:
                 alpha = value
                 best_action_list = [(int(i), int(j))]
             elif value == alpha:
                 best_action_list.append((int(i), int(j)))
-
-        # self._loop.run_until_complete(asyncio.wait(tasks))
-
-        # best_action_list = get_best_action_list(score_dict)
 
         ind = np.random.choice([i for i in range(len(best_action_list))])
         action = best_action_list[ind]
@@ -362,13 +355,13 @@ class FastAgent(AI):
             self._last_move_list.append(last_move)
 
         size = obs.shape[0]
-        if sum(sum(abs(obs))) == 0:                     # 若AI执黑，第一步一定下在棋盘中央位置
+        if sum(sum(abs(obs))) == 0:  # 若AI执黑，第一步一定下在棋盘中央位置
             pi = [0 for _ in range(size * size)]
             pi[int((size * size) / 2)] = 1
             self._last_move_list.append((7, 7))
             return (7, 7), pi, None, None
 
-        pos_list = self._generate(obs, all=True)        # 第一层生成的搜索点最多
+        pos_list = self.generate(obs, all=True)  # 第一层生成的搜索点最多
         alpha, beta = MIN, MAX
         tasks = []
         score_dict = dict()
@@ -380,7 +373,7 @@ class FastAgent(AI):
         self._loop.run_until_complete(asyncio.wait(tasks))
 
         best_action_list = get_best_action_list(score_dict)
-        print_score_dict(score_dict)
+        # print_score_dict(score_dict)
 
         ind = np.random.choice([i for i in range(len(best_action_list))])
         action = best_action_list[ind]
@@ -404,7 +397,7 @@ class FastAgent(AI):
             self._last_move_list.pop()
             return score
 
-        pos_list = self._generate(obs)
+        pos_list = self.generate(obs)
 
         for i, j in pos_list:
             obs[i][j] = self.color
@@ -427,7 +420,7 @@ class FastAgent(AI):
             self._last_move_list.pop()
             return score
 
-        pos_list = self._generate(obs)
+        pos_list = self.generate(obs)
 
         for i, j in pos_list:
             obs[i][j] = -self.color
@@ -454,7 +447,7 @@ class FastAgent(AI):
             c = obs[x][y]
             pt_score = self.evaluate_point(obs, (x, y))
             if c != self.color:
-                pt_score += 0.1
+                pt_score += 0.5
                 if abs(score) < pt_score:
                     score = -pt_score
             else:
@@ -554,11 +547,12 @@ class FastAgent(AI):
 
         return max_score
 
-    def _generate(self, obs, all=False):
+    def generate(self, obs, all=False):
         good_pts = []
         good_scores = []
         near = []
         scores = []
+        types = []  # for debug
         dir_set = [(1, 0), (1, -1), (0, -1), (-1, -1), (-1, 0), (-1, 1), (0, 1), (1, 1)]
 
         if all:
@@ -583,6 +577,12 @@ class FastAgent(AI):
                         if score >= score_3_live:
                             good_pts.append(pos)
                             good_scores.append(score)
+                            if score_atk > score_def:
+                                types.append('atk')
+                            if score_atk < score_def:
+                                types.append('def')
+                            if score_atk == score_def:
+                                types.append('same')
                             if score_atk == score_5:
                                 break
                         else:
@@ -601,7 +601,10 @@ class FastAgent(AI):
             near = lst[:, lst[1].argsort()][0]
             pos_list = list(near)
             if all:
-                print('best score:', max(scores), 'best pos generated:', pos_list[-1])
+                try:
+                    print('best score:', max(scores), 'best pos generated:', pos_list[-1])
+                except ValueError:
+                    pass
 
         pos_list.reverse()
         return pos_list

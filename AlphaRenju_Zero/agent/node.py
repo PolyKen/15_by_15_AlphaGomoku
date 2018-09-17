@@ -68,6 +68,8 @@ class Node:
         return next_node, action
         
     def expand(self, prior_prob, board_size=15):
+        if not self.is_leaf():
+            print('error: node.expand')
         for i in range(board_size*board_size):
             prob = prior_prob[i]
             self._children.append(Node(prob, self, -self.color, self._virtual_loss))

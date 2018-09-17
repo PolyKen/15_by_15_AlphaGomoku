@@ -114,4 +114,13 @@ class Board:
         else:
             return 2*self._round - 1
 
+    def legal_moves(self):
+        legal_moves = []
+        for i in range(self._board_size):
+            for j in range(self._board_size):
+                if self._board[i][j] == 0:
+                    legal_moves.append((i, j))
+        return legal_moves
 
+    def show_scores(self, action_list, score_list):
+        self._renderer.show_score(self.board(), action_list, score_list)

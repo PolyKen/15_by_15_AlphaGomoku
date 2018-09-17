@@ -54,8 +54,11 @@ class Renderer(threading.Thread):
         self._update_clear = False
 
         self._update_info = False
+        self._update_score = False
         self._info_surface_cache = []
         self._info_rect_cache = []
+        self._score_surface_cache = []
+        self._score_rect_cache = []
 
         self._is_waiting_for_click = False
         self._mouse_click_pos = None
@@ -88,12 +91,14 @@ class Renderer(threading.Thread):
                     print("click" + str(self._mouse_click_pos))
             if self._update_clear:
                 self._paint_background()
+            if self._update_read:
+                self._read(self._new_board)
             if self._update_move:
                 self._move(self._next_player, self._next_pos)
             if self._update_info:
                 self._show_info()
-            if self._update_read:
-                self._read(self._new_board)
+            if self._update_score:
+                self._show_score()
 
     def paint_background(self):
         self._update_clear = True
@@ -144,7 +149,6 @@ class Renderer(threading.Thread):
         elif player == -1:
             self._screen.blit(self._stone_white, position)
 
-        pygame.display.update()
         self._update_move = False
 
     def read(self, new_board):
@@ -155,6 +159,7 @@ class Renderer(threading.Thread):
 
     def _read(self, new_board):
         self._paint_background()
+        self._update_read = False
         for row in range(self._board_size):
             for col in range(self._board_size):
                 if new_board[row][col] == 1:
@@ -162,14 +167,39 @@ class Renderer(threading.Thread):
                 elif new_board[row][col] == -1:
                     self._move(-1, (row, col))
 
-        pygame.display.update()
-        self._update_read = False
-
     def ask_for_click(self):
         self._is_waiting_for_click = True
         while self._is_waiting_for_click:
             time.sleep(1e-4)
         return self._mouse_click_pos
+
+    def show_score(self, board, action_list, score_list):
+        self.read(board)
+        time.sleep(1e-2)
+        large_font = pygame.font.SysFont('Calibri', size=20)
+        red = (255, 0, 0)
+
+        for a_s in list(zip(action_list, score_list)):
+            action, score = a_s[0], a_s[1]
+            if self._board_size == 8:
+                position = (int((action[1] + 0.63) * self._spacing), int((action[0] + 0.76) * self._spacing))
+            if self._board_size == 15:
+                position = (int((action[1] + 0.80) * self._spacing), int((action[0] + 0.72) * self._spacing))
+
+            self._score_surface_cache.append(large_font.render(str(score), True, red))
+            self._score_rect_cache.append(position)
+
+        self._update_score = True
+
+    def _show_score(self):
+        size = len(self._score_rect_cache)
+        for i in range(size):
+            self._screen.blit(self._score_surface_cache[i], self._score_rect_cache[i])
+        self._score_surface_cache = []
+        self._score_rect_cache = []
+
+        pygame.display.update()
+        self._update_score = False
 
     def show_info(self, info, player, action):
         infos = info.split('_')

@@ -90,10 +90,13 @@ class Config(dict):
         self['careful_stage'] = 6
 
         # number of threads
-        self['coroutine_num'] = 128
+        self['threading_num'] = 16
 
         # virtual loss
         self['virtual_loss'] = 1
+
+        # show evaluation score given by agent
+        self['show_score'] = False
 
         self.update(**kwargs)
 
@@ -113,13 +116,13 @@ class Config(dict):
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 2
-            self['simulation_times'] = 1600
+            self['simulation_times'] = 400
             print('> AI vs Human mode')
         if mode == 2.5:
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 2.5
-            self['simulation_times'] = 1600
+            self['simulation_times'] = 400
             print('> AI vs Human mode')
         if mode == 3:
             self['display'] = True
@@ -130,7 +133,7 @@ class Config(dict):
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 4
-            self['simulation_times'] = 1600
+            self['simulation_times'] = 400
             print('> AI vs AI mode')
         if mode == 5:
             self['display'] = True
