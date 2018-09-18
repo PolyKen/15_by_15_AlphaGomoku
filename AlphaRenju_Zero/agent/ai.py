@@ -14,6 +14,7 @@ score_4 = 4
 score_double_3_live = 3.8
 score_3_live = 3.5
 score_3 = 3
+score_double_2_live = 2.8
 score_2_live = 2.5
 score_2 = 2
 
@@ -75,7 +76,7 @@ class MCTSAgent(AI):
 
 
 class FastAgent(AI):
-    def __init__(self, color, depth=2):  # depth must be even
+    def __init__(self, color, depth=1):  # depth must be even
         AI.__init__(self, color)
         self._loop = asyncio.get_event_loop()
         self._action_list = []
@@ -134,14 +135,21 @@ class FastAgent(AI):
             if depth == 0:
                 score_atk, score_def = self.evaluate(obs)
                 self._last_move_list.pop()
-                score = score_atk if score_atk > score_def else -score_def
+                if score_def < score_4:
+                    score = score_atk if score_atk > score_def else -score_def
+                else:
+                    if score_atk == score_5:
+                        score = score_5
+                    else:
+                        score = -score_5
+                x, y = int(last_move[0]), int(last_move[1])
+                score_dict[(x, y)] = score
                 return score
 
             pos_list = self.generate(obs)
             for i, j in pos_list:
                 obs[i][j] = -self.color
                 value = self._max(obs, (i, j), alpha, _beta, depth - 1)
-                # print((i, j), value)
                 if value < _beta:
                     _beta = value
                 obs[i][j] = 0
@@ -233,7 +241,7 @@ class FastAgent(AI):
 
         for dir in dir_set:
             score = 0
-            count = 1
+            count_1, count_2 = 1, 1
             consecutive_count = 1
             space_1, space_2 = 0, 0
             block_1, block_2 = 0, 0
@@ -242,7 +250,7 @@ class FastAgent(AI):
             for k in range(1, 5):
                 if i + k * dir[0] in range(0, 15) and j + k * dir[1] in range(0, 15):
                     if obs[i + k * dir[0]][j + k * dir[1]] == color:
-                        count += 1
+                        count_1 += 1
                         if consecutive_flag:
                             consecutive_count += 1
                     if obs[i + k * dir[0]][j + k * dir[1]] == -color:
@@ -260,7 +268,7 @@ class FastAgent(AI):
             for k in range(1, 5):
                 if i - k * dir[0] in range(0, 15) and j - k * dir[1] in range(0, 15):
                     if obs[i - k * dir[0]][j - k * dir[1]] == color:
-                        count += 1
+                        count_2 += 1
                         if consecutive_flag:
                             consecutive_count += 1
                     if obs[i - k * dir[0]][j - k * dir[1]] == -color:
@@ -272,6 +280,11 @@ class FastAgent(AI):
                         consecutive_flag = False
                         if space_2 == 2:
                             break
+
+            if space_1 > 0 and space_2 > 0:
+                count = max(count_1, count_2)
+            else:
+                count = count_1 + count_2 - 1
 
             if count > max_count:
                 max_count = count
@@ -294,15 +307,14 @@ class FastAgent(AI):
                 elif block_1 == 0 or block_2 == 0:
                     score = score_2
 
+            if max_score == score_2_live and score == score_2_live:
+                score = score_double_2_live
             if max_score == score_3_live and score == score_3_live:
                 score = score_double_3_live
-                # print('double 3!')
             if max_score == score_4 and score == score_3_live:
                 score = score_4_and_3_live
-                # print('4 + live3!')
             if max_score == score_3_live and score == score_4:
                 score = score_4_and_3_live
-                # print('4 + live3!')
 
             if score > max_score:
                 max_score = score
@@ -345,6 +357,7 @@ class FastAgent(AI):
                         obs[pos[0]][pos[1]] = 0
 
         if len(good_pts) > 0 and max(good_scores) >= score_4:
+            print('good')
             pts = good_pts
             scores = good_scores
         lst = np.array([pts, scores])
