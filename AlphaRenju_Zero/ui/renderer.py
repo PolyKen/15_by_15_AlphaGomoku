@@ -1,6 +1,7 @@
 from sys import exit
 from ..rules import *
 import time
+
 display_mode = True
 use_dialog = True
 try:
@@ -18,7 +19,6 @@ try:
 except ImportError:
     print('ERROR: module [threading] not found')
     display_mode = False
-
 
 image_path = 'AlphaRenju_Zero/ui/image/'
 
@@ -186,7 +186,7 @@ class Renderer(threading.Thread):
             if self._board_size == 15:
                 position = (int((action[1] + 0.80) * self._spacing), int((action[0] + 0.72) * self._spacing))
 
-            self._score_surface_cache.append(large_font.render(str(score), True, red))
+            self._score_surface_cache.append(large_font.render(str(round(score, 1)), True, red))
             self._score_rect_cache.append(position)
 
         self._update_score = True
