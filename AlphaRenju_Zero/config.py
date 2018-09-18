@@ -1,5 +1,6 @@
 decay = 0.9
 
+
 class Config(dict):
     def __init__(self, **kwargs):
         # mode   1: training mode, 2: AI vs Human, 3: Human vs Human, 0: Debug
@@ -40,10 +41,10 @@ class Config(dict):
 
         # epoch: number of games played to train
         self['epoch'] = 300
-        
+
         # sample percentage
         self['sample_percentage'] = 1
-        
+
         # number of games in each training epoch
         self['games_num'] = 1000
 
@@ -66,8 +67,12 @@ class Config(dict):
         self['human_play_data_path'] = 'AlphaRenju_Zero/dataset/human_play_data/human_' + str(self['board_size']) + '_'
 
         # self play data path
-        self['self_play_data_path'] = 'AlphaRenju_Zero/dataset/self_play_data/self_play_' + str(self['board_size']) + '_'
-        
+        self['self_play_data_path'] = 'AlphaRenju_Zero/dataset/self_play_data/self_play_' + str(
+            self['board_size']) + '_'
+
+        # generated data path
+        self['generated_data_path'] = 'AlphaRenju_Zero/dataset/generated_data/gen_'
+
         # use previous model
         self['use_previous_model'] = True
 
@@ -76,7 +81,7 @@ class Config(dict):
 
         # epoch from which evaluation starts
         self['evaluate_start_epoch'] = 1
-        
+
         # Mini-Batch Size
         self['mini_batch_size'] = 512
 
@@ -96,7 +101,7 @@ class Config(dict):
         self['virtual_loss'] = 1
 
         # show evaluation score given by agent
-        self['show_score'] = False
+        self['show_score'] = True
 
         self.update(**kwargs)
 
@@ -105,7 +110,8 @@ class Config(dict):
             self[key] = kwargs[key]
 
     def set_mode(self, mode):
-        if mode not in [1, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 0]:
+        if mode not in [1, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0]:
+            print('> Error: mode not found!')
             mode = 1
         if mode == 1:
             self['display'] = False
@@ -169,11 +175,26 @@ class Config(dict):
             self['is_self_play'] = False
             self['mode'] = 10
             print('> AI vs AI(NaiveAgent) mode')
+        if mode == 11:
+            self['display'] = False
+            self['is_self_play'] = False
+            self['mode'] = 11
+            print('> Train on generated data mode')
+            self['simulation_times'] = 1600
+            self['games_num'] = 50
+            self['epoch'] = 100
+        if mode == 12:
+            self['display'] = True
+            self['is_self_play'] = False
+            self['mode'] = 6
+            self['games_num'] = 30
+            self['epoch'] = 20
+            print('> Collect self play data mode')
         if mode == 0:
             self['display'] = True
             self['is_self_play'] = True
             self['mode'] = 0
-            self['simulation_times'] = 400
+            self['simulation_times'] = 100
             self['games_num'] = 3
             self['epoch'] = 2
             print('> Debug mode')

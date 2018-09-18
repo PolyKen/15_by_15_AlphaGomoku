@@ -8,7 +8,8 @@ warnings.filterwarnings("ignore")
 print('> Please enter the mode: (1: Training, 2: AI vs Human, 3: Human vs Human, '
       '4: AI vs AI, 5: Collect human play data, 6: Collect self play data, '
       '7: Train on external data, 8: Collect human vs AI play data mode, '
-      '9: AI(NaiveAgent) vs Human mode, 10: AI vs AI(NaiveAgent) mode)')
+      '9: AI(NaiveAgent) vs Human mode, 10: AI vs AI(NaiveAgent) mode), '
+      '11: Train on generated data, 12: Collect self play data(Fast AI)')
 mode = int(input('> mode = '))
 
 if mode == 2:
@@ -29,9 +30,11 @@ if mode == 4:
     env.run(use_stochastic_policy=True)
 if mode == 5:
     env.collect_human_data()
-if mode == 6:
+if mode in [6, 12]:
     env.collect_self_play_data()
 if mode == 7:
     env.train_on_external_data()
 if mode == 8:
     env.collect_human_vs_ai_data()
+if mode == 11:
+    env.train_on_generated_data()
