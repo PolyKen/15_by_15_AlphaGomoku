@@ -2,7 +2,6 @@ from .agent import Agent
 from ..network.network import *
 from .mcts import *
 from ..utils import *
-import asyncio
 
 MIN = -99999999
 MAX = 99999999
@@ -14,7 +13,7 @@ score_4 = 4
 score_double_3_live = 3.8
 score_3_live = 3.5
 score_3 = 3
-score_double_2_live = 2.8
+score_double_2_live = 3
 score_2_live = 2.5
 score_2 = 2
 
@@ -78,12 +77,12 @@ class MCTSAgent(AI):
 class FastAgent(AI):
     def __init__(self, color, depth=1):  # depth must be even
         AI.__init__(self, color)
-        self._loop = asyncio.get_event_loop()
         self._action_list = []
         self._score_list = []
         self._depth = depth
         self._cut_count = 0
         self._last_move_list = []
+        self._atk_def_ratio = 0.1
 
     def play(self, obs, action, stone_num, *args):
         self._action_list = []
@@ -137,10 +136,16 @@ class FastAgent(AI):
                 self._last_move_list.pop()
                 # 对于只搜一层的情况下，必须要教会AI防守活三和冲四。这里的做法是手动提高对方活三和冲四的分数
                 if score_def < score_3_live:
-                    score = score_atk if score_atk > score_def else -score_def
+                    if score_atk > score_def:
+                        score = score_atk - self._atk_def_ratio * score_def
+                    else:
+                        score = -score_def + self._atk_def_ratio * score_atk
                 else:
                     if score_def == score_3_live:
-                        score = score_atk if score_atk >= score_4 else -score_4
+                        if score_atk >= score_4:
+                            score = score_atk - self._atk_def_ratio * score_def
+                        else:
+                            score = -score_4
                     else:
                         # 为了防止AI在对方有活四的情况下放弃治疗
                         if score_def >= score_4_live:
@@ -257,6 +262,8 @@ class FastAgent(AI):
             for k in range(1, 5):
                 if i + k * dir[0] in range(0, 15) and j + k * dir[1] in range(0, 15):
                     if obs[i + k * dir[0]][j + k * dir[1]] == color:
+                        if space_1 == 2:
+                            break
                         count_1 += 1
                         if consecutive_flag:
                             consecutive_count_1 += 1
@@ -277,6 +284,8 @@ class FastAgent(AI):
             for k in range(1, 5):
                 if i - k * dir[0] in range(0, 15) and j - k * dir[1] in range(0, 15):
                     if obs[i - k * dir[0]][j - k * dir[1]] == color:
+                        if space_2 == 2:
+                            break
                         count_2 += 1
                         if consecutive_flag:
                             consecutive_count_2 += 1
