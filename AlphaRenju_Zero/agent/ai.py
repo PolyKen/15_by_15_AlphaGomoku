@@ -154,6 +154,7 @@ class FastAgent(AI):
                             score = score_5 if score_atk == score_5 else -score_4_live
                 x, y = int(last_move[0]), int(last_move[1])
                 score_dict[(x, y)] = score
+                print((x, y), 'atk=', score_atk, 'def=', score_def, 'total=', score)
                 return score
 
             pos_list = self.generate(obs)

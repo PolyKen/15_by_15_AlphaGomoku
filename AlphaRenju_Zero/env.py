@@ -124,6 +124,8 @@ class Env:
                         score = score_atk if score_atk > score_def else -score_def
                         score_list.append(score)
                     self._board.show_scores(action_list=legal_moves, score_list=score_list)
+            else:
+                prior_prob, value = None, None
 
             if prior_prob is None:
                 info = '1_2'
