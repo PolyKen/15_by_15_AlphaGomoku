@@ -117,6 +117,7 @@ class Config(dict):
             self['display'] = False
             self['is_self_play'] = True
             self['mode'] = 1
+            self['show_score'] = False
             print('> Training mode')
         if mode == 2:
             self['display'] = True
@@ -153,12 +154,14 @@ class Config(dict):
             self['mode'] = 6
             self['games_num'] = 30
             self['epoch'] = 20
+            self['show_score'] = False
             print('> Collect self play data mode')
         if mode == 7:
             self['display'] = False
             self['is_self_play'] = True
             self['mode'] = 7
             self['is_supervised'] = True
+            self['show_score'] = False
             print('> Train on external data mode')
         if mode == 8:
             self['display'] = True
@@ -183,12 +186,14 @@ class Config(dict):
             self['simulation_times'] = 1600
             self['games_num'] = 50
             self['epoch'] = 100
+            self['show_score'] = False
         if mode == 12:
-            self['display'] = True
+            self['display'] = False
             self['is_self_play'] = False
             self['mode'] = 12
             self['games_num'] = 30
             self['epoch'] = 20
+            self['show_score'] = False
             print('> Collect self play data mode')
         if mode == 0:
             self['display'] = True
@@ -197,6 +202,7 @@ class Config(dict):
             self['simulation_times'] = 100
             self['games_num'] = 3
             self['epoch'] = 2
+            self['show_score'] = True
             print('> Debug mode')
 
     def print_current_config(self):

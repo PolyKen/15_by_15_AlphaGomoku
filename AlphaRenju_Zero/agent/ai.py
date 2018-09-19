@@ -83,6 +83,7 @@ class FastAgent(AI):
         self._cut_count = 0
         self._last_move_list = []
         self._atk_def_ratio = 0.1
+        self._show_info = False
 
     def play(self, obs, action, stone_num, *args):
         self._action_list = []
@@ -98,7 +99,8 @@ class FastAgent(AI):
             return (7, 7), pi, None, None
 
         pos_list = self.generate(obs, all=True)
-        print('position generated: ', pos_list)
+        if self._show_info:
+            print('position generated: ', pos_list)
         alpha, beta = MIN, MAX
         score_dict = dict()
         thread_list = []
@@ -116,7 +118,8 @@ class FastAgent(AI):
             thr.join()
 
         best_action_list = get_best_action_list(score_dict)
-        print('best action list:', best_action_list, ' score = ', score_dict[best_action_list[0]])
+        if self._show_info:
+            print('best action list:', best_action_list, ' score = ', score_dict[best_action_list[0]])
 
         ind = np.random.choice([i for i in range(len(best_action_list))])
         action = best_action_list[ind]
@@ -154,7 +157,8 @@ class FastAgent(AI):
                             score = score_5 if score_atk == score_5 else -score_4_live
                 x, y = int(last_move[0]), int(last_move[1])
                 score_dict[(x, y)] = score
-                print((x, y), 'atk=', score_atk, 'def=', score_def, 'total=', score)
+                if self._show_info:
+                    print((x, y), 'atk=', score_atk, 'def=', score_def, 'total=', score)
                 return score
 
             pos_list = self.generate(obs)
@@ -441,7 +445,7 @@ class FastAgent(AI):
                         obs[pos[0]][pos[1]] = 0
 
         if len(good_pts) > 0 and max(good_scores) >= score_4:
-            print('good')
+            # print('good')
             pts = good_pts
             scores = good_scores
         lst = np.array([pts, scores])
