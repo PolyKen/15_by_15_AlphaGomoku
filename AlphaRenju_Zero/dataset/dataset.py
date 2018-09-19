@@ -49,7 +49,7 @@ class DataSet:
         z_path = path + 'z'
         np.save(z_path, z)
 
-        print(str(len(z)) + ' positions of data saved')
+        print('> ' + str(len(z)) + ' positions of data saved')
 
     def load(self, path):
         if not os.path.exists(path + 'obs.npy'):

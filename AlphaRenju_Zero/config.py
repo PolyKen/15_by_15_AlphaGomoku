@@ -193,7 +193,7 @@ class Config(dict):
             self['mode'] = 12
             self['games_num'] = 30
             self['epoch'] = 20
-            self['show_score'] = False
+            self['show_score'] = True
             print('> Collect self play data mode')
         if mode == 0:
             self['display'] = True
