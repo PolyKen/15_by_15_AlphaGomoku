@@ -186,7 +186,7 @@ class Config(dict):
         if mode == 12:
             self['display'] = True
             self['is_self_play'] = False
-            self['mode'] = 6
+            self['mode'] = 12
             self['games_num'] = 30
             self['epoch'] = 20
             print('> Collect self play data mode')
