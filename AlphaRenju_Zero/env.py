@@ -110,7 +110,22 @@ class Env:
                     self._board.show_scores(action_list=legal_moves, score_list=score_list)
                     prior_prob, value = None, None
                 except AttributeError:
-                    pass
+                    print('using evaluator agent')
+                    legal_moves = self._evaluator_agent.generate(obs=self._obs(), all=True)
+                    print(legal_moves)
+                    score_list = list()
+                    for i in range(len(legal_moves)):
+                        x, y = legal_moves[i]
+                        temp_board = np.copy(self._obs())
+                        temp_board[x][y] = self._current_agent().color
+                        self._evaluator_agent.color = self._current_agent().color
+                        score_atk, score_def = self._evaluator_agent.evaluate(temp_board)
+                        print('pos:', (x, y), ' atk:', score_atk, ' def:', score_def)
+                        score = score_atk if score_atk > score_def else -score_def
+                        score_list.append(score)
+                    self._board.show_scores(action_list=legal_moves, score_list=score_list)
+            else:
+                prior_prob, value = None, None
 
             if prior_prob is None:
                 info = '1_2'
