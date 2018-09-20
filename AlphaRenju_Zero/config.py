@@ -78,7 +78,7 @@ class Config(dict):
         self['use_previous_model'] = True
 
         # number of games played for evaluation, must be an even number!!!
-        self['evaluate_games_num'] = 30
+        self['evaluate_games_num'] = 20
 
         # epoch from which evaluation starts
         self['evaluate_start_epoch'] = 1
@@ -192,7 +192,7 @@ class Config(dict):
             self['display'] = False
             self['is_self_play'] = False
             self['mode'] = 12
-            self['games_num'] = 30
+            self['games_num'] = 100
             self['epoch'] = 20
             self['show_score'] = True
             print('> Collect self play data mode')

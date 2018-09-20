@@ -278,10 +278,12 @@ class Env:
                 draw_num += 1
             print('> eval game ' + str(i + 1) + ' , score: ' + str(new_model_wins_num) + ':' + str(old_model_wins_num))
             if new_model_wins_num > (total_num - draw_num) / 2:
-                end = True
+                pass
+                # end = True
                 # break
             if old_model_wins_num > (total_num - draw_num) / 2:
-                end = True
+                pass
+                # end = True
                 # break
 
         # switch agents
@@ -367,7 +369,7 @@ class Env:
 
     def train_on_external_data(self):
         root, prefix = os.path.split(self._conf['self_play_data_path'])
-        postfix_pattern = r'self\_play\_8\_\d+\_[0-9a-zA-Z\_\-]+\_col\.npy'
+        postfix_pattern = r'self\_play\_15\_\d+\_[0-9a-zA-Z\_\-]+\_col\.npy'
         last_path = ''
         external_data_set = DataSet()
         count = 0
@@ -384,10 +386,11 @@ class Env:
                     obs, col, last_move, pi, z = external_data_set.get_sample(1)
                     self._agent_1.train(obs, col, last_move, pi, z)
                     external_data_set.clear()
-        self.evaluate()
+                    if self.evaluate():
+                        self._agent_1.save_model()
+                        self._network_version += 1
+                    print('> network version = ' + str(self._network_version))
         self._agent_1.save_model()
-        self._network_version += 1
-        print('> network version = ' + str(self._network_version))
 
     def _obs(self):
         return self._board.board()
