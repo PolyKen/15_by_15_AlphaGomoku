@@ -123,4 +123,5 @@ class Board:
         return legal_moves
 
     def show_scores(self, action_list, score_list):
-        self._renderer.show_score(self.board(), action_list, score_list)
+        if self._renderer is not None:
+            self._renderer.show_score(self.board(), action_list, score_list)

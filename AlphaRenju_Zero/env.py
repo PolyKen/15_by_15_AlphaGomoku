@@ -87,6 +87,7 @@ class Env:
 
         self._value_list = []
         Node.count = 0
+        max_score = 0
 
         while True:
             if self._is_self_play:
@@ -105,14 +106,13 @@ class Env:
             # show score: an agent will work as an evaluator, giving its evaluation of each possible position
             if self._show_score:
                 try:
-                    legal_moves = list(value.keys())
+                    legal_moves = list(value.keys())    # here value is score_dict
                     score_list = [value[legal_moves[i]] for i in range(len(legal_moves))]
                     self._board.show_scores(action_list=legal_moves, score_list=score_list)
                     prior_prob, value = None, None
                 except AttributeError:
-                    print('using evaluator agent')
+                    print('> using evaluator agent')
                     legal_moves = self._evaluator_agent.generate(obs=self._obs(), all=True)
-                    print(legal_moves)
                     score_list = list()
                     for i in range(len(legal_moves)):
                         x, y = legal_moves[i]
@@ -124,9 +124,15 @@ class Env:
                         score = score_atk if score_atk > score_def else -score_def
                         score_list.append(score)
                     self._board.show_scores(action_list=legal_moves, score_list=score_list)
+                try:
+                    max_score = max(max(score_list), -min(score_list))
+                except:
+                    max_score = 0
             else:
                 prior_prob, value = None, None
 
+
+            # show info
             if prior_prob is None:
                 info = '1_2'
             else:
@@ -136,6 +142,10 @@ class Env:
                 info = prior_prob + '_' + value
 
             result = self._check_rules(action)
+
+            if self._conf['mode'] == 12 and self._board.stone_num() >= 30 and max_score < score_3_live:
+                result = 'draw'
+
             if result == 'continue':
                 if record is not None:
                     record.add(self._obs(), self._board.current_player(), self._board.last_move(), pi)

@@ -5,6 +5,8 @@ from ..config import *
 
 class Node:
     count = 0
+    backup_count = 0
+    conflict_count = 0
 
     def __init__(self, prior_prob, parent, color, virtual_loss):
 
