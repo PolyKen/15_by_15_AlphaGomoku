@@ -22,7 +22,7 @@ class Config(dict):
         self['c_puct'] = 5
 
         # simulation times
-        self['simulation_times'] = 800
+        self['simulation_times'] = 400
 
         # initial tau
         self['initial_tau'] = 1
