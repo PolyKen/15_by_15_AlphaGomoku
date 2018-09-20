@@ -373,6 +373,7 @@ class Env:
         last_path = ''
         external_data_set = DataSet()
         count = 0
+        obs, col, last_move, pi, z = [], [], [], [], []
         for filename in os.listdir(root):
             if re.match(postfix_pattern, filename):
                 path = root + '/' + filename
@@ -383,10 +384,16 @@ class Env:
                     print('> external data path = ' + path)
                     last_path = path
                     external_data_set.load(path)
-                    obs, col, last_move, pi, z = external_data_set.get_sample(1)
+                    new_obs, new_col, new_last_move, new_pi, new_z = external_data_set.get_sample(1)
+                    obs.extend(new_obs)
+                    col.extend(new_col)
+                    last_move.extend(new_last_move)
+                    pi.extend(new_pi)
+                    z.extend(new_z)
+                    external_data_set.clear()
             if count % 5 == 0 and count != 0:
                 self._agent_1.train(obs, col, last_move, pi, z)
-                external_data_set.clear()
+                obs, col, last_move, pi, z = [], [], [], [], []
                 if self.evaluate():
                     self._agent_1.save_model()
                     self._network_version += 1

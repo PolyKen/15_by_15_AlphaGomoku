@@ -1,10 +1,6 @@
 from math import sqrt
 import numpy as np
 from ..config import *
-import threading
-
-
-lock = threading.Lock()
 
 
 class Node:
@@ -84,13 +80,11 @@ class Node:
 
     def backup(self, value):
         # remove virtual loss
-        lock.acquire()
-        try:
-            if self.select_num > 0:
-                self.select_num -= 1
-                self.N -= self._virtual_loss
-        finally:
-            lock.release()
+        if self.select_num > 0:
+            self.select_num -= 1
+            self.N -= self._virtual_loss
+            if self.N < 0:
+                self.N += self._virtual_loss
 
         self.N += 1
         self.W += value
