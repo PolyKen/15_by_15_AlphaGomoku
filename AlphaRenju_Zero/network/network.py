@@ -28,7 +28,9 @@ class Network:
         # the following three lines are for a special bug, see also: https://www.jianshu.com/p/c84ae0527a3f
         temp_board = np.array([[0 for _ in range(conf['board_size'])] for _ in range(conf['board_size'])])
         temp_board[0][0] = BLACK
+        print('> testing network ...')
         self.predict(board=temp_board, color=WHITE, last_move=(0, 0))
+        print('> test finished.')
 
         # The location of the file which stores the parameters of the network
         self._net_para_file = conf['net_para_file']
@@ -115,8 +117,12 @@ class Network:
         for i in range(size):
             if sum(sum(board_list[i])) == 0 and color_list[i] == WHITE:
                 print('error: network.train')
+                print(board_list[i])
+                print(color_list[i])
             if sum(sum(board_list[i])) == 1 and color_list[i] == BLACK:
                 print('error: network.train')
+                print(board_list[i])
+                print(color_list[i])
 
         # Data Augmentation through symmetric and self-rotation transformation
         board_aug = []
