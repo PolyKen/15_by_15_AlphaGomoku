@@ -8,7 +8,7 @@ def log(func):
         print('>> calling %s()' % func.__name__)
         result = func(*args, **kwargs)
         end = time.clock()
-        print('>> %s() time = %s' % (func.__name__, str(end - start)))
+        print('>> %s() time = %s' % (func.__name__, str(round(end - start, 3))))
         return result
 
     return wrapper
