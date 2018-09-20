@@ -197,6 +197,7 @@ class MCTS:
             thr = threading.Thread(target=target, name='thread_' + str(i + 1))
             thr.start()
             thread_list.append(thr)
+            time.sleep(1e-3)
         for thr in thread_list:
             thr.join()
 
