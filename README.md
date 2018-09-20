@@ -78,7 +78,7 @@ Modules needed
 - ***tensorflow***
 - ***keras***
 - ***pygame***
-- ***asyncio***
+- ***threading***
 - ***numpy***
 - ***matplotlib***
 - ***easygui*** (optional)
