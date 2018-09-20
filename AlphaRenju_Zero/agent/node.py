@@ -5,6 +5,8 @@ from ..config import *
 
 class Node:
     count = 0
+    backup_count = 0
+    conflict_count = 0
 
     def __init__(self, prior_prob, parent, color, virtual_loss):
 
@@ -28,6 +30,7 @@ class Node:
         self.color = color  # color of next player
         self.num = Node.count
         Node.count += 1
+
 
     def P(self):
         return self._P

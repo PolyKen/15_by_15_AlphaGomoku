@@ -98,7 +98,7 @@ class Config(dict):
         self['threading_num'] = 16
 
         # virtual loss
-        self['virtual_loss'] = 1
+        self['virtual_loss'] = 10
 
         # show evaluation score given by agent
         self['show_score'] = True
