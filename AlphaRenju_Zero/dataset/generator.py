@@ -11,10 +11,10 @@ class Generator:
 
     @log
     def generate_live_4_attack(self, sample_num=10000):
-        color = np.random.random_integers(0, 1) * 2 - 1
         record = GameRecord()
         i = 0
         while i < sample_num:
+            color = np.random.random_integers(0, 1) * 2 - 1
             board = self._empty_board()
             pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=4)
             if len(fix_pos_list) == 0:
@@ -41,10 +41,10 @@ class Generator:
 
     @log
     def generate_live_4_defend(self, sample_num=10000):
-        color = np.random.random_integers(0, 1) * 2 - 1
         record = GameRecord()
         i = 0
         while i < sample_num:
+            color = np.random.random_integers(0, 1) * 2 - 1
             board = self._empty_board()
             pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=4)
             if len(fix_pos_list) == 0:
@@ -71,10 +71,10 @@ class Generator:
 
     @log
     def generate_dead_4_oooo_defend(self, sample_num=10000):
-        color = np.random.random_integers(0, 1) * 2 - 1
         record = GameRecord()
         i = 0
         while i < sample_num:
+            color = np.random.random_integers(0, 1) * 2 - 1
             board = self._empty_board()
             pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=4)
             if len(fix_pos_list) == 0:
@@ -103,9 +103,9 @@ class Generator:
 
     @log
     def generate_dead_4_ooo_o_defend(self, sample_num=10000):
-        color = np.random.random_integers(0, 1) * 2 - 1
         record = GameRecord()
         for _ in range(sample_num):
+            color = np.random.random_integers(0, 1) * 2 - 1
             board = self._empty_board()
             pos_list, _ = self._generate_consecutive_line(consecutive_num=5)
             fix_pos_list = [pos_list[3]]
@@ -128,9 +128,9 @@ class Generator:
 
     @log
     def generate_dead_4_oo_oo_defend(self, sample_num=10000):
-        color = np.random.random_integers(0, 1) * 2 - 1
         record = GameRecord()
         for _ in range(sample_num):
+            color = np.random.random_integers(0, 1) * 2 - 1
             board = self._empty_board()
             pos_list, _ = self._generate_consecutive_line(consecutive_num=5)
             fix_pos_list = [pos_list[2]]
@@ -153,10 +153,10 @@ class Generator:
 
     @log
     def generate_live_3_ooo_attack(self, sample_num=10000):
-        color = np.random.random_integers(0, 1) * 2 - 1
         record = GameRecord()
         i = 0
         while i < sample_num:
+            color = np.random.random_integers(0, 1) * 2 - 1
             board = self._empty_board()
             pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=3)
             if len(fix_pos_list) == 0 or len(fix_pos_list) == 1:
@@ -179,10 +179,10 @@ class Generator:
 
     @log
     def generate_live_3_oo_o_attack(self, sample_num=10000):
-        color = np.random.random_integers(0, 1) * 2 - 1
         record = GameRecord()
         i = 0
         while i < sample_num:
+            color = np.random.random_integers(0, 1) * 2 - 1
             board = self._empty_board()
             pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=4)
             if len(fix_pos_list) == 0 or len(fix_pos_list) == 1:
@@ -207,10 +207,10 @@ class Generator:
 
     @log
     def generate_live_3_ooo_defend(self, sample_num=10000):
-        color = np.random.random_integers(0, 1) * 2 - 1
         record = GameRecord()
         i = 0
         while i < sample_num:
+            color = np.random.random_integers(0, 1) * 2 - 1
             board = self._empty_board()
             pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=3)
             if len(fix_pos_list) == 0 or len(fix_pos_list) == 1:
@@ -233,10 +233,10 @@ class Generator:
 
     @log
     def generate_live_3_oo_o_defend(self, sample_num=10000):
-        color = np.random.random_integers(0, 1) * 2 - 1
         record = GameRecord()
         i = 0
         while i < sample_num:
+            color = np.random.random_integers(0, 1) * 2 - 1
             board = self._empty_board()
             pos_list, fix_pos_list = self._generate_consecutive_line(consecutive_num=4)
             if len(fix_pos_list) == 0 or len(fix_pos_list) == 1:
@@ -296,19 +296,29 @@ class Generator:
         return np.array(empty_board)
 
     def _add_noise(self, board, next_player, max_stone_num, fix_pos_list):
-        stone_num = np.random.random_integers(4, max_stone_num)
+        stone_num = np.random.random_integers(5, max_stone_num)
         black_stone_ind = np.where(board == BLACK)
         white_stone_ind = np.where(board == WHITE)
         black_stone_num = len(black_stone_ind[0])
         white_stone_num = len(white_stone_ind[0])
+        black_origin, white_origin = black_stone_num, white_stone_num
 
         delta = black_stone_num - white_stone_num
+        # 假设下一步轮到黑棋走，要放x个黑棋，y个白棋，则x+b=y+w, x+y=stone_num
+        # x-y=-delta, 2x=stone_num-delta
+        # 假设下一步轮到白棋走，要放x个黑棋，y个白棋，则x+b+1=y+w, x+y=stone_num
+        # x-y=-delta-1, 2x=stone_num-delta-1
 
-        black_stone_num = int((stone_num - delta) / 2)
         if next_player == BLACK:
+            black_stone_num = int((stone_num - delta) / 2)
             white_stone_num = black_stone_num + delta
+            if black_stone_num + black_origin > white_stone_num + white_origin:
+                white_stone_num += 1
         else:
-            white_stone_num = black_stone_num + delta - 1
+            black_stone_num = int((stone_num - delta - 1) / 2)
+            white_stone_num = black_stone_num + delta
+            if black_stone_num + black_origin == white_stone_num + white_origin:
+                black_stone_num += 1
 
         while white_stone_num > 0:
             pos = list(np.random.random_integers(0, self._board_size - 1, 2))
