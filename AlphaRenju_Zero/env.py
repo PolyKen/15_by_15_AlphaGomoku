@@ -397,6 +397,7 @@ class Env:
             if count % 5 == 0 and count != 0:
                 self._agent_1.train(obs, col, last_move, pi, z)
                 obs, col, last_move, pi, z = [], [], [], [], []
+                count = 0
                 if self.evaluate():
                     self._agent_1.save_model()
                     self._network_version += 1
