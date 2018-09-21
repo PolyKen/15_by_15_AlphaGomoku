@@ -21,7 +21,7 @@ if mode == 2:
 conf = Config()
 conf.set_mode(mode)
 env = Env(conf)
-env.pack_external_data_set('temp')
+# env.pack_external_data_set('temp2')
 
 if mode == 1 or mode == 0:
     env.train()
