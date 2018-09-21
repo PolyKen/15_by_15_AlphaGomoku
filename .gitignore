@@ -4,3 +4,13 @@ __pycache__/
 *.pyc
 workspace.xml
 venv/
+gen_col.npy
+gen_last_move.npy
+gen_obs.npy
+gen_pi.npy
+gen_z.npy
+self_play_15_0_temp_col.npy
+self_play_15_0_temp_last_move.npy
+self_play_15_0_temp_obs.npy
+self_play_15_0_temp_pi.npy
+self_play_15_0_temp_z.npy
