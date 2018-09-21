@@ -40,10 +40,12 @@ class Env:
         if conf['mode'] == 3 or conf['mode'] == 5:
             self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
-            
+
         if conf['mode'] == 4:
             self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=False)
-            self._agent_2 = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
+            # self._agent_2 = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
+            self._agent_2 = FastAgent(color=WHITE)
+            # self._agent_1, self._agent_2 = self._agent_2, self._agent_1
 
         if conf['mode'] == 8:
             self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=False)
@@ -450,3 +452,24 @@ class Env:
             obs, col, last_move, pi, z = gen_data_set.get_sample(0.1, shuffle=True)
             self._agent_1.train(obs, col, last_move, pi, z)
             self._agent_1.save_model()
+
+    def mcts_vs_fast(self, game_num=20):
+        agent_1_win_num, agent_2_win_num = 0, 0
+
+        for i in range(int(game_num / 2)):
+            result = self.run(use_stochastic_policy=True)
+            if result == BLACK:
+                agent_1_win_num += 1
+            if result == WHITE:
+                agent_2_win_num += 1
+
+        self._agent_1, self._agent_2 = self._agent_2, self._agent_1
+
+        for i in range(int(game_num / 2)):
+            result = self.run(use_stochastic_policy=True)
+            if result == WHITE:
+                agent_2_win_num += 1
+            if result == BLACK:
+                agent_1_win_num += 1
+
+        print("agent 1 : agent 2 = " + str(agent_1_win_num) + " : " + str(agent_2_win_num))

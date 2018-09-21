@@ -27,7 +27,7 @@ if mode == 1 or mode == 0:
 if mode in [2, 2.5, 3, 9, 10]:
     env.run(use_stochastic_policy=False)
 if mode == 4:
-    env.run(use_stochastic_policy=True)
+    env.mcts_vs_fast(game_num=20)
 if mode == 5:
     env.collect_human_data()
 if mode in [6, 12]:

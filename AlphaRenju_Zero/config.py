@@ -7,7 +7,7 @@ class Config(dict):
         # mode   1: training mode, 2: AI vs Human, 3: Human vs Human, 0: Debug
         self['mode'] = 1
 
-        # display mode
+        # display modeo'n'fig
         self['display'] = False
 
         # screen size of renderer
@@ -138,8 +138,9 @@ class Config(dict):
             self['mode'] = 3
             print('> Human vs Human mode')
         if mode == 4:
-            self['display'] = True
+            self['display'] = False
             self['is_self_play'] = False
+            self['show_score'] = False
             self['mode'] = 4
             self['simulation_times'] = 400
             print('> AI vs AI mode')
