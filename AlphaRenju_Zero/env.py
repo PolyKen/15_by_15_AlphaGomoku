@@ -40,6 +40,7 @@ class Env:
         if conf['mode'] == 3 or conf['mode'] == 5:
             self._agent_1 = HumanAgent(self._renderer, color=BLACK, board_size=conf['board_size'])
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
+            
         if conf['mode'] == 4:
             self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=False)
             self._agent_2 = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
