@@ -402,7 +402,6 @@ class Env:
                     self._agent_1.save_model()
                     self._network_version += 1
                 print('> network version = ' + str(self._network_version))
-        self._agent_1.save_model()
 
     def _obs(self):
         return self._board.board()
@@ -421,7 +420,7 @@ class Env:
     # step 3. if MCTS Agent is stronger than fast AI, then begin to train on self-play games
     #         if MCTS Agent degenerated, go back to step 2
 
-    def get_generated_data_set(self, sample_num=10000):
+    def get_generated_data_set(self, sample_num=20000):
         gen = Generator(self._conf['board_size'], max_noise_stone_num=64)
         gen_data_set = DataSet()
 
