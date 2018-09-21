@@ -370,13 +370,18 @@ class Env:
                 data_set.save(path)
             data_set.save(path)
 
-    def train_on_external_data(self):
+    def pack_external_data_set(self, name):
+        path = self._conf['self_play_data_path'] + str(0) + '_' + str(name) + '_'
+        data_set = self.get_external_data_set()
+        data_set.save(path)
+
+    def temp(self):
         root, prefix = os.path.split(self._conf['self_play_data_path'])
-        postfix_pattern = r'self\_play\_15\_\d+\_[0-9a-zA-Z\_\-]+\_col\.npy'
+        postfix_pattern = r'self\_play\_15\_\d+\_temp+\_col\.npy'
         last_path = ''
         external_data_set = DataSet()
         count = 0
-        obs, col, last_move, pi, z = [], [], [], [], []
+        obs_list, col_list, last_move_list, pi_list, z_list = [], [], [], [], []
         for filename in os.listdir(root):
             if re.match(postfix_pattern, filename):
                 path = root + '/' + filename
@@ -388,21 +393,57 @@ class Env:
                     last_path = path
                     external_data_set.load(path)
                     new_obs, new_col, new_last_move, new_pi, new_z = external_data_set.get_sample(1)
-                    obs.extend(new_obs)
-                    col.extend(new_col)
-                    last_move.extend(new_last_move)
-                    pi.extend(new_pi)
-                    z.extend(new_z)
+                    obs_list.extend(new_obs[0])
+                    col_list.extend(new_col[0])
+                    last_move_list.extend(new_last_move[0])
+                    pi_list.extend(new_pi[0])
+                    z_list.extend(new_z[0])
                     external_data_set.clear()
-            if count % 5 == 0 and count != 0:
-                self._agent_1.train(obs, col, last_move, pi, z)
-                obs, col, last_move, pi, z = [], [], [], [], []
-                count = 0
-                if self.evaluate():
-                    self._agent_1.save_model()
-                    self._network_version += 1
-                print('> network version = ' + str(self._network_version))
-        self._agent_1.save_model()
+        record = GameRecord()
+        record.add_list(obs_list, col_list, last_move_list, pi_list, z_list)
+        external_data_set.add_record(record)
+
+        external_data_set.save(self._conf['self_play_data_path'] + str(0) + '_' + 'temp2' + '_')
+
+
+    def get_external_data_set(self):
+        root, prefix = os.path.split(self._conf['self_play_data_path'])
+        postfix_pattern = r'self\_play\_15\_\d+\_[0-9a-zA-Z\_\-]+\_col\.npy'
+        last_path = ''
+        external_data_set = DataSet()
+        count = 0
+        obs_list, col_list, last_move_list, pi_list, z_list = [], [], [], [], []
+        for filename in os.listdir(root):
+            if re.match(postfix_pattern, filename):
+                path = root + '/' + filename
+                path = path[0:-7]
+                if path != last_path:
+                    print('> data no.' + str(count + 1))
+                    count += 1
+                    print('> external data path = ' + path)
+                    last_path = path
+                    external_data_set.load(path)
+                    new_obs, new_col, new_last_move, new_pi, new_z = external_data_set.get_sample(1)
+                    obs_list.extend(new_obs)
+                    col_list.extend(new_col)
+                    last_move_list.extend(new_last_move)
+                    pi_list.extend(new_pi)
+                    z_list.extend(new_z)
+                    external_data_set.clear()
+        record = GameRecord()
+        record.add_list(obs_list, col_list, last_move_list, pi_list, z_list)
+        external_data_set.add_record(record)
+        return external_data_set
+
+    def train_on_external_data(self):
+        external_data_set = self.get_external_data_set()
+        obs, col, last_move, pi, z = external_data_set.get_sample(1)
+        self._agent_1.train(obs, col, last_move, pi, z)
+        if self.evaluate():
+            self._agent_1.save_model()
+            self._network_version += 1
+        print('> network version = ' + str(self._network_version))
+
 
     def _obs(self):
         return self._board.board()
@@ -421,7 +462,7 @@ class Env:
     # step 3. if MCTS Agent is stronger than fast AI, then begin to train on self-play games
     #         if MCTS Agent degenerated, go back to step 2
 
-    def get_generated_data_set(self, sample_num=10000):
+    def get_generated_data_set(self, sample_num=20000):
         gen = Generator(self._conf['board_size'], max_noise_stone_num=64)
         gen_data_set = DataSet()
 
