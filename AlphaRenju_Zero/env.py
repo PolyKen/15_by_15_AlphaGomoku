@@ -375,37 +375,6 @@ class Env:
         data_set = self.get_external_data_set()
         data_set.save(path)
 
-    def temp(self):
-        root, prefix = os.path.split(self._conf['self_play_data_path'])
-        postfix_pattern = r'self\_play\_15\_\d+\_temp+\_col\.npy'
-        last_path = ''
-        external_data_set = DataSet()
-        count = 0
-        obs_list, col_list, last_move_list, pi_list, z_list = [], [], [], [], []
-        for filename in os.listdir(root):
-            if re.match(postfix_pattern, filename):
-                path = root + '/' + filename
-                path = path[0:-7]
-                if path != last_path:
-                    print('> data no.' + str(count + 1))
-                    count += 1
-                    print('> external data path = ' + path)
-                    last_path = path
-                    external_data_set.load(path)
-                    new_obs, new_col, new_last_move, new_pi, new_z = external_data_set.get_sample(1)
-                    obs_list.extend(new_obs[0])
-                    col_list.extend(new_col[0])
-                    last_move_list.extend(new_last_move[0])
-                    pi_list.extend(new_pi[0])
-                    z_list.extend(new_z[0])
-                    external_data_set.clear()
-        record = GameRecord()
-        record.add_list(obs_list, col_list, last_move_list, pi_list, z_list)
-        external_data_set.add_record(record)
-
-        external_data_set.save(self._conf['self_play_data_path'] + str(0) + '_' + 'temp2' + '_')
-
-
     def get_external_data_set(self):
         root, prefix = os.path.split(self._conf['self_play_data_path'])
         postfix_pattern = r'self\_play\_15\_\d+\_[0-9a-zA-Z\_\-]+\_col\.npy'
@@ -443,7 +412,6 @@ class Env:
             self._agent_1.save_model()
             self._network_version += 1
         print('> network version = ' + str(self._network_version))
-
 
     def _obs(self):
         return self._board.board()
