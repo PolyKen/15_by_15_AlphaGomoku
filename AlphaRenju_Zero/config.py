@@ -96,7 +96,7 @@ class Config(dict):
         self['careful_stage'] = 6
 
         # number of threads
-        self['threading_num'] = 16
+        self['threading_num'] = 8
 
         # virtual loss
         self['virtual_loss'] = 10
