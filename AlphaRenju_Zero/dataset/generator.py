@@ -296,7 +296,7 @@ class Generator:
         return np.array(empty_board)
 
     def _add_noise(self, board, next_player, max_stone_num, fix_pos_list):
-        stone_num = np.random.random_integers(5, max_stone_num)
+        stone_num = np.random.random_integers(30, max_stone_num)
         black_stone_ind = np.where(board == BLACK)
         white_stone_ind = np.where(board == WHITE)
         black_stone_num = len(black_stone_ind[0])

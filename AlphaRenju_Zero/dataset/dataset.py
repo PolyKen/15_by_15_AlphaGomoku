@@ -95,6 +95,14 @@ class GameRecord:
         self._z_list.append(z)
         self._total_num += 1
 
+    def add_list(self, obs, color, last_move, pi, z):
+        self._obs_list.extend(obs)
+        self._color_list.extend(color)
+        self._last_move_list.extend(last_move)
+        self._pi_list.extend(pi)
+        self._z_list.extend(z)
+        self._total_num += len(z)
+
 # the method to define the value of z
     def set_z(self, result):
         if result == 0:
