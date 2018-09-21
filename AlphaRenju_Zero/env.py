@@ -404,26 +404,6 @@ class Env:
         external_data_set.add_record(record)
         return external_data_set
 
-    def temp(self):
-        root, prefix = os.path.split(self._conf['self_play_data_path'])
-        postfix_pattern = r'self\_play\_15\_\d+\_[0-9a-zA-Z\_\-]+\_col\.npy'
-        last_path = ''
-        external_data_set = DataSet()
-        count = 0
-        for filename in os.listdir(root):
-            if re.match(postfix_pattern, filename):
-                path = root + '/' + filename
-                path = path[0:-7]
-                if path != last_path:
-                    print('> data no.' + str(count + 1))
-                    count += 1
-                    print('> external data path = ' + path)
-                    last_path = path
-                    external_data_set.load(path)
-                    new_obs, new_col, new_last_move, new_pi, new_z = external_data_set.get_sample(1)
-                    self._agent_1.train(new_obs, new_col, new_last_move, new_pi, new_z)
-                    external_data_set.clear()
-
     def train_on_external_data(self):
         external_data_set = self.get_external_data_set()
         obs, col, last_move, pi, z = external_data_set.get_sample(1)
