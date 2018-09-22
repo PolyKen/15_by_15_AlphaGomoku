@@ -456,12 +456,15 @@ class Env:
 
     def train_on_generated_data(self):
         gen_data_set = DataSet()
-        gen_data_set.load(self._conf['generated_data_path'])
-        for i in range(100):
-            print('> epoch = ' + str(i + 1))
-            obs, col, last_move, pi, z = gen_data_set.get_sample(0.1, shuffle=True)
-            self._agent_1.train(obs, col, last_move, pi, z)
-            self._agent_1.save_model()
+        # gen_data_set.load(self._conf['generated_data_path'])
+        gen = Generator(self._conf['board_size'], max_noise_stone_num=128)
+        record_2 = gen.generate_live_3_oo_o_defend(sample_num=10000)
+        record_4 = gen.generate_live_3_ooo_defend(sample_num=10000)
+        gen_data_set.add_record(record_4)
+        gen_data_set.add_record(record_2)
+        obs, col, last_move, pi, z = gen_data_set.get_sample(0.1, shuffle=True)
+        self._agent_1.train(obs, col, last_move, pi, z)
+        self._agent_1.save_model()
 
     def mcts_vs_fast(self, game_num=20):
         agent_1_win_num, agent_2_win_num = 0, 0
