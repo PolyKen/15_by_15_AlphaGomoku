@@ -4,7 +4,7 @@
 Introduction
 ====
 -  In this project, we implement an ***AlphaGo-version 8 by 8 Gomoku AI program*** and provide a ***step-by-step tutorial*** on the technique with [***English version***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper.pdf) and [***中文版***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper_chinese.pdf). You can also get access to our presentation [***PPT***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/Gomoku%20PPT.pptx).
-- 
+- (2018-09-22) We combine our original AlphaGomoku program with ***Curriculum Learning*** and ***Double Network Mechanism*** to extend our AI to ***15 by 15 Free Style Gomoku***.
 
 Update!!!
 ====
