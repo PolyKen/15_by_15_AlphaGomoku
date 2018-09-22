@@ -5,9 +5,9 @@ Introduction
 ====
 Google DeepMind's recent AlphaZero algorithm, accepting no domain-specific knowledges, mastered the game of Go, chess and shogi through self-played reinforcement learning from scratch, showing the potential of general AI, which is the holy grail of the entire AI community. In this project, we implement an ***AlphaZero-version Renju(Gomoku) AI program*** and provide a ***step-by-step tutorial*** on the technique with [***English version***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper.pdf) and [***中文版***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper_chinese.pdf). You can also get access to our presentation [***PPT***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/Gomoku%20PPT.pptx).
 
-Future Works
+Update!!!
 ====
-Extend the AI to ***15 by 15*** free style Gomoku.
+We have successfully trained a ***15 by 15*** AI.
 
 Experiment
 ====
