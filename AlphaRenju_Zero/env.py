@@ -132,7 +132,8 @@ class Env:
                 except:
                     max_score = 0
             else:
-                prior_prob, value = None, None
+                if type(value) is dict:
+                    prior_prob, value = None, None
 
             # show info
             if prior_prob is None:
