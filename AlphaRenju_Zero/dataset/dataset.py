@@ -9,10 +9,10 @@ class DataSet:
 
     def clear(self):
         self._game_record = []
-        
+
     def add_record(self, record):
         self._game_record.append(record)
-        
+
     def get_sample(self, percentage, shuffle=True):
         obs = []
         col = []
@@ -76,7 +76,7 @@ class DataSet:
         for i in range(size):
             record.add(obs[i], col[i], last_move[i], pi[i], z[i])
         self.add_record(record)
-    
+
 
 class GameRecord:
     def __init__(self):
@@ -86,6 +86,7 @@ class GameRecord:
         self._pi_list = []
         self._z_list = []
         self._total_num = 0
+        self._decay = 0.9
 
     def add(self, obs, color, last_move, pi, z=None):
         self._obs_list.append(obs)
@@ -103,16 +104,16 @@ class GameRecord:
         self._z_list.extend(z)
         self._total_num += len(z)
 
-# the method to define the value of z
+    # the method to define the value of z
     def set_z(self, result):
         if result == 0:
             self._z_list = [0 for _ in range(self._total_num)]
             return
         for i in range(self._total_num):
             if result == self._color_list[i]:
-                self._z_list[i] = 1
+                self._z_list[i] = 1 * self._decay ** (self._total_num - i - 1)
             else:
-                self._z_list[i] = -1
+                self._z_list[i] = -1 * self._decay ** (self._total_num - i - 1)
 
     def get_sample(self, percentage, shuffle=True):
         if shuffle:
@@ -126,5 +127,3 @@ class GameRecord:
             return obs_sample, color_sample, last_move_sample, pi_sample, z_sample
         else:
             return self._obs_list, self._color_list, self._last_move_list, self._pi_list, self._z_list
-
-
