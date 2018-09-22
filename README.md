@@ -1,9 +1,10 @@
 ***
-# AlphaZero-version AI Program in the Game of Renju(Gomoku)
+# AlphaGomoku
 
 Introduction
 ====
--  In this project, we implement an ***AlphaGo-version 8 by 8 Renju(Gomoku) AI program*** and provide a ***step-by-step tutorial*** on the technique with [***English version***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper.pdf) and [***中文版***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper_chinese.pdf). You can also get access to our presentation [***PPT***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/Gomoku%20PPT.pptx).
+-  In this project, we implement an ***AlphaGo-version 8 by 8 Gomoku AI program*** and provide a ***step-by-step tutorial*** on the technique with [***English version***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper.pdf) and [***中文版***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper_chinese.pdf). You can also get access to our presentation [***PPT***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/Gomoku%20PPT.pptx).
+- 
 
 Update!!!
 ====
