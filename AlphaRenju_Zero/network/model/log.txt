@@ -1,0 +1,1 @@
+ver 11: add decay of winning rate
