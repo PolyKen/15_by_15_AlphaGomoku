@@ -20,7 +20,7 @@ except ImportError:
     print('ERROR: module [threading] not found')
     display_mode = False
 
-image_path = 'AlphaRenju_Zero/ui/image/'
+image_path = 'AlphaGomoku/ui/image/'
 
 
 class Renderer(threading.Thread):
