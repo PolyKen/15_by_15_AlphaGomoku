@@ -11,9 +11,11 @@ Demonstration
 ====
 Animation (15 by 15 board)
 -------
+Coming Soon.
 
 Human vs AI (15 by 15 board)
 -------
+Coming Soon.
 
 Animation (8 by 8 board)
 -------
