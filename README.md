@@ -1,5 +1,5 @@
 ***
-# AlphaGomoku
+# 15 by 15 AlphaGomoku
 
 Introduction
 ====
