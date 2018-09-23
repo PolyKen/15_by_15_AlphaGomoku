@@ -16,14 +16,17 @@ class Env:
         self._is_self_play = conf['is_self_play']
         self._show_score = conf['show_score']
 
-        self._rules = Rules(conf)
-        self._renderer = Renderer(conf['screen_size'], conf['board_size']) if conf['display'] else None
-        self._board = Board(self._renderer, conf['board_size'])
         self._value_list = []
+        self._loss_list = []
 
         self._network_version = 0
 
         self._evaluator_agent = FastAgent(color=BLACK)
+        self._epoch = conf['epoch']
+        self._sample_percentage = conf['sample_percentage']
+        self._games_num = conf['games_num']
+        self._evaluate_games_num = conf['evaluate_games_num']
+        self._renderer = None
 
         # Training
         if conf['mode'] in [0, 1, 6, 7]:
@@ -70,12 +73,14 @@ class Env:
         if self._is_self_play:
             self._agent_2 = self._agent_1
 
-        self._epoch = conf['epoch']
-        self._sample_percentage = conf['sample_percentage']
-        self._games_num = conf['games_num']
-        self._evaluate_games_num = conf['evaluate_games_num']
+        self._rules = Rules(conf)
+        self._renderer = Renderer(conf['screen_size'], conf['board_size']) if conf['display'] else None
+        self._board = Board(self._renderer, conf['board_size'])
 
-        self._loss_list = []
+        if type(self._agent_1) == HumanAgent:
+            self._agent_1.set_renderer(renderer=self._renderer)
+        if type(self._agent_2) == HumanAgent:
+            self._agent_2.set_renderer(renderer=self._renderer)
 
     @log
     def run(self, use_stochastic_policy, record=None):
