@@ -40,10 +40,10 @@ class Board:
             time.sleep(.2)
 
         if not isinstance(x, int) or not isinstance(y, int):
-            print("x, y should be an integer:", x, y)
+            print("> error: x, y should be an integer:", x, y)
             return 1, self.board()
         if x < 0 or x > self._board_size - 1 or y < 0 or y > self._board_size - 1:
-            print("x, y should be in [0, 14]", x, y)
+            print("> error: x, y should be in [0, 14]", x, y)
             return 1, self.board()
 
         num_str = str(self.stone_num() + 1)

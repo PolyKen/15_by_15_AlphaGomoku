@@ -29,9 +29,9 @@ class AI(Agent):
 class MCTSAgent(AI):
     def __init__(self, conf, color, use_stochastic_policy):
         AI.__init__(self, color)
-        conf.update(net_para_file='AlphaRenju_Zero/network/model/model_b_' + str(conf['board_size']) + '.h5')
+        conf.update(net_para_file='AlphaGomoku/network/model/model_b_' + str(conf['board_size']) + '.h5')
         black_net = Network(conf)
-        conf.update(net_para_file='AlphaRenju_Zero/network/model/model_w_' + str(conf['board_size']) + '.h5')
+        conf.update(net_para_file='AlphaGomoku/network/model/model_w_' + str(conf['board_size']) + '.h5')
         white_net = Network(conf)
         self._mcts = MCTS(conf, black_net, white_net, color, use_stochastic_policy)
         self._black_net = black_net
