@@ -7,7 +7,7 @@ class Config(dict):
         # mode   1: training mode, 2: AI vs Human, 3: Human vs Human, 0: Debug
         self['mode'] = 1
 
-        # display modeo'n'fig
+        # display mode
         self['display'] = False
 
         # screen size of renderer
