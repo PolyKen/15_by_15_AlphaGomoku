@@ -86,7 +86,7 @@ class GameRecord:
         self._pi_list = []
         self._z_list = []
         self._total_num = 0
-        self._decay = 0.9
+        self._decay = 0.95
 
     def add(self, obs, color, last_move, pi, z=None):
         self._obs_list.append(obs)
