@@ -15,6 +15,10 @@ Animation (8 by 8 board)
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/human(black)_vs_ai(white).gif" width="350px" height="350px"/>
 </p>
 
+Human vs AI (15 by 15 board)
+-------
+
+
 Human vs AI (8 by 8 board)
 -------
 AI adopts deterministic policy with 1600 simulations per move.
