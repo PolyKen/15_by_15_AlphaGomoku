@@ -55,16 +55,12 @@ class Env:
             self._agent_1 = FastAgent(color=BLACK)
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
 
-        if conf['mode'] == 10:
+        if conf['mode'] in [10, 12]:
             self._agent_1 = FastAgent(color=BLACK)
             self._agent_2 = FastAgent(color=WHITE)
 
         if conf['mode'] == 11:
             self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=True)
-            self._agent_2 = FastAgent(color=WHITE)
-
-        if conf['mode'] == 12:
-            self._agent_1 = FastAgent(color=BLACK)
             self._agent_2 = FastAgent(color=WHITE)
 
         if conf['mode'] in [0, 1, 7]:
