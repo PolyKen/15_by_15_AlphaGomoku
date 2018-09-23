@@ -46,7 +46,7 @@ AI adopts deterministic policy with 400 simulations per move. The first four pic
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_8.PNG" width="350px" height="350px"/>
 </p>
 
-Tecent Gomoku AI(欢乐五子棋) vs AlphaGomoku
+Tecent Gomoku AI(欢乐五子棋) vs AlphaGomoku (15 by 15 board)
 -------
 Tencent Gomoku AI plays black stone. AlphaGomoku adopts deterministic policy with 400 simulations per move.
 
