@@ -13,9 +13,9 @@ Animation (15 by 15 board)
 -------
 Coming Soon.
 
-Human vs AI (15 by 15 board)
+Human vs AlphaGomoku (15 by 15 board)
 -------
-AI adopts semi-stochastic policy with 400 simulations per move. The first four pictures are games where AI plays the black stone. The following eight pictures are games where AI plays the white stone.
+AI adopts deterministic policy with 400 simulations per move. The first four pictures are games where AI plays the black stone. The following eight pictures are games where AI plays the white stone.
 <p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_black_1.PNG" width="350px" height="350px"/>
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_black_2.PNG" width="350px" height="350px"/>
@@ -46,17 +46,22 @@ AI adopts semi-stochastic policy with 400 simulations per move. The first four p
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_8.PNG" width="350px" height="350px"/>
 </p>
 
+Tecent Gomoku AI(欢乐五子棋) vs AlphaGomoku (15 by 15 board)
+-------
+Tencent Gomoku AI plays black stone. AlphaGomoku adopts deterministic policy with 400 simulations per move.
+
+
 Animation (8 by 8 board)
 -------
-The left Gif is a game self played by AlphaGomoku; The right Gif is a game between human and ai, where human adopts balck stone.
+The left Gif is a game self played by AlphaGomoku; The right Gif is a game between human and ai, where human adopts balck stone. All AI simulate 400 times per move.
 <p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/ai_self_play.gif" width="350px" height="350px"/>
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/human(black)_vs_ai(white).gif" width="350px" height="350px"/>
 </p>
 
-Human vs AI (8 by 8 board)
+Human vs AlphaGomoku (8 by 8 board)
 -------
-AI plays the white stone against human, adopting deterministic policy with 1600 simulations per move.
+AI plays the white stone against human, adopting deterministic policy with 400 simulations per move.
 <p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_1.png" width="350px" height="350px"/>
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_2.png" width="350px" height="350px"/>
