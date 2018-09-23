@@ -1,5 +1,5 @@
 
-decay = 0.9
+decay = 0.95
 
 
 class Config(dict):
