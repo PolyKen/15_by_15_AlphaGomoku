@@ -7,11 +7,13 @@ Introduction
 
 - (***2018-09-22***) We combine our original AlphaGomoku program with ***Curriculum Learning***, ***Double Network Mechanism*** and ***Winning Value Decay*** to extend our AI to ***15 by 15 Free Style Gomoku***. Before we adopt these methods mentioned above, training 15 by 15 AlphaGomoku is intractable since the asymmetry and complexity of the game compared to the 8 by 8 simplified gomoku. 
 
+- Our Reseach Paper is available at: ***Coming Soon.***
+
 Demonstration
 ====
 Animation (15 by 15 board)
 -------
-Coming Soon.
+***Coming Soon.***
 
 Human vs AlphaGomoku (15 by 15 board)
 -------
