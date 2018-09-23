@@ -8,6 +8,9 @@ Introduction
 
 Demonstration
 ====
+Animation (15 by 15 board)
+-------
+
 Human vs AI (15 by 15 board)
 -------
 
