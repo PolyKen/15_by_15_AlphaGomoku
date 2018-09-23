@@ -6,8 +6,11 @@ Introduction
 -  (2018-09-01) We implement an ***AlphaGo-version Gomoku AI program*** in ***8 by 8 Free Style Gomoku*** and provide a ***step-by-step tutorial*** on the technique with [***English version***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper.pdf) and [***中文版***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper_chinese.pdf). You can also get access to our presentation [***PPT***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/Gomoku%20PPT.pptx).
 - (2018-09-22) We combine our original AlphaGomoku program with ***Curriculum Learning*** and ***Double Network Mechanism*** to extend our AI to ***15 by 15 Free Style Gomoku***. 
 
-Experiment
+Demonstration
 ====
+Human vs AI (15 by 15 board)
+-------
+
 Animation (8 by 8 board)
 -------
 The left Gif is a game self played by AlphaGomoku; The right Gif is a game between human and ai, where human adopts balck stone.
@@ -15,10 +18,6 @@ The left Gif is a game self played by AlphaGomoku; The right Gif is a game betwe
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/ai_self_play.gif" width="350px" height="350px"/>
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/human(black)_vs_ai(white).gif" width="350px" height="350px"/>
 </p>
-
-Human vs AI (15 by 15 board)
--------
-
 
 Human vs AI (8 by 8 board)
 -------
