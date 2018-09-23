@@ -15,7 +15,35 @@ Coming Soon.
 
 Human vs AI (15 by 15 board)
 -------
-Coming Soon.
+<p class="half" align="center">
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_black_1.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_black_2.PNG" width="350px" height="350px"/>
+</p>
+
+<p class="half" align="center">
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_black_3.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_black_4.PNG" width="350px" height="350px"/>
+</p>
+
+<p class="half" align="center">
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_1.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_2.PNG" width="350px" height="350px"/>
+</p>
+
+<p class="half" align="center">
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_3.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_4.PNG" width="350px" height="350px"/>
+</p>
+
+<p class="half" align="center">
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_5.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_6.PNG" width="350px" height="350px"/>
+</p>
+
+<p class="half" align="center">
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_7.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_8.PNG" width="350px" height="350px"/>
+</p>
 
 Animation (8 by 8 board)
 -------
