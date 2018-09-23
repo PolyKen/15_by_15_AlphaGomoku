@@ -48,7 +48,7 @@ AI adopts semi-stochastic policy with 400 simulations per move. The first four p
 
 Animation (8 by 8 board)
 -------
-The left Gif is a game self played by AlphaGomoku; The right Gif is a game between human and ai, where human adopts balck stone.
+The left Gif is a game self played by AlphaGomoku; The right Gif is a game between human and ai, where human adopts balck stone. All AI simulate 400 times per move.
 <p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/ai_self_play.gif" width="350px" height="350px"/>
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/human(black)_vs_ai(white).gif" width="350px" height="350px"/>
@@ -56,7 +56,7 @@ The left Gif is a game self played by AlphaGomoku; The right Gif is a game betwe
 
 Human vs AI (8 by 8 board)
 -------
-AI plays the white stone against human, adopting deterministic policy with 1600 simulations per move.
+AI plays the white stone against human, adopting deterministic policy with 400 simulations per move.
 <p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_1.png" width="350px" height="350px"/>
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/man_vs_ai_2.png" width="350px" height="350px"/>
