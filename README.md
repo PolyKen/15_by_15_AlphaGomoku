@@ -15,7 +15,7 @@ Coming Soon.
 
 Human vs AI (15 by 15 board)
 -------
-AI adopts semi-stochastic policy with 400 simulations per move. The first four pictures are games where AI plays the black stone. The following eight pictures are games where AI plays the white stone.
+AI adopts deterministic policy with 400 simulations per move. The first four pictures are games where AI plays the black stone. The following eight pictures are games where AI plays the white stone.
 <p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_black_1.PNG" width="350px" height="350px"/>
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_black_2.PNG" width="350px" height="350px"/>
