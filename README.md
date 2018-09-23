@@ -96,6 +96,11 @@ Modules needed
 - ***matplotlib***
 - ***easygui*** (optional)
 
+How to play with AlphaGomoku
+-------
+- Execute run.py
+- Select mode 2(AI vs Human) to compete.
+
 Contact
 ====
 - xiezh25@mail2.sysu.edu.cn
