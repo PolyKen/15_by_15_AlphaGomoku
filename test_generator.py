@@ -1,4 +1,4 @@
-from AlphaRenju_Zero import *
+from AlphaGomoku import *
 
 
 def test_legal(obs_list, color_list, last_move_list, pi_list, z_list):

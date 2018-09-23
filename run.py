@@ -1,4 +1,4 @@
-from AlphaRenju_Zero import *
+from AlphaGomoku import *
 import warnings
 import os
 
