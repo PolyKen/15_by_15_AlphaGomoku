@@ -10,7 +10,7 @@ Experiment
 ====
 Animation (8 by 8 board)
 -------
-The left Gif is a game self played by AlphaGomoku; The right Gif is a game between human and ai.
+The left Gif is a game self played by AlphaGomoku; The right Gif is a game between human and ai, where human adopts balck stone.
 <p class="half" align="center">
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/ai_self_play.gif" width="350px" height="350px"/>
   <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/gif/human(black)_vs_ai(white).gif" width="350px" height="350px"/>
