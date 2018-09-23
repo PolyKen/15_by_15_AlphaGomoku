@@ -9,6 +9,9 @@ class HumanAgent(Agent):
         self._color = color
         self._board_size = board_size
 
+    def set_renderer(self, renderer):
+        self._renderer = renderer
+
     def play(self, obs, action, stone_num, *args):
         x, y = self._renderer.ask_for_click()
         ind = coordinate2index((x, y), self._board_size)
