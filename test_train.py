@@ -1,4 +1,4 @@
-from AlphaRenju_Zero import *
+from AlphaGomoku import *
 import warnings
 import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'

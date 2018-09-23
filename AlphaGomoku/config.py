@@ -59,20 +59,20 @@ class Config(dict):
         self['l2'] = 1e-4
 
         # path of network parameters
-        self['net_para_file'] = 'AlphaRenju_Zero/network/model/model_' + str(self['board_size']) + '.h5'
+        self['net_para_file'] = 'AlphaGomoku/network/model/model_' + str(self['board_size']) + '.h5'
 
         # path of history of fitting
-        self['fit_history_file'] = 'AlphaRenju_Zero/network/history/log_' + str(self['board_size'])
+        self['fit_history_file'] = 'AlphaGomoku/network/history/log_' + str(self['board_size'])
 
         # human play data path
-        self['human_play_data_path'] = 'AlphaRenju_Zero/dataset/human_play_data/human_' + str(self['board_size']) + '_'
+        self['human_play_data_path'] = 'AlphaGomoku/dataset/human_play_data/human_' + str(self['board_size']) + '_'
 
         # self play data path
-        self['self_play_data_path'] = 'AlphaRenju_Zero/dataset/self_play_data/self_play_' + str(
+        self['self_play_data_path'] = 'AlphaGomoku/dataset/self_play_data/self_play_' + str(
             self['board_size']) + '_'
 
         # generated data path
-        self['generated_data_path'] = 'AlphaRenju_Zero/dataset/generated_data/gen_'
+        self['generated_data_path'] = 'AlphaGomoku/dataset/generated_data/gen_'
 
         # use previous model
         self['use_previous_model'] = True
