@@ -3,7 +3,7 @@
 
 Introduction
 ====
--  (***2018-08-29***) We implement an ***AlphaGo-version Gomoku AI program*** in ***8 by 8 Free Style Gomoku*** and provide a ***step-by-step tutorial*** on the technique with [***English version***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper.pdf) and [***中文版***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper_chinese.pdf). You can also get access to our presentation [***PPT***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/Gomoku%20PPT.pptx) in Likelihood Lab Summer Research Conference.
+-  (***2018-08-29***) We implement an ***AlphaGo-version Gomoku AI program*** in ***8 by 8 Free Style Gomoku*** and provide a ***step-by-step tutorial*** on the technique with [***English version***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper.pdf) and [***中文版***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/gomoku_paper_chinese.pdf). You can also get access to our [***presentation PPT***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/Gomoku%20PPT.pptx) in Likelihood Lab Summer Research Conference.
 
 - (***2018-09-22***) We combine our original AlphaGomoku program with ***Curriculum Learning***, ***Double Network Mechanism*** and ***Winning Value Decay*** to extend our AI to ***15 by 15 Free Style Gomoku***. Before we adopt these methods mentioned above, training 15 by 15 AlphaGomoku is intractable since the asymmetry and complexity of the game compared to the 8 by 8 simplified gomoku.
 
