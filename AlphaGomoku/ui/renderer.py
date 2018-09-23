@@ -7,17 +7,17 @@ use_dialog = True
 try:
     import easygui
 except ImportError:
-    print('ERROR: module [easygui] not found')
+    print('> error: module [easygui] not found')
     use_dialog = False
 try:
     import pygame
 except ImportError:
-    print('ERROR: module [pygame] not found')
+    print('> error: module [pygame] not found')
     display_mode = False
 try:
     import threading
 except ImportError:
-    print('ERROR: module [threading] not found')
+    print('> error: module [threading] not found')
     display_mode = False
 
 image_path = 'AlphaGomoku/ui/image/'
@@ -78,7 +78,7 @@ class Renderer(threading.Thread):
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    print("exit")
+                    print("> exit")
                     pygame.quit()
                     exit()
                 if self._is_waiting_for_click and event.type == pygame.MOUSEBUTTONDOWN:
@@ -88,7 +88,7 @@ class Renderer(threading.Thread):
                     if x in range(self._board_size) and y in range(self._board_size):
                         self._is_waiting_for_click = False
                         self._mouse_click_pos = (x, y)
-                    print("click" + str(self._mouse_click_pos))
+                    print("> click " + str(self._mouse_click_pos))
             if self._update_clear:
                 self._paint_background()
             if self._update_read:

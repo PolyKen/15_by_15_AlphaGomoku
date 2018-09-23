@@ -487,4 +487,4 @@ class Env:
             if result == BLACK:
                 agent_1_win_num += 1
 
-        print("agent 1 : agent 2 = " + str(agent_1_win_num) + " : " + str(agent_2_win_num))
+        print("> agent 1 : agent 2 = " + str(agent_1_win_num) + " : " + str(agent_2_win_num))

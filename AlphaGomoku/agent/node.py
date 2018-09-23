@@ -56,7 +56,7 @@ class Node:
         try:
             self._U = c_puct * self._P * sqrt(self._parent.N) / (1 + self.N)
         except ValueError:
-            print('Node.upper_confidence_bound(), ValueError')
+            print('> valueError: Node.upper_confidence_bound')
             print(self._U, self._P, self._parent.N, self.N)
         return self._U + self._Q
 
@@ -72,7 +72,7 @@ class Node:
 
     def expand(self, prior_prob, board_size=15):
         if not self.is_leaf():
-            print('error: node.expand')
+            print('> error: node.expand')
             return
         for i in range(board_size * board_size):
             prob = prior_prob[i]
