@@ -19,34 +19,25 @@ Human vs AlphaGomoku (15 by 15 board)
 -------
 AI adopts deterministic policy with 400 simulations per move. The first four pictures are games where AI plays the black stone. The following eight pictures are games where AI plays the white stone.
 <p class="half" align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_black_1.PNG" width="350px" height="350px"/>
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_black_2.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/demo/picture/human_mcts_b1.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/demo/picture/human_mcts_b2.PNG" width="350px" height="350px"/>
 </p>
 
 <p class="half" align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_black_3.PNG" width="350px" height="350px"/>
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_black_4.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/demo/picture/human_mcts_b3.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/demo/picture/human_mcts_b4.PNG" width="350px" height="350px"/>
 </p>
 
 <p class="half" align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_1.PNG" width="350px" height="350px"/>
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_2.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/demo/picture/human_mcts_w1.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/demo/picture/human_mcts_w2.PNG" width="350px" height="350px"/>
 </p>
 
 <p class="half" align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_3.PNG" width="350px" height="350px"/>
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_4.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/demo/picture/human_mcts_w3.PNG" width="350px" height="350px"/>
+  <img src="https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/demo/picture/human_mcts_w4.PNG" width="350px" height="350px"/>
 </p>
 
-<p class="half" align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_5.PNG" width="350px" height="350px"/>
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_6.PNG" width="350px" height="350px"/>
-</p>
-
-<p class="half" align="center">
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_7.PNG" width="350px" height="350px"/>
-  <img src="https://github.com/PolyKen/AlphaRenju_Zero/blob/master/demo/picture/15_ai_white_8.PNG" width="350px" height="350px"/>
-</p>
 
 Tecent Gomoku AI(欢乐五子棋) vs AlphaGomoku (15 by 15 board)
 -------
@@ -108,7 +99,7 @@ Modules needed
 How to play with AlphaGomoku
 -------
 - Execute run.py
-- Select mode 2(AI vs Human) to compete.
+- Select mode 2 (AI vs Human) to compete.
 
 Contact
 ====
