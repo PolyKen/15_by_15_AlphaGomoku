@@ -203,7 +203,7 @@ class Config(dict):
             self['display'] = False
             self['is_self_play'] = True
             self['show_score'] = False
-            self['epoch'] = 20
+            self['epoch'] = 5
             self['games_num'] = 30
             self['simulation_times'] = 800
             self['mode'] = 13
