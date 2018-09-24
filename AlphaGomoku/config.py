@@ -41,13 +41,13 @@ class Config(dict):
         self['board_size'] = 15
 
         # epoch: number of games played to train
-        self['epoch'] = 300
+        self['epoch'] = 20
 
         # sample percentage
         self['sample_percentage'] = 1
 
         # number of games in each training epoch
-        self['games_num'] = 1000
+        self['games_num'] = 30
 
         # learning rate
         self['learning_rate'] = 2e-3
@@ -111,7 +111,7 @@ class Config(dict):
             self[key] = kwargs[key]
 
     def set_mode(self, mode):
-        if mode not in [1, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 0]:
+        if mode not in [1, 2, 2.5, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 0]:
             print('> Error: mode not found!')
             mode = 1
         if mode == 1:
@@ -199,6 +199,15 @@ class Config(dict):
             self['epoch'] = 20
             self['show_score'] = True
             print('> Collect self play data mode')
+        if mode == 13:
+            self['display'] = False
+            self['is_self_play'] = True
+            self['show_score'] = False
+            self['epoch'] = 20
+            self['games_num'] = 30
+            self['simulation_times'] = 800
+            self['mode'] = 13
+            print('> Self play and train mode')
         if mode == 0:
             self['display'] = True
             self['is_self_play'] = True

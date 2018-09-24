@@ -5,11 +5,20 @@ import os
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 warnings.filterwarnings("ignore")
 
-print('> Please enter the mode: (1: Training, 2: AI vs Human, 3: Human vs Human, '
-      '4: AI vs AI, 5: Collect human play data, 6: Collect self play data, '
-      '7: Train on external data, 8: Collect human vs AI play data mode, '
-      '9: AI(NaiveAgent) vs Human mode, 10: AI vs AI(NaiveAgent) mode), '
-      '11: Train on generated data, 12: Collect self play data(Fast AI)')
+print('> Please enter the mode:')
+print('> 1: Training (not available)')
+print('> 2: AI vs Human')
+print('> 3: Human vs Human')
+print('> 4: AI vs AI')
+print('> 5: Collect human play data')
+print('> 6: Collect self play data')
+print('> 7: Train on external data')
+print('> 8: Collect human vs AI play data')
+print('> 9: AI(NaiveAgent) vs Human mode')
+print('> 10: AI vs AI(NaiveAgent) mode)')
+print('> 11: Train on generated data')
+print('> 12: Collect self play data(Fast AI)')
+print('> 13: Self play and train')
 mode = int(input('> mode = '))
 
 if mode == 2:
@@ -21,7 +30,6 @@ if mode == 2:
 conf = Config()
 conf.set_mode(mode)
 env = Env(conf)
-# env.pack_external_data_set('temp2')
 
 if mode == 1 or mode == 0:
     env.train()
@@ -39,3 +47,5 @@ if mode == 8:
     env.collect_human_vs_ai_data()
 if mode == 11:
     env.train_on_generated_data()
+if mode == 13:
+    env.self_play_and_train()

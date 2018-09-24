@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import os
 import re
 from .rules import *
+import shutil
 
 
 class Env:
@@ -19,7 +20,7 @@ class Env:
         self._value_list = []
         self._loss_list = []
 
-        self._network_version = 0
+        self._network_version = self._get_model_version()
 
         self._evaluator_agent = FastAgent(color=BLACK)
         self._epoch = conf['epoch']
@@ -29,7 +30,7 @@ class Env:
         self._renderer = None
 
         # Training
-        if conf['mode'] in [0, 1, 6, 7]:
+        if conf['mode'] in [0, 1, 6, 7, 13]:
             self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=True)
             self._agent_2 = None
         # AI vs Human
@@ -488,3 +489,31 @@ class Env:
                 agent_1_win_num += 1
 
         print("> agent 1 : agent 2 = " + str(agent_1_win_num) + " : " + str(agent_2_win_num))
+
+    def _get_model_version(self):
+        root = 'AlphaGomoku/network/model/'
+        postfix_pattern = r'model\_b\_15\_ver\_[0-9]+\.h5'
+        max_num = 0
+        for filename in os.listdir(root):
+            if re.match(postfix_pattern, filename):
+                num = int(filename[15:-3])
+                if num > max_num:
+                    max_num = num
+        return max_num
+
+    def backup_model(self):
+        root = 'AlphaGomoku/network/model/'
+        max_num = self._get_model_version()
+        path_ob = root + 'model_b_15.h5'
+        path_ow = root + 'model_w_15.h5'
+        path_b = root + 'model_b_15_ver_' + str(max_num + 1) + '.h5'
+        path_w = root + 'model_w_15_ver_' + str(max_num + 1) + '.h5'
+        shutil.copy(path_ob, path_b)
+        shutil.copy(path_ow, path_w)
+        print('> model ver. ' + str(max_num + 1) + ' saved.')
+
+    def self_play_and_train(self):
+        while True:
+            self.collect_self_play_data()
+            self.train_on_external_data()
+            self.backup_model()
