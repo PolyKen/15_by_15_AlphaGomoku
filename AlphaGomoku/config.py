@@ -23,7 +23,7 @@ class Config(dict):
         self['c_puct'] = 5
 
         # simulation times
-        self['simulation_times'] = 800
+        self['simulation_times'] = 400
 
         # initial tau
         self['initial_tau'] = 1
@@ -178,9 +178,10 @@ class Config(dict):
             self['mode'] = 9
             print('> AI(NaiveAgent) vs Human mode')
         if mode == 10:
-            self['display'] = True
+            self['display'] = False
             self['is_self_play'] = False
             self['mode'] = 10
+            self['show_score'] = False
             print('> AI vs AI(NaiveAgent) mode')
         if mode == 11:
             self['display'] = False

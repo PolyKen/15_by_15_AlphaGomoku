@@ -60,7 +60,13 @@ class Env:
             self._agent_1 = FastAgent(color=BLACK)
             self._agent_2 = HumanAgent(self._renderer, color=WHITE, board_size=conf['board_size'])
 
-        if conf['mode'] in [10, 12]:
+        if conf['mode'] == 10:
+            # self._agent_1 = FastAgent(color=BLACK)
+            # self._agent_2 = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
+            self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=False)
+            self._agent_2 = FastAgent(color=WHITE)
+
+        if conf['mode'] == 12:
             self._agent_1 = FastAgent(color=BLACK)
             self._agent_2 = FastAgent(color=WHITE)
 
@@ -189,7 +195,7 @@ class Env:
                         flag = 0
                     record.set_z(flag)
                 if self._conf['mode'] in [2, 2.5, 3, 4, 9]:
-                    time.sleep(20)
+                    time.sleep(30)
                 break
         self._board.clear()
         print('> Node number of game tree = ' + str(Node.count))
@@ -517,3 +523,23 @@ class Env:
             self.collect_self_play_data()
             self.train_on_external_data()
             self.backup_model()
+
+    def temp(self):
+        mcts_win_num, fast_win_num = 0, 0
+        for i in range(50):
+            result = self.run(use_stochastic_policy=False, record=None)
+            if result is BLACK:
+                mcts_win_num += 1
+            if result is WHITE:
+                fast_win_num += 1
+            print("MCTS Agent:Fast Agent = ", mcts_win_num, ":", fast_win_num)
+        self._agent_1 = FastAgent(color=BLACK)
+        self._agent_2 = MCTSAgent(self._conf, color=WHITE, use_stochastic_policy=False)
+        for i in range(50):
+            result = self.run(use_stochastic_policy=False, record=None)
+            if result is BLACK:
+                fast_win_num += 1
+            if result is WHITE:
+                mcts_win_num += 1
+            print("MCTS Agent:Fast Agent = ", mcts_win_num, ":", fast_win_num)
+        print("MCTS Agent:Fast Agent = ", mcts_win_num, ":", fast_win_num)
