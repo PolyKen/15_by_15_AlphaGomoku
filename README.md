@@ -99,7 +99,7 @@ Modules needed
 How to play with AlphaGomoku
 -------
 - Execute run.py
-- Select mode 2(AI vs Human) to compete.
+- Select mode 2 (AI vs Human) to compete.
 
 Contact
 ====
