@@ -7,14 +7,12 @@ Introduction
 
 - (***2018-09-22***) We combine our original AlphaGomoku program with ***Curriculum Learning***, ***Double Networks Mechanism*** and ***Winning Value Decay*** to extend our AI to ***15 by 15 Free Style Gomoku***. Before we adopt these methods mentioned above, training 15 by 15 AlphaGomoku is intractable since the asymmetry and complexity of the game compared to the 8 by 8 simplified gomoku. 
 
-- Our Reseach Paper is available at: ***Coming Soon.***
+- (***2018-9-25***) Our Reseach Paper is available at: [***paper***](https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/tutorial/gomoku_paper.pdf)
+
+- The training is continuing...
 
 Demonstration
 ====
-Animation (15 by 15 board)
--------
-***Coming Soon.***
-
 Human vs AlphaGomoku (15 by 15 board)
 -------
 AI adopts deterministic policy with 400 simulations per move. The first four pictures are games where AI plays the black stone. The following eight pictures are games where AI plays the white stone.
