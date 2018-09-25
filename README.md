@@ -9,7 +9,7 @@ Introduction
 
 - (***2018-9-25***) Our Reseach Paper is available at: [***paper***](https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/tutorial/gomoku_paper.pdf)
 
-- The training is continuing...
+- The training is continuing...... We hope that AlphaGomoku can evolve into Gomoku grand master someday.
 
 Demonstration
 ====
