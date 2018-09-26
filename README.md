@@ -72,7 +72,7 @@ Contributors
 Institutions
 -------
 - ***Likelihood Lab***
-- ***Vthree AI***
+- ***Vthree.Ai***
 - ***Sun Yat-sen University***
 
 Acknowledgement
