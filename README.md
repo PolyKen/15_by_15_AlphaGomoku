@@ -99,6 +99,7 @@ How to play with AlphaGomoku
 -------
 - Execute run.py
 - Select mode 2 (AI vs Human) to compete.
+- You can also compete with different versions of AlphaGomoku by switching the network.
 
 Contact
 ====
