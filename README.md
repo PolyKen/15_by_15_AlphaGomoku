@@ -7,7 +7,7 @@ Introduction
 
 - (***2018-09-22***) We combine our original AlphaGomoku program with ***Curriculum Learning***, ***Double Networks Mechanism*** and ***Winning Value Decay*** to extend our AI to ***15 by 15 Free Style Gomoku***. Before we adopt these methods mentioned above, training 15 by 15 AlphaGomoku is intractable since the asymmetry and complexity of the game compared to the 8 by 8 simplified gomoku. 
 
-- (***2018-9-25***) Our Reseach Paper is available at: [***paper***](https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/tutorial/gomoku_paper.pdf)
+- (***2018-9-25***) Our Reseach Paper is available at: [***paper***](https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/tutorial/gomoku_paper.pdf). or at [***arxiv***](http://arxiv.org/abs/1809.10595).
 
 - The training is continuing...... We hope that AlphaGomoku can evolve into Gomoku grand master someday.
 
@@ -72,12 +72,12 @@ Contributors
 Institutions
 -------
 - ***Likelihood Lab***
-- ***Vthree.Ai***
+- ***Vthree.AI***
 - ***Sun Yat-sen University***
 
 Acknowledgement
 -------
-We would like to say thanks to ***BaiAn Chen*** from ***Vthree*** and ***MingWen Liu*** from ***ShiningMidas Private Fund*** for their generous help throughout the research. We are also grateful to ***ZhiPeng Liang*** and ***Hao Chen*** from ***Sun Yat-sen University*** for their supports of the training process of our Gomoku AI. Without their supports, it's hard for us to finish such a complicated task.
+We would like to say thanks to ***Andrew Chen*** from ***Vthree.AI*** and ***MingWen Liu*** from ***ShiningMidas Private Fund*** for their generous help throughout the research. We are also grateful to ***ZhiPeng Liang*** and ***Hao Chen*** from ***Sun Yat-sen University*** for their supports of the training process of our Gomoku AI. Without their supports, it's hard for us to finish such a complicated task.
 
 Set up
 ====
@@ -99,6 +99,7 @@ How to play with AlphaGomoku
 -------
 - Execute run.py
 - Select mode 2 (AI vs Human) to compete.
+- You can also compete with different versions of AlphaGomoku by switching the network.
 
 Contact
 ====
