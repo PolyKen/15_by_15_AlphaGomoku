@@ -26,7 +26,7 @@ class Config(dict):
         self['simulation_times'] = 400
 
         # initial tau
-        self['initial_tau'] = 1
+        self['initial_tau'] = 2
 
         # proportion of dirichlet noise
         self['epsilon'] = 0.25
@@ -207,6 +207,7 @@ class Config(dict):
             self['epoch'] = 5
             self['games_num'] = 30
             self['simulation_times'] = 800
+            self['careful_stage'] = 226   # disable careful stage
             self['mode'] = 13
             print('> Self play and train mode')
         if mode == 0:

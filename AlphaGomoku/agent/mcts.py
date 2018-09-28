@@ -64,7 +64,7 @@ class MCTS:
             self._root = self._root.children()[last_action_ind]
 
         # now the root corresponds to the board
-        pi = self._predict(board, last_action)
+        original_pi, pi = self._predict(board, last_action)
 
         # action decision
         if self._use_stochastic_policy and stage <= self._careful_stage:  # stochastic policy
@@ -81,21 +81,23 @@ class MCTS:
         if not self._is_self_play:
             self._root = self._root.children()[action]
 
-        return action, pi, prior_prob, value
+        return action, original_pi, prior_prob, value
         # return pi for training use
 
     def _predict(self, board, last_move):
         # now board correspond to the root, last_move is the last move of the board
         self._simulate(board, last_move)
         # generate the action distribution
+        original_pi = np.array([node.N for node in self._root.children()])
         pi = np.array([node.N ** (1 / self._tau) for node in self._root.children()])
         if len(pi) != len(board) ** 2:
             print('>> error: MCTS._predict')
             print(len(pi))
             return
+        original_pi /= sum(original_pi)
         pi /= sum(pi)
 
-        return pi
+        return original_pi, pi
 
     # ROOT BOARD MUST CORRESPOND TO THE ROOT NODE!!!
     def _get_simulate_thread_target(self, root_board, last_move):
