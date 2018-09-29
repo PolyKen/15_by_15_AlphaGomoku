@@ -87,7 +87,7 @@ class Config(dict):
         self['mini_batch_size'] = 512
 
         # fit epochs, number of each sample used
-        self['fit_epochs'] = 20
+        self['fit_epochs'] = 10
 
         # use supervised learning
         self['is_supervised'] = False
@@ -204,9 +204,9 @@ class Config(dict):
             self['display'] = False
             self['is_self_play'] = True
             self['show_score'] = False
-            self['epoch'] = 5
+            self['epoch'] = 10
             self['games_num'] = 30
-            self['simulation_times'] = 800
+            self['simulation_times'] = 400
             self['careful_stage'] = 226   # disable careful stage
             self['mode'] = 13
             print('> Self play and train mode')
