@@ -88,7 +88,7 @@ class MCTS:
         # now board correspond to the root, last_move is the last move of the board
         self._simulate(board, last_move)
         # generate the action distribution
-        original_pi = np.array([node.N for node in self._root.children()])
+        original_pi = np.array([node.N * 1.0 for node in self._root.children()])
         pi = np.array([node.N ** (1 / self._tau) for node in self._root.children()])
         if len(pi) != len(board) ** 2:
             print('>> error: MCTS._predict')
