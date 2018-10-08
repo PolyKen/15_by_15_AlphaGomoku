@@ -27,7 +27,7 @@ class Config(dict):
         self['simulation_times'] = 400
 
         # initial tau
-        self['initial_tau'] = 2
+        self['initial_tau'] = 1.5
 
         # proportion of dirichlet noise
         self['epsilon'] = 0.25
