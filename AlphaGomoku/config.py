@@ -206,7 +206,7 @@ class Config(dict):
             self['is_self_play'] = True
             self['show_score'] = False
             self['epoch'] = 10
-            self['games_num'] = 30
+            self['games_num'] = 60
             self['simulation_times'] = 400
             self['careful_stage'] = 226   # disable careful stage
             self['mode'] = 13
