@@ -68,6 +68,9 @@ class MCTS:
         # now the root corresponds to the board
         # update tau
         self._tau = self._initial_tau * (tau_decay ** int(stage / 2))
+        if self._tau < 0.001:
+            self._careful_stage = 0
+
         original_pi, pi = self._predict(board, last_action)
 
         # action decision
