@@ -1,5 +1,6 @@
+value_decay = 0.95
 
-decay = 0.95
+tau_decay = 0.75
 
 
 class Config(dict):

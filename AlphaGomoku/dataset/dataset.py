@@ -1,6 +1,7 @@
 import random
 import numpy as np
 import os
+from ..config import value_decay
 
 
 class DataSet:
@@ -86,7 +87,6 @@ class GameRecord:
         self._pi_list = []
         self._z_list = []
         self._total_num = 0
-        self._decay = 0.95
 
     def add(self, obs, color, last_move, pi, z=None):
         self._obs_list.append(obs)
@@ -111,9 +111,9 @@ class GameRecord:
             return
         for i in range(self._total_num):
             if result == self._color_list[i]:
-                self._z_list[i] = 1 * self._decay ** (self._total_num - i - 1)
+                self._z_list[i] = 1 * value_decay ** (self._total_num - i - 1)
             else:
-                self._z_list[i] = -1 * self._decay ** (self._total_num - i - 1)
+                self._z_list[i] = -1 * value_decay ** (self._total_num - i - 1)
 
     def get_sample(self, percentage, shuffle=True):
         if shuffle:

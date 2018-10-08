@@ -4,6 +4,7 @@ from ..rules import *
 from ..utils import *
 import time
 import threading
+from ..config import tau_decay
 
 
 class MCTS:
@@ -11,7 +12,8 @@ class MCTS:
         # hyperparameters
         self._c_puct = conf['c_puct']  # PUCT
         self._simulation_times = conf['simulation_times']  # number of simulation
-        self._tau = conf['initial_tau']  # temperature parameter
+        self._initial_tau = conf['initial_tau']  # temperature parameter
+        self._tau = self._initial_tau
         self._epsilon = conf['epsilon']  # proportion of dirichlet noise
         self._use_dirichlet = conf['use_dirichlet']
         self._alpha = conf['alpha']
@@ -64,6 +66,8 @@ class MCTS:
             self._root = self._root.children()[last_action_ind]
 
         # now the root corresponds to the board
+        # update tau
+        self._tau = self._initial_tau * (tau_decay ** int(stage / 2))
         original_pi, pi = self._predict(board, last_action)
 
         # action decision

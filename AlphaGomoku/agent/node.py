@@ -90,4 +90,4 @@ class Node:
         self.W += value
         self._Q = self.W / self.N
         if not self.is_root():
-            self._parent.backup(-decay * value)
+            self._parent.backup(-value_decay * value)
