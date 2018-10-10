@@ -97,7 +97,12 @@ class MCTS:
         self._simulate(board, last_move)
         # generate the action distribution
         original_pi = np.array([node.N * 1.0 for node in self._root.children()])
-        pi = np.array([node.N ** (1 / self._tau) for node in self._root.children()])
+        try:
+            pi = np.array([node.N ** (1 / self._tau) for node in self._root.children()])
+        except:
+            pi = original_pi
+            self._tau = 0.03
+
         if len(pi) != len(board) ** 2:
             print('>> error: MCTS._predict')
             print(len(pi))
