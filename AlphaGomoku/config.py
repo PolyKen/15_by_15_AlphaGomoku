@@ -157,8 +157,10 @@ class Config(dict):
             self['display'] = False
             self['is_self_play'] = True
             self['mode'] = 6
-            self['games_num'] = 30
-            self['epoch'] = 30
+            self['games_num'] = 20
+            self['epoch'] = 10
+            self['simulation_times'] = 1600
+            self['careful_stage'] = 226
             self['show_score'] = False
             print('> Collect self play data mode')
         if mode == 7:

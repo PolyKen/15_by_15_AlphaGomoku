@@ -90,6 +90,26 @@ class Env:
         if type(self._agent_2) == HumanAgent:
             self._agent_2.set_renderer(renderer=self._renderer)
 
+    def init_mode(self, mode):
+        if mode == 1 or mode == 0:
+            self.train()
+        if mode in [2, 2.5, 3, 9, 10]:
+            self.run(use_stochastic_policy=False)
+        if mode == 4:
+            self.mcts_vs_fast(game_num=20)
+        if mode == 5:
+            self.collect_human_data()
+        if mode in [6, 12]:
+            self.collect_self_play_data()
+        if mode == 7:
+            self.train_on_external_data()
+        if mode == 8:
+            self.collect_human_vs_ai_data()
+        if mode == 11:
+            self.train_on_generated_data()
+        if mode == 13:
+            self.self_play_and_train()
+
     @log
     def run(self, use_stochastic_policy, record=None):
         if type(self._agent_1) == MCTSAgent:
@@ -367,7 +387,7 @@ class Env:
         data_set.save(self._conf['human_play_data_path'])
 
     def collect_self_play_data(self):
-        name = os.getenv('computername')
+        name = os.getenv('computername') + str(os.getpid())
         for epoch in range(self._epoch):
             print('> epoch = ' + str(epoch + 1))
             data_set = DataSet()
@@ -421,6 +441,7 @@ class Env:
         self._agent_1.save_model()
         self._network_version += 1
         print('> network version = ' + str(self._network_version))
+        self.backup_model()
 
     def _obs(self):
         return self._board.board()
@@ -522,7 +543,6 @@ class Env:
         while True:
             self.collect_self_play_data()
             self.train_on_external_data()
-            self.backup_model()
 
     def temp(self):
         mcts_win_num, fast_win_num = 0, 0
