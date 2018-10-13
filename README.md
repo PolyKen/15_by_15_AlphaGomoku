@@ -7,7 +7,7 @@ Introduction
 
 - (***2018-09-22***) We combine our original AlphaGomoku program with ***Curriculum Learning***, ***Double Networks Mechanism*** and ***Winning Value Decay*** to extend our AI to ***15 by 15 Free Style Gomoku***. Before we adopt these methods mentioned above, training 15 by 15 AlphaGomoku is intractable since the asymmetry and complexity of the game compared to the 8 by 8 simplified gomoku. 
 
-- (***2018-9-25***) Our Reseach Paper is available at: [***paper***](https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/tutorial/gomoku_paper.pdf). or at [***arxiv***](http://arxiv.org/abs/1809.10595).
+- (***2018-9-25***) Our Reseach Paper is available at: [***paper***](https://github.com/PolyKen/15_by_15_AlphaGomoku/blob/master/tutorial/gomoku_paper.pdf)(or at [***arxiv***](http://arxiv.org/abs/1809.10595))
 
 - The training is continuing...... We hope that AlphaGomoku can evolve into Gomoku grand master someday.
 
