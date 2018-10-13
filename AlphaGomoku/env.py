@@ -387,7 +387,7 @@ class Env:
         data_set.save(self._conf['human_play_data_path'])
 
     def collect_self_play_data(self):
-        name = os.getenv('computername')
+        name = os.getenv('computername') + str(os.getpid())
         for epoch in range(self._epoch):
             print('> epoch = ' + str(epoch + 1))
             data_set = DataSet()
@@ -441,6 +441,7 @@ class Env:
         self._agent_1.save_model()
         self._network_version += 1
         print('> network version = ' + str(self._network_version))
+        self.backup_model()
 
     def _obs(self):
         return self._board.board()
@@ -542,7 +543,6 @@ class Env:
         while True:
             self.collect_self_play_data()
             self.train_on_external_data()
-            self.backup_model()
 
     def temp(self):
         mcts_win_num, fast_win_num = 0, 0

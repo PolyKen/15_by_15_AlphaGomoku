@@ -44,8 +44,11 @@ if __name__ == '__main__':
 
     mode = select_mode()
     mp.freeze_support()
-    cores_num = mp.cpu_count()
-    if mode in [2, 2.5, 3, 5, 8, 9, 10]:
-        cores_num = 1
-    pool = mp.Pool(processes=cores_num)
-    pool.map(func=start, iterable=[mode] * cores_num)
+    if mode == 13:
+        cores_num = mp.cpu_count()
+        pool = mp.Pool(processes=cores_num)
+        while True:
+            pool.map(func=start, iterable=[6] * cores_num)
+            start(7)
+    else:
+        start(mode)
