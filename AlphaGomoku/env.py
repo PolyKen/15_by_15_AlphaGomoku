@@ -90,6 +90,26 @@ class Env:
         if type(self._agent_2) == HumanAgent:
             self._agent_2.set_renderer(renderer=self._renderer)
 
+    def init_mode(self, mode):
+        if mode == 1 or mode == 0:
+            self.train()
+        if mode in [2, 2.5, 3, 9, 10]:
+            self.run(use_stochastic_policy=False)
+        if mode == 4:
+            self.mcts_vs_fast(game_num=20)
+        if mode == 5:
+            self.collect_human_data()
+        if mode in [6, 12]:
+            self.collect_self_play_data()
+        if mode == 7:
+            self.train_on_external_data()
+        if mode == 8:
+            self.collect_human_vs_ai_data()
+        if mode == 11:
+            self.train_on_generated_data()
+        if mode == 13:
+            self.self_play_and_train()
+
     @log
     def run(self, use_stochastic_policy, record=None):
         if type(self._agent_1) == MCTSAgent:

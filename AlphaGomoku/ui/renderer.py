@@ -1,6 +1,7 @@
 from sys import exit
 from ..rules import *
 import time
+import threading
 
 display_mode = True
 use_dialog = True
@@ -13,11 +14,6 @@ try:
     import pygame
 except ImportError:
     print('> error: module [pygame] not found')
-    display_mode = False
-try:
-    import threading
-except ImportError:
-    print('> error: module [threading] not found')
     display_mode = False
 
 image_path = 'AlphaGomoku/ui/image/'
