@@ -65,24 +65,6 @@ AI plays the white stone against human, adopting deterministic policy with 400 s
 </p>
 -->
 
-Contribution
-====
-Contributors
--------
-- ***Zheng Xie***
-- ***XingYu Fu***
-- ***JinYuan Yu***
-
-Institutions
--------
-- ***Likelihood Lab***
-- ***Vthree.AI***
-- ***Sun Yat-sen University***
-
-Acknowledgement
--------
-We would like to say thanks to ***Andrew Chen*** from ***Vthree.AI*** and ***MingWen Liu*** from ***ShiningMidas Private Fund*** for their generous help throughout the research. We are also grateful to ***ZhiPeng Liang*** and ***Hao Chen*** from ***Sun Yat-sen University*** for their supports of the training process of our Gomoku AI. Without their supports, it's hard for us to finish such a complicated task.
-
 Set up
 ====
 Python Version
@@ -91,8 +73,6 @@ Python Version
 
 Requirement
 -------
-pip install -r requirement.txt
-
 - ***tensorflow***
 - ***keras***
 - ***pygame***
@@ -110,6 +90,31 @@ Training
 -------
 - Execute run.py.
 - Select mode 13.
+
+Setting parameters
+-------
+All important parameters are in AlphaGomoku/config.py. Some of them are listed as follows,
+- simulation_times: the number of 'exploration' of game tree for each move.
+- c_puct: in general, when c_puct gets larger, the policy decision will rely more on prior probability.
+- initial_tau: temperature coefficient. When it gets smaller, policy will tend to be more deterministic.
+
+Contribution
+====
+Contributors
+-------
+- ***Zheng Xie***
+- ***XingYu Fu***
+- ***JinYuan Yu***
+
+Institutions
+-------
+- ***Likelihood Lab***
+- ***Vthree.AI***
+- ***Sun Yat-sen University***
+
+Acknowledgement
+-------
+We would like to say thanks to ***Andrew Chen*** from ***Vthree.AI*** and ***MingWen Liu*** from ***ShiningMidas Private Fund*** for their generous help throughout the research. We are also grateful to ***ZhiPeng Liang*** and ***Hao Chen*** from ***Sun Yat-sen University*** for their supports of the training process of our Gomoku AI. Without their supports, it's hard for us to finish such a complicated task.
 
 Contact
 ====
