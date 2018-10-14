@@ -3,7 +3,7 @@
 
 Introduction
 ====
-- This is an Gomoku AI based on curriculum learning and AlphaGo methods.
+- This is a Gomoku AI based on curriculum learning and AlphaGo methods.
 
 <!---  (***2018-08-29***) We implement an ***AlphaGo-based Gomoku AI program*** in ***8 by 8 Free Style Gomoku***. You can also get access to our [***presentation PPT***](https://github.com/PolyKen/AlphaRenju_Zero/blob/master/tutorial/Gomoku%20PPT.pptx) in 2018 Likelihood Lab Summer Research Conference.
 - (***2018-09-22***) We combine our original AlphaGomoku program with ***Curriculum Learning***, ***Double Networks Mechanism*** and ***Winning Value Decay*** to extend our AI to ***15 by 15 Free Style Gomoku***. Before we adopt these methods mentioned above, training 15 by 15 AlphaGomoku is intractable since the asymmetry and complexity of the game compared to the 8 by 8 simplified gomoku. 
