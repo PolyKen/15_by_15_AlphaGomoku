@@ -34,7 +34,7 @@ def start(_mode):
     conf = Config()
     conf.set_mode(_mode)
     _env = Env(conf)
-    _env.init_mode(_mode)
+    _env.start_mode()
 
 
 if __name__ == '__main__':

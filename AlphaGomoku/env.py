@@ -49,7 +49,7 @@ class Env:
         if conf['mode'] == 4:
             self._agent_1 = MCTSAgent(conf, color=BLACK, use_stochastic_policy=False)
             # self._agent_2 = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
-            self._agent_2 = FastAgent(color=WHITE)
+            self._agent_2 = MCTSAgent(conf, color=WHITE, use_stochastic_policy=False)
             # self._agent_1, self._agent_2 = self._agent_2, self._agent_1
 
         if conf['mode'] == 8:
@@ -84,19 +84,21 @@ class Env:
         self._rules = Rules(conf)
         self._renderer = Renderer(conf['screen_size'], conf['board_size']) if conf['display'] else None
         self._board = Board(self._renderer, conf['board_size'])
+        self._conf = conf
 
         if type(self._agent_1) == HumanAgent:
             self._agent_1.set_renderer(renderer=self._renderer)
         if type(self._agent_2) == HumanAgent:
             self._agent_2.set_renderer(renderer=self._renderer)
 
-    def init_mode(self, mode):
+    def start_mode(self):
+        mode = self._conf['mode']
         if mode == 1 or mode == 0:
             self.train()
         if mode in [2, 2.5, 3, 9, 10]:
             self.run(use_stochastic_policy=False)
         if mode == 4:
-            self.mcts_vs_fast(game_num=20)
+            self.compare(game_num=50)
         if mode == 5:
             self.collect_human_data()
         if mode in [6, 12]:
@@ -109,6 +111,10 @@ class Env:
             self.train_on_generated_data()
         if mode == 13:
             self.self_play_and_train()
+
+    def set_mcts_agent_version(self, black_ver, white_ver):
+        self._agent_1 = MCTSAgent(self._conf, color=BLACK, use_stochastic_policy=False, specify_model_ver=black_ver)
+        self._agent_2 = MCTSAgent(self._conf, color=WHITE, use_stochastic_policy=False, specify_model_ver=white_ver)
 
     @log
     def run(self, use_stochastic_policy, record=None):
@@ -496,7 +502,7 @@ class Env:
         self._agent_1.train(obs, col, last_move, pi, z)
         self._agent_1.save_model()
 
-    def mcts_vs_fast(self, game_num=20):
+    def compare(self, game_num=20):
         agent_1_win_num, agent_2_win_num = 0, 0
 
         for i in range(int(game_num / 2)):
