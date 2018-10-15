@@ -1,6 +1,6 @@
 value_decay = 0.95
 
-tau_decay = 0.75
+tau_decay = 0.8
 
 
 class Config(dict):
@@ -27,7 +27,7 @@ class Config(dict):
         self['simulation_times'] = 400
 
         # initial tau
-        self['initial_tau'] = 1.5
+        self['initial_tau'] = 1
 
         # proportion of dirichlet noise
         self['epsilon'] = 0.25
@@ -209,7 +209,7 @@ class Config(dict):
             self['show_score'] = False
             self['epoch'] = 10
             self['games_num'] = 60
-            self['simulation_times'] = 400
+            self['simulation_times'] = 1600
             self['careful_stage'] = 226   # disable careful stage
             self['mode'] = 13
             print('> Self play and train mode')
