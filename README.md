@@ -73,6 +73,8 @@ Python Version
 
 Requirement
 -------
+`pip install -r requirements.txt`
+
 - ***tensorflow***
 - ***keras***
 - ***pygame***
