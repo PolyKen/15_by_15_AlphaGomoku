@@ -125,14 +125,14 @@ class Config(dict):
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 2
-            self['simulation_times'] = 400
+            self['simulation_times'] = 800
             self['show_score'] = False
             print('> AI vs Human mode')
         if mode == 2.5:
             self['display'] = True
             self['is_self_play'] = False
             self['mode'] = 2.5
-            self['simulation_times'] = 400
+            self['simulation_times'] = 800
             self['show_score'] = False
             print('> AI vs Human mode')
         if mode == 3:
