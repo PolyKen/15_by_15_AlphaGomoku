@@ -12,11 +12,5 @@ if __name__ == '__main__':
     conf.set_mode(4)
     env = Env(conf)
 
-    env.set_mcts_agent_version(black_ver=17, white_ver=18)
-    env.start_mode()
-
-    env.set_mcts_agent_version(black_ver=17, white_ver=19)
-    env.start_mode()
-
-    env.set_mcts_agent_version(black_ver=18, white_ver=19)
+    env.set_mcts_agent_version(black_ver=17, white_ver=22)
     env.start_mode()
