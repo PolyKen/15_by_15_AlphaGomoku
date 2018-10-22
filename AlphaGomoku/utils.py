@@ -1,5 +1,33 @@
 import time
 import numpy as np
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.header import Header
+import smtplib
+
+
+from_addr = "reposter@sina.com"
+password = "secret"
+
+
+def send_email_report(to_addr, content):
+    msg = MIMEMultipart()
+    msg['Subject'] = Header('Gomoku AI Report', 'utf-8')
+    msg['From'] = Header(from_addr)
+    msg['To'] = Header(to_addr)
+    msg['Reply-to'] = Header(from_addr)
+
+    msg.attach(MIMEText(content, 'plain', 'utf-8'))
+
+    smtp_server = "smtp.sina.com"
+    server = smtplib.SMTP(smtp_server, 25)
+
+    server.set_debuglevel(1)
+    server.starttls()
+
+    server.login(from_addr, password)
+    server.sendmail(from_addr, [to_addr], msg.as_string())
+    server.quit()
 
 
 def log(func):

@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import os
 import re
 from .rules import *
+from .utils import *
 import shutil
 
 
@@ -21,6 +22,8 @@ class Env:
         self._loss_list = []
 
         self._network_version = self._get_model_version()
+        self._agent_1_ver = 0
+        self._agent_2_ver = 0
 
         self._evaluator_agent = FastAgent(color=BLACK)
         self._epoch = conf['epoch']
@@ -112,9 +115,11 @@ class Env:
         if mode == 13:
             self.self_play_and_train()
 
-    def set_mcts_agent_version(self, black_ver, white_ver):
-        self._agent_1 = MCTSAgent(self._conf, color=BLACK, use_stochastic_policy=False, specify_model_ver=black_ver)
-        self._agent_2 = MCTSAgent(self._conf, color=WHITE, use_stochastic_policy=False, specify_model_ver=white_ver)
+    def set_mcts_agent_version(self, agent_1_ver, agent_2_ver):
+        self._agent_1_ver = agent_1_ver
+        self._agent_2_ver = agent_2_ver
+        self._agent_1 = MCTSAgent(self._conf, color=BLACK, use_stochastic_policy=False, specify_model_ver=agent_1_ver)
+        self._agent_2 = MCTSAgent(self._conf, color=WHITE, use_stochastic_policy=False, specify_model_ver=agent_2_ver)
 
     @log
     def run(self, use_stochastic_policy, record=None):
@@ -445,9 +450,8 @@ class Env:
         obs, col, last_move, pi, z = external_data_set.get_sample(1)
         self._agent_1.train(obs, col, last_move, pi, z)
         self._agent_1.save_model()
-        self._network_version += 1
-        print('> network version = ' + str(self._network_version))
-        self.backup_model()
+        latest_version = self.backup_model()
+        print('> current version: ' + str(latest_version))
 
     def _obs(self):
         return self._board.board()
@@ -521,7 +525,10 @@ class Env:
             if result == BLACK:
                 agent_1_win_num += 1
 
-        print("> agent 1 : agent 2 = " + str(agent_1_win_num) + " : " + str(agent_2_win_num))
+        result = "> ver." + str(self._agent_1_ver) + " : ver." + str(self._agent_2_ver) + ' = ' + str(
+            agent_1_win_num) + " : " + str(agent_2_win_num)
+        print(result)
+        send_email_report(to_addr="kennyxz@live.cn", content=result)
 
     def _get_model_version(self):
         root = 'AlphaGomoku/network/model/'
@@ -543,7 +550,10 @@ class Env:
         path_w = root + 'model_w_15_ver_' + str(max_num + 1) + '.h5'
         shutil.copy(path_ob, path_b)
         shutil.copy(path_ow, path_w)
-        print('> model ver. ' + str(max_num + 1) + ' saved.')
+        info = '> model ver. ' + str(max_num + 1) + ' saved.'
+        print(info)
+        send_email_report(to_addr="kennyxz@live.cn", content=info)
+        return max_num + 1
 
     def self_play_and_train(self):
         while True:
