@@ -14,3 +14,4 @@ self_play_15_0_temp_last_move.npy
 self_play_15_0_temp_obs.npy
 self_play_15_0_temp_pi.npy
 self_play_15_0_temp_z.npy
+AlphaGomoku/utils.py
