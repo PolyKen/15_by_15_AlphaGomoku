@@ -56,10 +56,9 @@ class Network:
         x = BatchNormalization()(x)
         x = Activation('relu')(x)
 
-        # Two Residual Blocks
-        x = self._residual_block(x)
-        x = self._residual_block(x)
-        x = self._residual_block(x)
+        # Three Residual Blocks
+        for _ in range(3):
+            x = self._residual_block(x)
 
         # Policy Head for generating prior probability vector for each action
         policy = Conv2D(filters=2, kernel_size=(1, 1), strides=(1, 1), padding='same',
