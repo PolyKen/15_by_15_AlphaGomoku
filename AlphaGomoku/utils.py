@@ -7,7 +7,7 @@ import smtplib
 
 
 from_addr = "reposter@sina.com"
-password = ""
+password = "26535270"
 
 
 def send_email_report(to_addr, content):
