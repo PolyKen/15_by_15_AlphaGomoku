@@ -116,7 +116,7 @@ Institutions
 
 Acknowledgement
 -------
-We would like to say thanks to ***Andrew Chen*** from ***Vthree.AI*** and ***MingWen Liu*** from ***ShiningMidas Private Fund*** for their generous help throughout the research. We are also grateful to ***ZhiPeng Liang*** and ***Hao Chen*** from ***Sun Yat-sen University*** for their supports of the training process of our Gomoku AI. Without their supports, it's hard for us to finish such a complicated task.
+We would like to say thanks to ***Andrew Chen*** from [***Vthree.AI***](http://vthree.ai/) and ***MingWen Liu*** from [***ShiningMidas Investment***](http://www.shiningmidas.com/) for their generous help throughout the research. We are also grateful to ***ZhiPeng Liang*** and ***Hao Chen*** from ***Sun Yat-sen University*** for their supports of the training process of our Gomoku AI. Without their supports, it's hard for us to finish such a complicated task.
 
 Contact
 ====
