@@ -510,7 +510,7 @@ class Env:
         agent_1_win_num, agent_2_win_num = 0, 0
 
         for i in range(int(game_num / 2)):
-            result = self.run(use_stochastic_policy=True)
+            result = self.run(use_stochastic_policy=False)
             if result == BLACK:
                 agent_1_win_num += 1
             if result == WHITE:
@@ -519,7 +519,7 @@ class Env:
         self._agent_1, self._agent_2 = self._agent_2, self._agent_1
 
         for i in range(int(game_num / 2)):
-            result = self.run(use_stochastic_policy=True)
+            result = self.run(use_stochastic_policy=False)
             if result == WHITE:
                 agent_2_win_num += 1
             if result == BLACK:

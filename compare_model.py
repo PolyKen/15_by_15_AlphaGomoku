@@ -10,7 +10,8 @@ if __name__ == '__main__':
 
     conf = Config()
     conf.set_mode(4)
+    conf['display'] = True
     env = Env(conf)
 
-    env.set_mcts_agent_version(agent_1_ver=23, agent_2_ver=19)
+    env.set_mcts_agent_version(agent_1_ver=17, agent_2_ver=22)
     env.start_mode()
