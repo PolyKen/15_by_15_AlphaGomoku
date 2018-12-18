@@ -1,6 +1,6 @@
 from . import *
 from .dataset.dataset import *
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 import os
 import re
 from .rules import *
@@ -288,13 +288,13 @@ class Env:
         with open(hist_path, 'a') as f:
             f.write(str(self._loss_list))
         # plot loss
-        x = range(1, len(self._loss_list) + 1)
-        y = self._loss_list
-        plt.plot(x, y)
-        plt.xlabel('epoch')
-        plt.ylabel('loss')
-        plt.savefig(self._conf['fit_history_file'] + str('.png'), dpi=300)
-        plt.show()
+        # x = range(1, len(self._loss_list) + 1)
+        # y = self._loss_list
+        # plt.plot(x, y)
+        # plt.xlabel('epoch')
+        # plt.ylabel('loss')
+        # plt.savefig(self._conf['fit_history_file'] + str('.png'), dpi=300)
+        # plt.show()
 
     def evaluate(self):
         print('> Evaluation begins:')
